@@ -13,3 +13,4 @@ D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\obj\Debug\net8.0\ArmWre
 D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\obj\Debug\net8.0\refint\ArmWrestling.ViewModel.dll
 D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\obj\Debug\net8.0\ArmWrestling.ViewModel.pdb
 D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\obj\Debug\net8.0\ref\ArmWrestling.ViewModel.dll
+D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\obj\Debug\net8.0\ArmWrestling.ViewModel.sourcelink.json

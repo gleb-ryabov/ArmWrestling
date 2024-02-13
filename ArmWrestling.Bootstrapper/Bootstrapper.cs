@@ -1,5 +1,6 @@
 ﻿using ArmWrestling.View.StartWindow;
 using ArmWrestling.ViewModel.StartWindow;
+using ArmWrestling.ViewModel.Windows;
 using Autofac;
 using System;
 using System.Collections.Generic;
@@ -20,25 +21,25 @@ namespace ArmWrestling.Bootstrapper
 
             containerBuilder
                 .RegisterModule<View.RegisterModule>()
-                .RegisterModule<ViewModel.RegisterModule>();
+                .RegisterModule<ViewModel.RegisterModule>()
+                .RegisterModule<RegisterModule>();
 
             _container = containerBuilder.Build();
         }
 
         public Window Run()
         {
-            var mainWindow = _container.Resolve<IMainWindow>();
+            var mainWindowViewModel = _container.Resolve<IMainWindowViewModel>();
+            var windowManager = _container.Resolve<IWindowManager>();
+
+            var mainWindow = windowManager.Show(mainWindowViewModel);
 
             if (mainWindow is not Window window)
             {
                 throw new NotImplementedException();
             }
 
-            window.Show();
-
             return window;
-
-
         }
         public void Dispose()
         {

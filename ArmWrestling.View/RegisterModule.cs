@@ -1,5 +1,7 @@
 ﻿using ArmWrestling.View.StartWindow;
+using ArmWrestling.View.Windows;
 using ArmWrestling.ViewModel.StartWindow;
+using ArmWrestling.ViewModel.Windows;
 using Autofac;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,7 @@ namespace ArmWrestling.View
             base.Load(builder);
 
             builder.RegisterType<MainWindow>().As<IMainWindow>().InstancePerDependency();
+            builder.RegisterType<WindowManager>().As<IWindowManager>().SingleInstance();
 
         }
     }
