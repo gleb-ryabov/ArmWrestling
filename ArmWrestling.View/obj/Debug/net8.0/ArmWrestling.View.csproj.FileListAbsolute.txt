@@ -1,0 +1,5 @@
+D:\проекты c#\ArmWrestling\ArmWrestling.View\obj\Debug\net8.0\ArmWrestling.View.csproj.AssemblyReference.cache
+D:\проекты c#\ArmWrestling\ArmWrestling.View\obj\Debug\net8.0\ArmWrestling.View.GeneratedMSBuildEditorConfig.editorconfig
+D:\проекты c#\ArmWrestling\ArmWrestling.View\obj\Debug\net8.0\ArmWrestling.View.AssemblyInfoInputs.cache
+D:\проекты c#\ArmWrestling\ArmWrestling.View\obj\Debug\net8.0\ArmWrestling.View.AssemblyInfo.cs
+D:\проекты c#\ArmWrestling\ArmWrestling.View\obj\Debug\net8.0\ArmWrestling.View.csproj.CoreCompileInputs.cache

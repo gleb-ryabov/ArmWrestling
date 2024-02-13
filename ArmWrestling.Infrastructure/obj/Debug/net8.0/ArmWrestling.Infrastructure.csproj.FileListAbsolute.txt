@@ -1,0 +1,15 @@
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\bin\Debug\net8.0\ArmWrestling.Infrastructure.deps.json
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\bin\Debug\net8.0\ArmWrestling.Infrastructure.dll
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\bin\Debug\net8.0\ArmWrestling.Infrastructure.pdb
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\bin\Debug\net8.0\ArmWrestling.Domain.dll
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\bin\Debug\net8.0\ArmWrestling.Domain.pdb
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\obj\Debug\net8.0\ArmWrestling.Infrastructure.csproj.AssemblyReference.cache
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\obj\Debug\net8.0\ArmWrestling.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\obj\Debug\net8.0\ArmWrestling.Infrastructure.AssemblyInfoInputs.cache
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\obj\Debug\net8.0\ArmWrestling.Infrastructure.AssemblyInfo.cs
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\obj\Debug\net8.0\ArmWrestling.Infrastructure.csproj.CoreCompileInputs.cache
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\obj\Debug\net8.0\ArmWrestling.Infrastructure.csproj.CopyComplete
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\obj\Debug\net8.0\ArmWrestling.Infrastructure.dll
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\obj\Debug\net8.0\refint\ArmWrestling.Infrastructure.dll
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\obj\Debug\net8.0\ArmWrestling.Infrastructure.pdb
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\obj\Debug\net8.0\ref\ArmWrestling.Infrastructure.dll

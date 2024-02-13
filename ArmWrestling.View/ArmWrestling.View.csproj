@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="StartWindow\StartWindow.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="StartWindow\StartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ArmWrestling.ViewModel\ArmWrestling.ViewModel.csproj" />
+  </ItemGroup>
+
+</Project>

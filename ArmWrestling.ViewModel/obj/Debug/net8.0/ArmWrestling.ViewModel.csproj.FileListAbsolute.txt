@@ -1,0 +1,15 @@
+D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\bin\Debug\net8.0\ArmWrestling.ViewModel.deps.json
+D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\bin\Debug\net8.0\ArmWrestling.ViewModel.dll
+D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\bin\Debug\net8.0\ArmWrestling.ViewModel.pdb
+D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\bin\Debug\net8.0\ArmWrestling.Domain.dll
+D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\bin\Debug\net8.0\ArmWrestling.Domain.pdb
+D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\obj\Debug\net8.0\ArmWrestling.ViewModel.csproj.AssemblyReference.cache
+D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\obj\Debug\net8.0\ArmWrestling.ViewModel.GeneratedMSBuildEditorConfig.editorconfig
+D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\obj\Debug\net8.0\ArmWrestling.ViewModel.AssemblyInfoInputs.cache
+D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\obj\Debug\net8.0\ArmWrestling.ViewModel.AssemblyInfo.cs
+D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\obj\Debug\net8.0\ArmWrestling.ViewModel.csproj.CoreCompileInputs.cache
+D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\obj\Debug\net8.0\ArmWrestling.ViewModel.csproj.CopyComplete
+D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\obj\Debug\net8.0\ArmWrestling.ViewModel.dll
+D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\obj\Debug\net8.0\refint\ArmWrestling.ViewModel.dll
+D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\obj\Debug\net8.0\ArmWrestling.ViewModel.pdb
+D:\проекты c#\ArmWrestling\ArmWrestling.ViewModel\obj\Debug\net8.0\ref\ArmWrestling.ViewModel.dll

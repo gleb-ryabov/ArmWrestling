@@ -1,0 +1,91 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0": {
+      "ArmWrestling.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/ArmWrestling.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ArmWrestling.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ArmWrestling.Domain/1.0.0": {
+      "type": "project",
+      "path": "../ArmWrestling.Domain/ArmWrestling.Domain.csproj",
+      "msbuildProject": "../ArmWrestling.Domain/ArmWrestling.Domain.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "ArmWrestling.Domain >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\ГЛЕБ\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\проекты c#\\ArmWrestling\\ArmWrestling.Infrastructure\\ArmWrestling.Infrastructure.csproj",
+      "projectName": "ArmWrestling.Infrastructure",
+      "projectPath": "D:\\проекты c#\\ArmWrestling\\ArmWrestling.Infrastructure\\ArmWrestling.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\ГЛЕБ\\.nuget\\packages\\",
+      "outputPath": "D:\\проекты c#\\ArmWrestling\\ArmWrestling.Infrastructure\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\ГЛЕБ\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "D:\\проекты c#\\ArmWrestling\\ArmWrestling.Domain\\ArmWrestling.Domain.csproj": {
+              "projectPath": "D:\\проекты c#\\ArmWrestling\\ArmWrestling.Domain\\ArmWrestling.Domain.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

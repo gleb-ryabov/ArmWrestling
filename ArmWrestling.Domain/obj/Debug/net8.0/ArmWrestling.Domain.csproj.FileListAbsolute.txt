@@ -1,0 +1,11 @@
+D:\проекты c#\ArmWrestling\ArmWrestling.Domain\bin\Debug\net8.0\ArmWrestling.Domain.deps.json
+D:\проекты c#\ArmWrestling\ArmWrestling.Domain\bin\Debug\net8.0\ArmWrestling.Domain.dll
+D:\проекты c#\ArmWrestling\ArmWrestling.Domain\bin\Debug\net8.0\ArmWrestling.Domain.pdb
+D:\проекты c#\ArmWrestling\ArmWrestling.Domain\obj\Debug\net8.0\ArmWrestling.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\проекты c#\ArmWrestling\ArmWrestling.Domain\obj\Debug\net8.0\ArmWrestling.Domain.AssemblyInfoInputs.cache
+D:\проекты c#\ArmWrestling\ArmWrestling.Domain\obj\Debug\net8.0\ArmWrestling.Domain.AssemblyInfo.cs
+D:\проекты c#\ArmWrestling\ArmWrestling.Domain\obj\Debug\net8.0\ArmWrestling.Domain.csproj.CoreCompileInputs.cache
+D:\проекты c#\ArmWrestling\ArmWrestling.Domain\obj\Debug\net8.0\ArmWrestling.Domain.dll
+D:\проекты c#\ArmWrestling\ArmWrestling.Domain\obj\Debug\net8.0\refint\ArmWrestling.Domain.dll
+D:\проекты c#\ArmWrestling\ArmWrestling.Domain\obj\Debug\net8.0\ArmWrestling.Domain.pdb
+D:\проекты c#\ArmWrestling\ArmWrestling.Domain\obj\Debug\net8.0\ref\ArmWrestling.Domain.dll

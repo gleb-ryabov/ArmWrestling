@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "ArmWrestling.ViewModel/1.0.0": {
+        "dependencies": {
+          "ArmWrestling.Domain": "1.0.0"
+        },
+        "runtime": {
+          "ArmWrestling.ViewModel.dll": {}
+        }
+      },
+      "ArmWrestling.Domain/1.0.0": {
+        "runtime": {
+          "ArmWrestling.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ArmWrestling.ViewModel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ArmWrestling.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
