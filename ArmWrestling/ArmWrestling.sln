@@ -13,7 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArmWrestling.Domain", "..\A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArmWrestling.ViewModel", "..\ArmWrestling.ViewModel\ArmWrestling.ViewModel.csproj", "{6A3C97CA-3F42-49D1-BD67-90592636590C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmWrestling.View", "..\ArmWrestling.View\ArmWrestling.View.csproj", "{1DB0C304-F168-44CF-9B8C-FF4696BD2B33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArmWrestling.View", "..\ArmWrestling.View\ArmWrestling.View.csproj", "{1DB0C304-F168-44CF-9B8C-FF4696BD2B33}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{29A7DB28-D00D-48F3-84D9-BF29B8087861}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

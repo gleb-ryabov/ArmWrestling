@@ -27,3 +27,4 @@ D:\проекты c#\ArmWrestling\ArmWrestling\obj\Debug\net8.0-windows\ArmWrest
 D:\проекты c#\ArmWrestling\ArmWrestling\bin\Debug\net8.0-windows\Autofac.dll
 D:\проекты c#\ArmWrestling\ArmWrestling\bin\Debug\net8.0-windows\ArmWrestling.View.dll
 D:\проекты c#\ArmWrestling\ArmWrestling\bin\Debug\net8.0-windows\ArmWrestling.View.pdb
+D:\проекты c#\ArmWrestling\ArmWrestling\obj\Debug\net8.0-windows\ArmWrestling.sourcelink.json
