@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "YuazgC+JIksAMAVXr3VWxeMWJOsj50M4uH9yC+Y9559J6y6Jd7ZBSUfqwI/O1czO4RE8w5GU3ykcbbb9lGesgg==",
+  "dgSpecHash": "KWn9W1EbHQDzxutHApqeQuimEcvftmZHF3SXzLq4kaA1XlSKE4k47OkG2xvUku0KecWLySwOKlIMpH5gJetweA==",
   "success": true,
   "projectFilePath": "D:\\проекты c#\\ArmWrestling\\ArmWrestling.View\\ArmWrestling.View.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\ГЛЕБ\\.nuget\\packages\\autofac\\8.0.0\\autofac.8.0.0.nupkg.sha512",
+    "C:\\Users\\ГЛЕБ\\.nuget\\packages\\system.diagnostics.diagnosticsource\\7.0.2\\system.diagnostics.diagnosticsource.7.0.2.nupkg.sha512"
+  ],
   "logs": []
 }

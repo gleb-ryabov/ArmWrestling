@@ -9,14 +9,7 @@
 	</PropertyGroup>
 
   <ItemGroup>
-    <None Remove="StartWindow\StartWindow.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Include="StartWindow\StartWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <PackageReference Include="Autofac" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
