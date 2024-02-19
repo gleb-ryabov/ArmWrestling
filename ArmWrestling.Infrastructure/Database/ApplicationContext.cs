@@ -24,10 +24,6 @@ namespace ArmWrestling.Infrastructure.Database
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Category>()
-                .HasMany(category => category.Competitions)
-                .WithMany(competition => competition.Categories)
-                .UsingEntity(j => j.ToTable(nameof(CategoryInCompetition)));
         }
 
         public DbSet<Category> Categories { get; set; }

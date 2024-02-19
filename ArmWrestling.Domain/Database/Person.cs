@@ -22,11 +22,11 @@ namespace ArmWrestling.Domain.Database
         public int CategoryInCompetitionId { get; set; }
         public CategoryInCompetition CategoryInCompetition { get; set; }
 
-        public int TeamId { get; set; }
-        public Team Team { get; set; }
+        public int? TeamId { get; set; }
+        public Team? Team { get; set; }
 
-        public int CompetitionId { get; set; }
-        public Competition Competition { get; set; }
+        //public int CompetitionId { get; set; }
+        //public Competition Competition { get; set; }
 
         public int Score { get; set; } = 0;
         //public Person(string surname, string name, string middleName, byte gender,

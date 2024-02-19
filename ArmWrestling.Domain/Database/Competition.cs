@@ -17,7 +17,6 @@ namespace ArmWrestling.Domain.Database
         public string TypeCompetition { get; set; }
         public byte CountTable { get; set; }
         public char FirstArm { get; set; }
-        public ICollection <Category> Categories { get; set; }
 
         //public Competition(string typeJudging, string typeCompetition, byte countTable, char firstArm)
         //{

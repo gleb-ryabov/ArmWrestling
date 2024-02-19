@@ -17,7 +17,6 @@ namespace ArmWrestling.Domain.Database
         public int CategoryGroupId { get; set; }
         public CategoryGroup CategoryGroup { get; set; }
 
-        public ICollection<Competition> Competitions { get; set; }
 
         //public Category(byte gender, byte minAge, byte maxAge, byte maxWeight, CategoryGroup categoryGroup)
         //{

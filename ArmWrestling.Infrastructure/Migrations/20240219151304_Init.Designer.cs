@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArmWrestling.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240219103836_Init")]
+    [Migration("20240219151304_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -124,30 +124,19 @@ namespace ArmWrestling.Infrastructure.Migrations
                     b.Property<int>("CategoryInCompetitionId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CompetitionId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("LooserId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("LooserPersonId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("WinnerId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("WinnerPersonId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryInCompetitionId");
 
-                    b.HasIndex("CompetitionId");
+                    b.HasIndex("LooserId");
 
-                    b.HasIndex("LooserPersonId");
-
-                    b.HasIndex("WinnerPersonId");
+                    b.HasIndex("WinnerId");
 
                     b.ToTable("Duels");
                 });
@@ -162,9 +151,6 @@ namespace ArmWrestling.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("CategoryInCompetitionId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CompetitionId")
                         .HasColumnType("INTEGER");
 
                     b.Property<byte>("Gender")
@@ -194,8 +180,6 @@ namespace ArmWrestling.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryInCompetitionId");
-
-                    b.HasIndex("CompetitionId");
 
                     b.HasIndex("TeamId");
 
@@ -235,9 +219,6 @@ namespace ArmWrestling.Infrastructure.Migrations
                     b.Property<int>("CompetitionId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("PersonId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("Place")
                         .HasColumnType("INTEGER");
 
@@ -269,21 +250,6 @@ namespace ArmWrestling.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Teams");
-                });
-
-            modelBuilder.Entity("CategoryCompetition", b =>
-                {
-                    b.Property<int>("CategoriesId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CompetitionsId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("CategoriesId", "CompetitionsId");
-
-                    b.HasIndex("CompetitionsId");
-
-                    b.ToTable("CategoryInCompetition", (string)null);
                 });
 
             modelBuilder.Entity("ArmWrestling.Domain.Database.Category", b =>
@@ -324,31 +290,23 @@ namespace ArmWrestling.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ArmWrestling.Domain.Database.Competition", "Competition")
+                    b.HasOne("ArmWrestling.Domain.Database.Person", "Looser")
                         .WithMany()
-                        .HasForeignKey("CompetitionId")
+                        .HasForeignKey("LooserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ArmWrestling.Domain.Database.Person", "LooserPerson")
+                    b.HasOne("ArmWrestling.Domain.Database.Person", "Winner")
                         .WithMany()
-                        .HasForeignKey("LooserPersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ArmWrestling.Domain.Database.Person", "WinnerPerson")
-                        .WithMany()
-                        .HasForeignKey("WinnerPersonId")
+                        .HasForeignKey("WinnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("CategoryInCompetition");
 
-                    b.Navigation("Competition");
+                    b.Navigation("Looser");
 
-                    b.Navigation("LooserPerson");
-
-                    b.Navigation("WinnerPerson");
+                    b.Navigation("Winner");
                 });
 
             modelBuilder.Entity("ArmWrestling.Domain.Database.Person", b =>
@@ -359,12 +317,6 @@ namespace ArmWrestling.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ArmWrestling.Domain.Database.Competition", "Competition")
-                        .WithMany()
-                        .HasForeignKey("CompetitionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ArmWrestling.Domain.Database.Team", "Team")
                         .WithMany()
                         .HasForeignKey("TeamId")
@@ -372,8 +324,6 @@ namespace ArmWrestling.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("CategoryInCompetition");
-
-                    b.Navigation("Competition");
 
                     b.Navigation("Team");
                 });
@@ -414,21 +364,6 @@ namespace ArmWrestling.Infrastructure.Migrations
                     b.Navigation("Competition");
 
                     b.Navigation("Team");
-                });
-
-            modelBuilder.Entity("CategoryCompetition", b =>
-                {
-                    b.HasOne("ArmWrestling.Domain.Database.Category", null)
-                        .WithMany()
-                        .HasForeignKey("CategoriesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ArmWrestling.Domain.Database.Competition", null)
-                        .WithMany()
-                        .HasForeignKey("CompetitionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

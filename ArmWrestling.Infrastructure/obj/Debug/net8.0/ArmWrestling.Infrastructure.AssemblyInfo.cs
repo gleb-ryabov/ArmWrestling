@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArmWrestling.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c2a97ae29e2d2d31d1ee09b2e1e8248e378f6664")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92f571e5a50a146d3594d7aba980039d624eff7a")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArmWrestling.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArmWrestling.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

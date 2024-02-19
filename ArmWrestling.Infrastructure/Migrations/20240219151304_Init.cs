@@ -85,7 +85,6 @@ namespace ArmWrestling.Infrastructure.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     CompetitionId = table.Column<int>(type: "INTEGER", nullable: false),
-                    PersonId = table.Column<int>(type: "INTEGER", nullable: false),
                     TeamId = table.Column<int>(type: "INTEGER", nullable: false),
                     Place = table.Column<int>(type: "INTEGER", nullable: false)
                 },
@@ -102,30 +101,6 @@ namespace ArmWrestling.Infrastructure.Migrations
                         name: "FK_ResultTeams_Teams_TeamId",
                         column: x => x.TeamId,
                         principalTable: "Teams",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CategoryInCompetition",
-                columns: table => new
-                {
-                    CategoriesId = table.Column<int>(type: "INTEGER", nullable: false),
-                    CompetitionsId = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CategoryInCompetition", x => new { x.CategoriesId, x.CompetitionsId });
-                    table.ForeignKey(
-                        name: "FK_CategoryInCompetition_Categories_CategoriesId",
-                        column: x => x.CategoriesId,
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CategoryInCompetition_Competitions_CompetitionsId",
-                        column: x => x.CompetitionsId,
-                        principalTable: "Competitions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -170,7 +145,6 @@ namespace ArmWrestling.Infrastructure.Migrations
                     Weight = table.Column<float>(type: "REAL", nullable: false),
                     CategoryInCompetitionId = table.Column<int>(type: "INTEGER", nullable: false),
                     TeamId = table.Column<int>(type: "INTEGER", nullable: false),
-                    CompetitionId = table.Column<int>(type: "INTEGER", nullable: false),
                     Score = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -180,12 +154,6 @@ namespace ArmWrestling.Infrastructure.Migrations
                         name: "FK_Persons_CategoryInCompetitions_CategoryInCompetitionId",
                         column: x => x.CategoryInCompetitionId,
                         principalTable: "CategoryInCompetitions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Persons_Competitions_CompetitionId",
-                        column: x => x.CompetitionId,
-                        principalTable: "Competitions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -202,12 +170,9 @@ namespace ArmWrestling.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CompetitionId = table.Column<int>(type: "INTEGER", nullable: false),
                     CategoryInCompetitionId = table.Column<int>(type: "INTEGER", nullable: false),
                     WinnerId = table.Column<int>(type: "INTEGER", nullable: false),
-                    WinnerPersonId = table.Column<int>(type: "INTEGER", nullable: false),
                     LooserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    LooserPersonId = table.Column<int>(type: "INTEGER", nullable: false),
                     Arm = table.Column<char>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -220,20 +185,14 @@ namespace ArmWrestling.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Duels_Competitions_CompetitionId",
-                        column: x => x.CompetitionId,
-                        principalTable: "Competitions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Duels_Persons_LooserPersonId",
-                        column: x => x.LooserPersonId,
+                        name: "FK_Duels_Persons_LooserId",
+                        column: x => x.LooserId,
                         principalTable: "Persons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Duels_Persons_WinnerPersonId",
-                        column: x => x.WinnerPersonId,
+                        name: "FK_Duels_Persons_WinnerId",
+                        column: x => x.WinnerId,
                         principalTable: "Persons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -272,11 +231,6 @@ namespace ArmWrestling.Infrastructure.Migrations
                 column: "CategoryGroupId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CategoryInCompetition_CompetitionsId",
-                table: "CategoryInCompetition",
-                column: "CompetitionsId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CategoryInCompetitions_CategoryId",
                 table: "CategoryInCompetitions",
                 column: "CategoryId");
@@ -292,29 +246,19 @@ namespace ArmWrestling.Infrastructure.Migrations
                 column: "CategoryInCompetitionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Duels_CompetitionId",
+                name: "IX_Duels_LooserId",
                 table: "Duels",
-                column: "CompetitionId");
+                column: "LooserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Duels_LooserPersonId",
+                name: "IX_Duels_WinnerId",
                 table: "Duels",
-                column: "LooserPersonId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Duels_WinnerPersonId",
-                table: "Duels",
-                column: "WinnerPersonId");
+                column: "WinnerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Persons_CategoryInCompetitionId",
                 table: "Persons",
                 column: "CategoryInCompetitionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Persons_CompetitionId",
-                table: "Persons",
-                column: "CompetitionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Persons_TeamId",
@@ -345,9 +289,6 @@ namespace ArmWrestling.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "CategoryInCompetition");
-
             migrationBuilder.DropTable(
                 name: "Duels");
 

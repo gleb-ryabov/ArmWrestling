@@ -13,7 +13,7 @@ namespace ArmWrestling.Domain.Database
         public int CompetitionId { get; set; }
         public Competition Competition { get; set; }
 
-        public int PersonId { get; set; }
+        public int TeamId { get; set; }
         public Team Team { get; set; }
 
         public int Place { get; set; }
