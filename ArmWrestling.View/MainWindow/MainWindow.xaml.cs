@@ -1,5 +1,6 @@
-﻿using ArmWrestling.View.StartWindow;
-using ArmWrestling.ViewModel.StartWindow;
+﻿using ArmWrestling.View.CreateCompetitionWindow;
+using ArmWrestling.View.MainWindow;
+using ArmWrestling.ViewModel.MainWindow;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,14 +12,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ArmWrestling
+namespace ArmWrestling.View.MainWindow
 {
     public partial class MainWindow : IMainWindow
     {
         public MainWindow(IMainWindowViewModel mainWindowViewModel)
         {
-            DataContext = mainWindowViewModel;
             InitializeComponent();
+
+            DataContext = mainWindowViewModel;
         }
+
     }
+
 }

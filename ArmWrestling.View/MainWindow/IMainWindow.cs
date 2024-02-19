@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArmWrestling.View.StartWindow
+namespace ArmWrestling.View.MainWindow
 {
     public interface IMainWindow : IWindow
     {

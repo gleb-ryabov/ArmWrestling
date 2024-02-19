@@ -13,3 +13,6 @@ D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\obj\Debug\net8.0\A
 D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\obj\Debug\net8.0\refint\ArmWrestling.Infrastructure.dll
 D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\obj\Debug\net8.0\ArmWrestling.Infrastructure.pdb
 D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\obj\Debug\net8.0\ref\ArmWrestling.Infrastructure.dll
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\bin\Debug\net8.0\ArmWrestling.Infrastructure.runtimeconfig.json
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\obj\Debug\net8.0\ArmWrestling.Infrastructure.sourcelink.json
+D:\проекты c#\ArmWrestling\ArmWrestling.Infrastructure\obj\Debug\net8.0\ArmWrestling.Infrastructure.genruntimeconfig.cache

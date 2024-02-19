@@ -1,5 +1,6 @@
-﻿using ArmWrestling.View.StartWindow;
-using ArmWrestling.ViewModel.StartWindow;
+﻿using ArmWrestling.Infrastructure.Database;
+using ArmWrestling.View.MainWindow;
+using ArmWrestling.ViewModel.MainWindow;
 using ArmWrestling.ViewModel.Windows;
 using Autofac;
 using System;
@@ -22,9 +23,12 @@ namespace ArmWrestling.Bootstrapper
             containerBuilder
                 .RegisterModule<View.RegisterModule>()
                 .RegisterModule<ViewModel.RegisterModule>()
+                .RegisterModule<Infrastructure.RegisterModule>()
                 .RegisterModule<RegisterModule>();
 
             _container = containerBuilder.Build();
+
+            ApplicationContext applicationContext = new ApplicationContext();
         }
 
         public Window Run()

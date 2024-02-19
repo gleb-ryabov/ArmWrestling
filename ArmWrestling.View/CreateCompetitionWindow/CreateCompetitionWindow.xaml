@@ -1,0 +1,44 @@
+﻿<Window x:Class="ArmWrestling.View.CreateCompetitionWindow.CreateCompetitionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArmWrestling.View.CreateCompetitionWindow"
+        mc:Ignorable="d"
+        Title="Новое соревнование" 
+        Height="800" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <StackPanel>
+        <TextBlock Text="Тип судейства">
+            <ListBox
+                Width="200">
+                <ListBoxItem Content="Выбывание после 2х поражений"/>
+                <ListBoxItem Content="Олимпийский"/>
+            </ListBox>
+        </TextBlock>
+        
+        <TextBlock Text="Тип соревнований">
+            <ListBox
+                Width="200">
+                <ListBoxItem Content="Личные"/>
+                <ListBoxItem Content="Командные"/>
+                <ListBoxItem Content="Лично-командные"/>
+            </ListBox>
+        </TextBlock>
+
+        <TextBlock Text="Количество столов">
+            <TextBox Width="200"/>
+        </TextBlock>
+
+        <TextBlock Text="Первая рука">
+            <ListBox
+                Width="200">
+                <ListBoxItem Content="Левая"/>
+                <ListBoxItem Content="Правая"/>
+            </ListBox>
+        </TextBlock>
+
+        <Button Content="Создать"/>
+
+    </StackPanel>
+</Window>

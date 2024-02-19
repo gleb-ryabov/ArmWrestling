@@ -10,3 +10,4 @@ D:\проекты c#\ArmWrestling\ArmWrestling.Domain\obj\Debug\net8.0\refint\Ar
 D:\проекты c#\ArmWrestling\ArmWrestling.Domain\obj\Debug\net8.0\ArmWrestling.Domain.pdb
 D:\проекты c#\ArmWrestling\ArmWrestling.Domain\obj\Debug\net8.0\ref\ArmWrestling.Domain.dll
 D:\проекты c#\ArmWrestling\ArmWrestling.Domain\obj\Debug\net8.0\ArmWrestling.Domain.csproj.AssemblyReference.cache
+D:\проекты c#\ArmWrestling\ArmWrestling.Domain\obj\Debug\net8.0\ArmWrestling.Domain.sourcelink.json

@@ -1,6 +1,8 @@
-﻿using ArmWrestling.View.Factories;
-using ArmWrestling.View.StartWindow;
-using ArmWrestling.ViewModel.StartWindow;
+﻿using ArmWrestling.View.CreateCompetitionWindow;
+using ArmWrestling.View.Factories;
+using ArmWrestling.View.MainWindow;
+using ArmWrestling.ViewModel.CreateCompetitionWindow;
+using ArmWrestling.ViewModel.MainWindow;
 using ArmWrestling.ViewModel.Windows;
 using Autofac;
 using System;
@@ -18,7 +20,8 @@ namespace ArmWrestling.Bootstrapper.Factories
         //compliance card
         private readonly Dictionary<Type, Type> _map = new()
         {
-        {typeof(IMainWindowViewModel), typeof(IMainWindow) }
+        {typeof(IMainWindowViewModel), typeof(IMainWindow) },
+        {typeof(ICreateCompetitionWindowViewModel), typeof(ICreateCompetitionWindow) }
         };
 
         public WindowFactory(IComponentContext componentContext) 
@@ -26,6 +29,7 @@ namespace ArmWrestling.Bootstrapper.Factories
             _componentContext = componentContext;
         }
 
+        //Function for create the Window from the ViewModel
         public IWindow Create<TWindowViewModel>(TWindowViewModel viewModel) where TWindowViewModel : IWindowViewModel
         {
 

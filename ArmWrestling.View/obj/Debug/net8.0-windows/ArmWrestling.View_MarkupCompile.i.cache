@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 
-12019044530
+3-312099253
 
-8-1018756436
-201581031316
-MainWindow\MainWindow.xaml;
+12-1116563518
+201-1967399658
+CreateCompetitionWindow\CreateCompetitionWindow.xaml;MainWindow\MainWindow.xaml;ManagerCompetitionWindow\ManagerCompetitionWindow.xaml;
 
 False
 

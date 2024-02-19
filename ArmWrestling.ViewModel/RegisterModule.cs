@@ -1,4 +1,6 @@
-﻿using ArmWrestling.ViewModel.StartWindow;
+﻿using ArmWrestling.ViewModel.CreateCompetitionWindow;
+using ArmWrestling.ViewModel.MainWindow;
+using ArmWrestling.ViewModel.ManagerCompetitionWindow;
 using Autofac;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,8 @@ namespace ArmWrestling.ViewModel
             base.Load(builder);
 
             builder.RegisterType<MainWindowViewModel>().As<IMainWindowViewModel>().InstancePerDependency();
+            builder.RegisterType<CreateCompetitionWindowViewModel>().As<ICreateCompetitionWindowViewModel>().InstancePerDependency();
+            builder.RegisterType<ManagerCompetitionWindowViewModel>().As<IManagerCompetitionWindowViewModel>().InstancePerDependency();
         }
     }
 }
