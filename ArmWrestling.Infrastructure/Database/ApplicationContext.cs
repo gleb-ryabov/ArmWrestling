@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ArmWrestling.Infrastructure.Database
 {
-    public class ApplicationContext : DbContext, IApplicationContext
+    public class ApplicationContext : DbContext
     {
         public ApplicationContext()
         {
@@ -18,12 +18,12 @@ namespace ArmWrestling.Infrastructure.Database
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=armwrestling.db");
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
         }
 
         public DbSet<Category> Categories { get; set; }

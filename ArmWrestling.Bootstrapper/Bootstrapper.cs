@@ -1,4 +1,6 @@
-﻿using ArmWrestling.Infrastructure.Database;
+﻿using ArmWrestling.Domain.Database;
+using ArmWrestling.Infrastructure.Database;
+using ArmWrestling.Infrastructure.Database.Repositories.TeamRepository;
 using ArmWrestling.View.MainWindow;
 using ArmWrestling.ViewModel.MainWindow;
 using ArmWrestling.ViewModel.Windows;
@@ -26,9 +28,7 @@ namespace ArmWrestling.Bootstrapper
                 .RegisterModule<Infrastructure.RegisterModule>()
                 .RegisterModule<RegisterModule>();
 
-            _container = containerBuilder.Build();
-
-            ApplicationContext applicationContext = new ApplicationContext();
+            _container = containerBuilder.Build();            
         }
 
         public Window Run()

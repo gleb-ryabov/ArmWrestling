@@ -1,4 +1,7 @@
-﻿using ArmWrestling.ViewModel.Commands;
+﻿using ArmWrestling.Domain.Database;
+using ArmWrestling.Infrastructure.Database;
+using ArmWrestling.Infrastructure.Database.Repositories.TeamRepository;
+using ArmWrestling.ViewModel.Commands;
 using ArmWrestling.ViewModel.CreateCompetitionWindow;
 using ArmWrestling.ViewModel.Windows;
 using System;
@@ -16,7 +19,8 @@ namespace ArmWrestling.ViewModel.MainWindow
         private readonly ICreateCompetitionWindowViewModel _createCompetitionWindowViewModel;
         private readonly Command _openCreateCompetitionWindowCommand;
 
-        public MainWindowViewModel(IWindowManager windowManager, ICreateCompetitionWindowViewModel createCompetitionWindowViewModel)
+        public MainWindowViewModel(IWindowManager windowManager, 
+            ICreateCompetitionWindowViewModel createCompetitionWindowViewModel)
         {
             _windowManager = windowManager;
             _createCompetitionWindowViewModel = createCompetitionWindowViewModel;
@@ -30,7 +34,6 @@ namespace ArmWrestling.ViewModel.MainWindow
         {
             _windowManager.Show(_createCompetitionWindowViewModel);
             _windowManager.Close<IMainWindowViewModel>(this);
-
         }
     }
 }

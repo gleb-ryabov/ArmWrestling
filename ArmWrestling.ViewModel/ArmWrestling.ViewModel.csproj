@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ArmWrestling.Domain\ArmWrestling.Domain.csproj" />
+    <ProjectReference Include="..\ArmWrestling.Infrastructure\ArmWrestling.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
