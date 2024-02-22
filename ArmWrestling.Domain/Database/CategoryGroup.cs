@@ -14,9 +14,10 @@ namespace ArmWrestling.Domain.Database
         [Required]
         public string Name { get; set; }
 
-        //public CategoryGroup(string name)
-        //{
-        //    Name = name;
-        //}
+        public CategoryGroup() { }
+        public void Create(string name)
+        {
+            Name = name;
+        }
     }
 }

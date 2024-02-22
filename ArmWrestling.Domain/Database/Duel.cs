@@ -11,9 +11,6 @@ namespace ArmWrestling.Domain.Database
     {
         public int Id { get; set; }
 
-        //public int CompetitionId {  get; set; }
-        //public Competition Competition { get; set; }
-
         public int CategoryInCompetitionId { get; set; }
         public CategoryInCompetition CategoryInCompetition { get; set; }
 
@@ -27,14 +24,14 @@ namespace ArmWrestling.Domain.Database
 
         public char Arm {  get; set; }
 
-        //public Duel(int competitionId, Competition competition, Person winnerPerson, 
-        //    Person looserPerson, char arm)
-        //{
-        //    CompetitionId = competitionId;
-        //    Competition = competition;
-        //    WinnerPerson = winnerPerson;
-        //    LooserPerson = looserPerson;
-        //    Arm = arm;
-        //}
+        public Duel() { }
+        public void Create(CategoryInCompetition categoryInCompetition, Person winnerPerson,
+            Person looserPerson, char arm)
+        {
+            CategoryInCompetition = categoryInCompetition;
+            Winner = winnerPerson;
+            Looser = looserPerson;
+            Arm = arm;
+        }
     }
 }

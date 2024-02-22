@@ -12,11 +12,17 @@ namespace ArmWrestling.Domain.Database
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+
+        public int CompetitionId { get; set; }
+        public Competition Competition { get; set; }
+
         public int Score { get; set; } = 0;
-        
-        //public Team(string name)
-        //{
-        //    Name = name;
-        //}
+
+        public Team() { }
+        public void Create(string name, Competition competition)
+        {
+            Name = name;
+            Competition = competition;
+        }
     }
 }

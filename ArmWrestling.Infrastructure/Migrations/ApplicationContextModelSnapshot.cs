@@ -237,6 +237,9 @@ namespace ArmWrestling.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("CompetitionId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -245,6 +248,8 @@ namespace ArmWrestling.Infrastructure.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompetitionId");
 
                     b.ToTable("Teams");
                 });
@@ -359,6 +364,17 @@ namespace ArmWrestling.Infrastructure.Migrations
                     b.Navigation("Competition");
 
                     b.Navigation("Team");
+                });
+
+            modelBuilder.Entity("ArmWrestling.Domain.Database.Team", b =>
+                {
+                    b.HasOne("ArmWrestling.Domain.Database.Competition", "Competition")
+                        .WithMany()
+                        .HasForeignKey("CompetitionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Competition");
                 });
 #pragma warning restore 612, 618
         }

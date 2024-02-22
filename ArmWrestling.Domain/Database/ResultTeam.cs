@@ -18,11 +18,12 @@ namespace ArmWrestling.Domain.Database
 
         public int Place { get; set; }
 
-        //public ResultTeam(Competition competition, Person person, int place)
-        //{
-        //    Competition = competition;
-        //    Person = person;
-        //    Place = place;
-        //}
+        public ResultTeam() { }
+        public void Create(Competition competition, Team team, int place)
+        {
+            Competition = competition;
+            Team = team;
+            Place = place;
+        }
     }
 }

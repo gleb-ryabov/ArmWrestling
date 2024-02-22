@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,16 +11,19 @@ namespace ArmWrestling.Domain.Database
     {
         public int Id { get; set; }
 
+        [ForeignKey("Category")]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
+        [ForeignKey("Competition")]
         public int CompetitionId { get; set; }
         public Competition Competition { get; set; }
 
-        //public CategoryInCompetition (Category category, Competition competition)
-        //{
-        //    Category = category;
-        //    Competition = competition;
-        //}
+        public CategoryInCompetition() { }
+        public void Create(Category category, Competition competition)
+        {
+            Category = category;
+            Competition = competition;
+        }
     }
 }

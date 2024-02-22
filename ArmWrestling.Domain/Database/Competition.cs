@@ -18,13 +18,14 @@ namespace ArmWrestling.Domain.Database
         public byte CountTable { get; set; }
         public char FirstArm { get; set; }
 
-        //public Competition(string typeJudging, string typeCompetition, byte countTable, char firstArm)
-        //{
-        //    Created = DateTime.Now;
-        //    TypeJudging = typeJudging;
-        //    TypeCompetition = typeCompetition;
-        //    CountTable = countTable;
-        //    FirstArm = firstArm;
-        //}
+        public Competition() { }
+        public void Create(string typeJudging, string typeCompetition, byte countTable, char firstArm)
+        {
+            Created = DateTime.Now;
+            TypeJudging = typeJudging;
+            TypeCompetition = typeCompetition;
+            CountTable = countTable;
+            FirstArm = firstArm;
+        }
     }
 }

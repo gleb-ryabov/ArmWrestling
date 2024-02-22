@@ -24,25 +24,21 @@ namespace ArmWrestling.Domain.Database
 
         public int? TeamId { get; set; }
         public Team? Team { get; set; }
-
-        //public int CompetitionId { get; set; }
-        //public Competition Competition { get; set; }
-
         public int Score { get; set; } = 0;
-        //public Person(string surname, string name, string middleName, byte gender,
-        //    DateOnly birthDate, float weight, CategoryInCompetition category, Competition competition, 
-        //    Team team = null)
-        //{
-        //    Surname = surname;
-        //    Name = name;
-        //    MiddleName = middleName;
-        //    Gender = gender;
-        //    BirthDate = birthDate;
-        //    Weight = weight;
-        //    CategoryInCompetition = category;
-        //    Competition = competition;
-        //    Team = team;
-        //}
+
+        public Person() { }
+        public void Create(string surname, string name, string middleName, byte gender, DateOnly birthDate,
+            float weight, CategoryInCompetition category, Team team = null)
+        {
+            Surname = surname;
+            Name = name;
+            MiddleName = middleName;
+            Gender = gender;
+            BirthDate = birthDate;
+            Weight = weight;
+            CategoryInCompetition = category;
+            Team = team;
+        }
 
     }
 }
