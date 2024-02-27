@@ -16,5 +16,5 @@ TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 220-1864284880
 CreateCompetitionWindow\CreateCompetitionWindow.xaml;MainWindow\MainWindow.xaml;ManagerCompetitionWindow\ManagerCompetitionWindow.xaml;
 
-True
+False
 

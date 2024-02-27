@@ -18,12 +18,5 @@ namespace ArmWrestling.Domain.Database
         [ForeignKey("Competition")]
         public int CompetitionId { get; set; }
         public Competition Competition { get; set; }
-
-        public CategoryInCompetition() { }
-        public void Create(Category category, Competition competition)
-        {
-            Category = category;
-            Competition = competition;
-        }
     }
 }

@@ -20,3 +20,5 @@ D:\проекты c#\ArmWrestling\ArmWrestling.Bootstrapper\obj\Debug\net8.0-win
 D:\проекты c#\ArmWrestling\ArmWrestling.Bootstrapper\obj\Debug\net8.0-windows\ArmWrestling.Bootstrapper.pdb
 D:\проекты c#\ArmWrestling\ArmWrestling.Bootstrapper\obj\Debug\net8.0-windows\ref\ArmWrestling.Bootstrapper.dll
 D:\проекты c#\ArmWrestling\ArmWrestling.Bootstrapper\obj\Debug\net8.0-windows\ArmWrestling.Bootstrapper.sourcelink.json
+D:\проекты c#\ArmWrestling\ArmWrestling.Bootstrapper\bin\Debug\net8.0-windows\ArmWrestling.Applications.dll
+D:\проекты c#\ArmWrestling\ArmWrestling.Bootstrapper\bin\Debug\net8.0-windows\ArmWrestling.Applications.pdb

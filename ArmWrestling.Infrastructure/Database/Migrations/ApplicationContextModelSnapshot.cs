@@ -42,7 +42,7 @@ namespace ArmWrestling.Infrastructure.Migrations
 
                     b.HasIndex("CategoryGroupId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("ArmWrestling.Domain.Database.CategoryGroup", b =>
@@ -57,7 +57,7 @@ namespace ArmWrestling.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CategoryGroups");
+                    b.ToTable("CategoryGroups", (string)null);
                 });
 
             modelBuilder.Entity("ArmWrestling.Domain.Database.CategoryInCompetition", b =>
@@ -78,7 +78,7 @@ namespace ArmWrestling.Infrastructure.Migrations
 
                     b.HasIndex("CompetitionId");
 
-                    b.ToTable("CategoryInCompetitions");
+                    b.ToTable("CategoryInCompetitions", (string)null);
                 });
 
             modelBuilder.Entity("ArmWrestling.Domain.Database.Competition", b =>
@@ -106,7 +106,7 @@ namespace ArmWrestling.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Competitions");
+                    b.ToTable("Competitions", (string)null);
                 });
 
             modelBuilder.Entity("ArmWrestling.Domain.Database.Duel", b =>
@@ -135,7 +135,7 @@ namespace ArmWrestling.Infrastructure.Migrations
 
                     b.HasIndex("WinnerId");
 
-                    b.ToTable("Duels");
+                    b.ToTable("Duels", (string)null);
                 });
 
             modelBuilder.Entity("ArmWrestling.Domain.Database.Person", b =>
@@ -180,7 +180,7 @@ namespace ArmWrestling.Infrastructure.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("Persons");
+                    b.ToTable("Persons", (string)null);
                 });
 
             modelBuilder.Entity("ArmWrestling.Domain.Database.ResultPerson", b =>
@@ -204,7 +204,7 @@ namespace ArmWrestling.Infrastructure.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("ResultPersons");
+                    b.ToTable("ResultPersons", (string)null);
                 });
 
             modelBuilder.Entity("ArmWrestling.Domain.Database.ResultTeam", b =>
@@ -228,7 +228,7 @@ namespace ArmWrestling.Infrastructure.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("ResultTeams");
+                    b.ToTable("ResultTeams", (string)null);
                 });
 
             modelBuilder.Entity("ArmWrestling.Domain.Database.Team", b =>
@@ -251,7 +251,7 @@ namespace ArmWrestling.Infrastructure.Migrations
 
                     b.HasIndex("CompetitionId");
 
-                    b.ToTable("Teams");
+                    b.ToTable("Teams", (string)null);
                 });
 
             modelBuilder.Entity("ArmWrestling.Domain.Database.Category", b =>

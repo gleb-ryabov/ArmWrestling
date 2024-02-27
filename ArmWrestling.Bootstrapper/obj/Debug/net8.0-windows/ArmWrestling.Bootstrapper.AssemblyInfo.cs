@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArmWrestling.Bootstrapper")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fc472262f0d8ed2bdd879e29a9b1f7ca6f8f0040")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce4c24bf69999b190b49b287b629c0ba560d14ce")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArmWrestling.Bootstrapper")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArmWrestling.Bootstrapper")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

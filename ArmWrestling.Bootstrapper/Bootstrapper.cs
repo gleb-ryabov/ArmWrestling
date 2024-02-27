@@ -26,6 +26,7 @@ namespace ArmWrestling.Bootstrapper
                 .RegisterModule<View.RegisterModule>()
                 .RegisterModule<ViewModel.RegisterModule>()
                 .RegisterModule<Infrastructure.RegisterModule>()
+                .RegisterModule<Applications.RegisterModule>()
                 .RegisterModule<RegisterModule>();
 
             _container = containerBuilder.Build();            

@@ -17,13 +17,5 @@ namespace ArmWrestling.Domain.Database
         public Team Team { get; set; }
 
         public int Place { get; set; }
-
-        public ResultTeam() { }
-        public void Create(Competition competition, Team team, int place)
-        {
-            Competition = competition;
-            Team = team;
-            Place = place;
-        }
     }
 }

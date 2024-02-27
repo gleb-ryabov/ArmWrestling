@@ -16,16 +16,5 @@ namespace ArmWrestling.Domain.Database
 
         public int CategoryGroupId { get; set; }
         public CategoryGroup CategoryGroup { get; set; }
-
-
-        public Category() { }
-        public void Create(byte gender, byte minAge, byte maxAge, byte maxWeight, CategoryGroup categoryGroup)
-        {
-            Gender = gender;
-            MinAge = minAge;
-            MaxAge = maxAge;
-            MaxWeight = maxWeight;
-            CategoryGroup = categoryGroup;
-        }
     }
 }

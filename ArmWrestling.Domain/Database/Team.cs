@@ -17,12 +17,5 @@ namespace ArmWrestling.Domain.Database
         public Competition Competition { get; set; }
 
         public int Score { get; set; } = 0;
-
-        public Team() { }
-        public void Create(string name, Competition competition)
-        {
-            Name = name;
-            Competition = competition;
-        }
     }
 }
