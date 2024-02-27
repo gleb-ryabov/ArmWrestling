@@ -29,7 +29,7 @@ namespace ArmWrestling.Bootstrapper
                 .RegisterModule<Applications.RegisterModule>()
                 .RegisterModule<RegisterModule>();
 
-            _container = containerBuilder.Build();            
+            _container = containerBuilder.Build();
         }
 
         public Window Run()
