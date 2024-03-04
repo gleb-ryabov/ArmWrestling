@@ -29,5 +29,6 @@ namespace ArmWrestling.Applications.Services.CategoryInCompetitionService
             else
                 return null;
         }
+
     }
 }

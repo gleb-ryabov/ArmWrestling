@@ -46,5 +46,16 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.CategoryInCompetitio
                 .ToList();
         }
 
+        public IEnumerable<CategoryInCompetition> GetAviableCategories(byte gender,
+            float weight, DateOnly birthDate, Competition competition)
+        {
+            int age = DateTime.Now.Year - birthDate.Year;
+            return _applicationContext.CategoryInCompetitions
+                .Where(c => c.Competition == competition)
+                .Where(c => c.Category.Gender == gender)
+                .Where(c => c.Category.MaxAge >= age && c.Category.MinAge <= age)
+                .Where(c => c.Category.MaxWeight <= weight - competition.WeightTolerance)
+                .ToList();
+        }
     }
 }

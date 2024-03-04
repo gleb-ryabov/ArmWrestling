@@ -4,6 +4,7 @@ namespace ArmWrestling.Applications.Services.ResultPersonService
 {
     public interface IResultPersonService
     {
-        ResultPerson Create(CategoryInCompetition categoryInCompetition, Person person, int place);
+        ResultPerson Create(CategoryInCompetition categoryInCompetition, Person person, 
+            int place, int reasonAward);
     }
 }

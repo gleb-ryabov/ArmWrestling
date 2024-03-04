@@ -17,7 +17,8 @@ namespace ArmWrestling.Applications.Services.CompetitionService
             _competitionRepository = competitionRepository;
         }
 
-        public Competition Create(string typeJudging, string typeCompetition, byte countTable, char firstArm)
+        public Competition Create(string typeJudging, string typeCompetition, 
+            byte countTable, char firstArm, int weightTolerance)
         {
             Competition competition = new Competition()
             {
@@ -25,7 +26,8 @@ namespace ArmWrestling.Applications.Services.CompetitionService
                 TypeJudging = typeJudging,
                 TypeCompetition = typeCompetition,
                 CountTable = countTable,
-                FirstArm = firstArm
+                FirstArm = firstArm,
+                WeightTolerance = weightTolerance
             };
             if (_competitionRepository.Create(competition))
                 return competition;

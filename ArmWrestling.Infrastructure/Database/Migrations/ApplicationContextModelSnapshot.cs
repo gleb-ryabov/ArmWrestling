@@ -104,6 +104,9 @@ namespace ArmWrestling.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("WeightTolerance")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.ToTable("Competitions");
@@ -121,7 +124,16 @@ namespace ArmWrestling.Infrastructure.Migrations
                     b.Property<int>("CategoryInCompetitionId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<char?>("Group")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("LooserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<byte>("TourNumber")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<byte?>("TypeDuel")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("WinnerId")
@@ -196,6 +208,9 @@ namespace ArmWrestling.Infrastructure.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Place")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ReasonAward")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");

@@ -17,5 +17,7 @@ namespace ArmWrestling.Domain.Database
         public string TypeCompetition { get; set; }
         public byte CountTable { get; set; }
         public char FirstArm { get; set; }
+
+        public int WeightTolerance {  get; set; }
     }
 }

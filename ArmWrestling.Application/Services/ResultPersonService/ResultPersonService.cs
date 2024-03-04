@@ -17,13 +17,15 @@ namespace ArmWrestling.Applications.Services.ResultPersonService
             _resultPersonRepository = resultPersonRepository;
         }
 
-        public ResultPerson Create(CategoryInCompetition categoryInCompetition, Person person, int place)
+        public ResultPerson Create(CategoryInCompetition categoryInCompetition, Person person, 
+            int place, int reasonAward)
         {
             ResultPerson resultPerson = new ResultPerson()
             {
                 CategoryInCompetition = categoryInCompetition,
                 Person = person,
-                Place = place
+                Place = place,
+                ReasonAward = reasonAward
             };
             if (_resultPersonRepository.Create(resultPerson))
                 return resultPerson;

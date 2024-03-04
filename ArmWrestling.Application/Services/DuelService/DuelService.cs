@@ -20,19 +20,24 @@ namespace ArmWrestling.Applications.Services.DuelService
         }
 
         public Duel Create(CategoryInCompetition categoryInCompetition, Person winnerPerson,
-            Person looserPerson, char arm)
+            Person looserPerson, char arm, int tourNumber, byte typeDuel = 0, char group = ' ')
         {
             Duel duel = new Duel()
             {
                 CategoryInCompetition = categoryInCompetition,
                 Winner = winnerPerson,
                 Looser = looserPerson,
-                Arm = arm
+                Arm = arm,
+                TourNumber = tourNumber,
+                TypeDuel = typeDuel,
+                Group = group
             };
             if (_duelRepository.Create(duel))
                 return duel;
             else
                 return null;
         }
+
+
     }
 }

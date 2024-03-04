@@ -44,5 +44,24 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.PersonRepository
             person.Score += score;
             return _applicationContext.SaveChanges() > 0;
         }
+
+        public IEnumerable<Person> GetPersonsByCategory (CategoryInCompetition category)
+        {
+            return _applicationContext.Persons
+                .Where(p=> p.CategoryInCompetition == category)
+                .OrderBy(p=> p.Surname)
+                .ToList();
+        }
+        
+        public int GetPersonCountByCategory (CategoryInCompetition category)
+        {
+            IEnumerable<Person> persons = GetPersonsByCategory(category);
+            int count = 0;
+            foreach (Person person in persons)
+            {
+                ++count;
+            }
+            return count;
+        }
     }
 }

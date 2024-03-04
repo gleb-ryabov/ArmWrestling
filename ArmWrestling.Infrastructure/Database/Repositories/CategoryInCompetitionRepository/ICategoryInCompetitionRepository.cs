@@ -10,5 +10,7 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.CategoryInCompetitio
     public interface ICategoryInCompetitionRepository : IBaseRepository<CategoryInCompetition>
     {
         IEnumerable<CategoryInCompetition> GetByCompetition(Competition competition);
+        IEnumerable<CategoryInCompetition> GetAviableCategories(byte gender,
+            float weight, DateOnly birthDate, Competition competition);
     }
 }
