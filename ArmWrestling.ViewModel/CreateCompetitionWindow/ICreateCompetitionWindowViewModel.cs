@@ -9,5 +9,6 @@ namespace ArmWrestling.ViewModel.CreateCompetitionWindow
 {
     public interface ICreateCompetitionWindowViewModel : IWindowViewModel
     {
+        void CreateCompetition();
     }
 }

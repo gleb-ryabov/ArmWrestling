@@ -11,12 +11,11 @@ namespace ArmWrestling.Domain.Database
     {
         public int Id { get; set; }
 
-        [ForeignKey("Category")]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
-        [ForeignKey("Competition")]
         public int CompetitionId { get; set; }
         public Competition Competition { get; set; }
     }
+
 }

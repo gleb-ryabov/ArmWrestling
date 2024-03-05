@@ -317,6 +317,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "D:\\проекты c#\\ArmWrestling\\ArmWrestling.Application\\ArmWrestling.Applications.csproj": {
+                "projectPath": "D:\\проекты c#\\ArmWrestling\\ArmWrestling.Application\\ArmWrestling.Applications.csproj"
+              },
               "D:\\проекты c#\\ArmWrestling\\ArmWrestling.Domain\\ArmWrestling.Domain.csproj": {
                 "projectPath": "D:\\проекты c#\\ArmWrestling\\ArmWrestling.Domain\\ArmWrestling.Domain.csproj"
               },

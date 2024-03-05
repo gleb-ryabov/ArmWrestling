@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ArmWrestling.Application\ArmWrestling.Applications.csproj" />
     <ProjectReference Include="..\ArmWrestling.Domain\ArmWrestling.Domain.csproj" />
     <ProjectReference Include="..\ArmWrestling.Infrastructure\ArmWrestling.Infrastructure.csproj" />
   </ItemGroup>

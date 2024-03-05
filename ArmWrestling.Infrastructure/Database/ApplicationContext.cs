@@ -12,7 +12,7 @@ namespace ArmWrestling.Infrastructure.Database
     {
         public ApplicationContext()
         {
-            //Database.Migrate();
+            Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -758,6 +758,7 @@
       },
       "ArmWrestling.ViewModel/1.0.0": {
         "dependencies": {
+          "ArmWrestling.Applications": "1.0.0",
           "ArmWrestling.Domain": "1.0.0",
           "ArmWrestling.Infrastructure": "1.0.0",
           "Autofac": "8.0.0"

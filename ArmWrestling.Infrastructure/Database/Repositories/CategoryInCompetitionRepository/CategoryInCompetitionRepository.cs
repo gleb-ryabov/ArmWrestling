@@ -54,7 +54,7 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.CategoryInCompetitio
                 .Where(c => c.Competition == competition)
                 .Where(c => c.Category.Gender == gender)
                 .Where(c => c.Category.MaxAge >= age && c.Category.MinAge <= age)
-                .Where(c => c.Category.MaxWeight <= weight - competition.WeightTolerance)
+                .Where(c => c.Category.MaxWeight <= weight - competition.WeightTolerance/1000)
                 .ToList();
         }
     }

@@ -130,7 +130,7 @@ namespace ArmWrestling.Infrastructure.Migrations
                     b.Property<int>("LooserId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<byte>("TourNumber")
+                    b.Property<int>("TourNumber")
                         .HasColumnType("INTEGER");
 
                     b.Property<byte?>("TypeDuel")

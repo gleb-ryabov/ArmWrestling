@@ -6,39 +6,65 @@
         xmlns:local="clr-namespace:ArmWrestling.View.CreateCompetitionWindow"
         mc:Ignorable="d"
         Title="Новое соревнование" 
-        Height="800" Width="800"
-        WindowStartupLocation="CenterScreen">
+        WindowState="Maximized">
     <StackPanel>
+        
         <TextBlock Text="Тип судейства">
             <ListBox
-                Width="200">
+                Width="200"
+                SelectedValue="{Binding TypeJudging}"
+                SelectedValuePath="Content">
                 <ListBoxItem Content="Выбывание после 2х поражений"/>
-                <ListBoxItem Content="Олимпийский"/>
+                <!--<ListBoxItem Content="Олимпийский"/>-->
             </ListBox>
         </TextBlock>
         
         <TextBlock Text="Тип соревнований">
             <ListBox
-                Width="200">
+                Width="200"
+                SelectedValue="{Binding TypeCompetition}"
+                SelectedValuePath="Content">
                 <ListBoxItem Content="Личные"/>
-                <ListBoxItem Content="Командные"/>
-                <ListBoxItem Content="Лично-командные"/>
+                <!--<ListBoxItem Content="Командные"/>
+                <ListBoxItem Content="Лично-командные"/>-->
             </ListBox>
         </TextBlock>
 
         <TextBlock Text="Количество столов">
-            <TextBox Width="200"/>
+            <TextBox Width="200" Text="{Binding CountTable}"/>
         </TextBlock>
 
         <TextBlock Text="Первая рука">
             <ListBox
-                Width="200">
-                <ListBoxItem Content="Левая"/>
-                <ListBoxItem Content="Правая"/>
+                Width="200" 
+                SelectedValue="{Binding FirstArm}"
+                SelectedValuePath="Tag">
+                <ListBoxItem Content="Левая" Tag="л"/>
+                <ListBoxItem Content="Правая" Tag="п"/>
             </ListBox>
         </TextBlock>
 
-        <Button Content="Создать"/>
+        <TextBlock Text="Допуск веса (в граммах)">
+            <TextBox Width="200" Text="{Binding WeightTolerance}"/>
+        </TextBlock>
+
+        <ListView ItemsSource="{Binding Categories}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="3"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox IsChecked="{Binding IsSelected}">
+                        <TextBlock Text="{Binding Name}" />
+                    </CheckBox>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Content="Создать"
+            Command="{Binding CreateCompetitionCommand}"/>
 
     </StackPanel>
 </Window>
