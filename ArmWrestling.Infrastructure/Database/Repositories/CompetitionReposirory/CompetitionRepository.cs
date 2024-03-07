@@ -38,5 +38,10 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.CompetitionReposiror
         {
             return _applicationContext.Competitions.ToList();
         }
+
+        public Competition GetLast()
+        {
+            return _applicationContext.Competitions.OrderBy(c=> c.Created).Last();
+        }
     }
 }

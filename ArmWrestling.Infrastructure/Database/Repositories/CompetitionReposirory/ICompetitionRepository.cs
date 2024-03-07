@@ -9,5 +9,6 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.CompetitionReposiror
 {
     public interface ICompetitionRepository : IBaseRepository<Competition>
     {
+        Competition GetLast();
     }
 }

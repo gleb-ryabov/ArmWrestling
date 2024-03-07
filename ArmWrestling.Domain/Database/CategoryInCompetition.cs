@@ -16,6 +16,11 @@ namespace ArmWrestling.Domain.Database
 
         public int CompetitionId { get; set; }
         public Competition Competition { get; set; }
+
+        [NotMapped]
+        public bool IsSelected { get; set; } = false;
+        [NotMapped]
+        public string Name { get; set; }
     }
 
 }

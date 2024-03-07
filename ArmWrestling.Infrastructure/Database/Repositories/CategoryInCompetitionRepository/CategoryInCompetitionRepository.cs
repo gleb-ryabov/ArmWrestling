@@ -1,4 +1,5 @@
 ﻿using ArmWrestling.Domain.Database;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,10 +52,11 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.CategoryInCompetitio
         {
             int age = DateTime.Now.Year - birthDate.Year;
             return _applicationContext.CategoryInCompetitions
-                .Where(c => c.Competition == competition)
+                .Include(c => c.Category)
+                .Where(c => c.CompetitionId == competition.Id)
                 .Where(c => c.Category.Gender == gender)
                 .Where(c => c.Category.MaxAge >= age && c.Category.MinAge <= age)
-                .Where(c => c.Category.MaxWeight <= weight - competition.WeightTolerance/1000)
+                .Where(c => (float)c.Category.MaxWeight >= (float)weight - (float)competition.WeightTolerance/1000)
                 .ToList();
         }
     }

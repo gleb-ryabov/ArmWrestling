@@ -1,0 +1,61 @@
+﻿<Window x:Class="ArmWrestling.View.RegistrationOfPersonsWindow.RegistrationOfPersonsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArmWrestling.View.RegistrationOfPersonsWindow"
+        mc:Ignorable="d"
+        Title="Регистрация участников"
+        WindowState="Maximized">
+    <StackPanel>
+
+        <TextBlock Text="Фамилия">
+            <TextBox Width="200" Text="{Binding Surname}"/>
+        </TextBlock>
+        
+        <TextBlock Text="Имя">
+            <TextBox Width="200" Text="{Binding Name}"/>
+        </TextBlock>
+
+        <TextBlock Text="Отчество">
+            <TextBox Width="200" Text="{Binding MiddleName}"/>
+        </TextBlock>
+
+        <TextBlock Text="Пол">
+            <ListBox
+                Width="200" 
+                SelectedValue="{Binding Gender}"
+                SelectedValuePath="Tag">
+                <ListBoxItem Content="Мужской" Tag="1"/>
+                <ListBoxItem Content="Женский" Tag="0"/>
+            </ListBox>
+        </TextBlock>
+
+        <TextBlock Text="Дата рождения">
+            <DatePicker Width="200" Height="30" SelectedDate="{Binding BirthDate}" />
+        </TextBlock>
+
+        <TextBlock Text="Вес (в кг)">
+            <TextBox  Width="200" Text="{Binding Weight}"/>
+        </TextBlock>
+
+        <Button Content="Проверить доступные категории"
+                Command="{Binding CheckAviableCategoriesCommand}"/>
+
+        <ListView ItemsSource="{Binding AviableCategories}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox IsChecked="{Binding IsSelected}">
+                        <TextBlock Text="{Binding Name}" />
+                    </CheckBox>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Content="Зарегистрировать"
+                Command="{Binding RegisterUserCommand}"/>
+
+        <Button Content="Завершить регистрацию"
+            Command="{Binding CompleteRegistrationCommand}"/>
+    </StackPanel>
+</Window>

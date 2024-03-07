@@ -1,8 +1,11 @@
 ﻿using ArmWrestling.Applications.Services.CategoryInCompetitionService;
+using ArmWrestling.Applications.Services.CategoryService;
 using ArmWrestling.Applications.Services.CompetitionService;
 using ArmWrestling.Domain.Database;
 using ArmWrestling.Infrastructure.Database.Repositories.CategoryRepository;
 using ArmWrestling.ViewModel.Commands;
+using ArmWrestling.ViewModel.MainWindow;
+using ArmWrestling.ViewModel.RegistrationOfPersonsWindow;
 using ArmWrestling.ViewModel.Windows;
 using System;
 using System.Collections.Generic;
@@ -21,18 +24,27 @@ namespace ArmWrestling.ViewModel.CreateCompetitionWindow
         private Command _createCompetitionCommand;
         public ICommand CreateCompetitionCommand => _createCompetitionCommand;
 
+        private readonly IWindowManager _windowManager;
+        private readonly IRegistrationOfPersonsWindowViewModel _registrationOfPersonsWindowViewModel;
         private readonly ICompetitionService _competitionService;
         private readonly ICategoryInCompetitionService _categoryInCompetitionService;
-
+        private readonly ICategoryService _categoryService;
         private readonly List<Category> _categories;
         public List<Category> Categories => _categories;
 
-        public CreateCompetitionWindowViewModel(ICompetitionService competitionService, 
-            ICategoryInCompetitionService categoryInCompetitionService, ICategoryRepository categoryRepository)
+        public CreateCompetitionWindowViewModel(IWindowManager windowManager,
+            IRegistrationOfPersonsWindowViewModel registrationOfPersonsWindowViewModel,
+            ICompetitionService competitionService, 
+            ICategoryInCompetitionService categoryInCompetitionService, 
+            ICategoryService categoryService,
+            ICategoryRepository categoryRepository)
         {
             _createCompetitionCommand = new Command(CreateCompetition);
+            _windowManager = windowManager;
+            _registrationOfPersonsWindowViewModel = registrationOfPersonsWindowViewModel;
             _competitionService = competitionService;
             _categoryInCompetitionService = categoryInCompetitionService;
+            _categoryService = categoryService;
             _categories = new List<Category>(categoryRepository.GetAll());
             SetNameCategories();
         }
@@ -60,34 +72,21 @@ namespace ArmWrestling.ViewModel.CreateCompetitionWindow
                     _categoryInCompetitionService.Create(category, competition);
                 }
             }
+
+            //open the window for registration of persons
+            _windowManager.Show(_registrationOfPersonsWindowViewModel);
+            _windowManager.Close<IMainWindowViewModel>(this);
         }
+
+        //Function for set the categories name for the text in checkboxes
         private void SetNameCategories()
         {
             foreach (var category in Categories)
             {
                 string Name = "";
 
-                //Set man or woman
-                if (category.Gender == 1 && category.MaxAge == 255)
-                    Name = "Мужчины";
-                else if (category.Gender == 1)
-                    Name = "Юниоры";
-                else if (category.Gender == 0 && category.MaxAge == 255)
-                    Name = "Женщины";
-                else if (category.Gender == 0)
-                    Name = "Юниорки";
-
-                //Set age and weight
-                if (category.MinAge == 0 && category.MaxAge == 255 && category.MaxWeight == 255)
-                    Name = String.Concat(Name, " Абсолютная");
-                else if (category.MaxAge == 255)
-                    Name = String.Concat(Name, " от ", category.MinAge, " лет до ", category.MaxWeight, " кг");
-                else
-                    Name = String.Concat(Name, " ", category.MinAge, "-", category.MaxAge, 
-                        " до ", category.MaxWeight, " кг");
-
                 //Save name category
-                category.Name = Name;
+                category.Name = _categoryService.CreateCategoryName(category);
             }
         }
 

@@ -1,8 +1,10 @@
 ﻿using ArmWrestling.View.CreateCompetitionWindow;
 using ArmWrestling.View.Factories;
 using ArmWrestling.View.MainWindow;
+using ArmWrestling.View.RegistrationOfPersonsWindow;
 using ArmWrestling.ViewModel.CreateCompetitionWindow;
 using ArmWrestling.ViewModel.MainWindow;
+using ArmWrestling.ViewModel.RegistrationOfPersonsWindow;
 using ArmWrestling.ViewModel.Windows;
 using Autofac;
 using System;
@@ -21,7 +23,8 @@ namespace ArmWrestling.Bootstrapper.Factories
         private readonly Dictionary<Type, Type> _map = new()
         {
         {typeof(IMainWindowViewModel), typeof(IMainWindow) },
-        {typeof(ICreateCompetitionWindowViewModel), typeof(ICreateCompetitionWindow) }
+        {typeof(ICreateCompetitionWindowViewModel), typeof(ICreateCompetitionWindow) },
+        {typeof(IRegistrationOfPersonsWindowViewModel), typeof(IRegistrationOfPersonsWindow) }
         };
 
         public WindowFactory(IComponentContext componentContext) 

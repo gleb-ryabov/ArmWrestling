@@ -34,7 +34,7 @@ namespace ArmWrestling.Applications.Services.PersonService
                 Gender = gender,
                 BirthDate = birthDate,
                 Weight = weight,
-                CategoryInCompetition = category,
+                CategoryInCompetitionId = category.Id,
                 Team = team
             };
             if (_personRepository.Create(person))

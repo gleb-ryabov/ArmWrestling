@@ -1,6 +1,7 @@
 ﻿using ArmWrestling.View.CreateCompetitionWindow;
 using ArmWrestling.View.MainWindow;
 using ArmWrestling.View.ManagerCompetitionWindow;
+using ArmWrestling.View.RegistrationOfPersonsWindow;
 using ArmWrestling.View.Windows;
 using ArmWrestling.ViewModel.MainWindow;
 using ArmWrestling.ViewModel.Windows;
@@ -21,6 +22,7 @@ namespace ArmWrestling.View
 
             builder.RegisterType<MainWindow.MainWindow>().As<IMainWindow>().InstancePerDependency();
             builder.RegisterType<CreateCompetitionWindow.CreateCompetitionWindow>().As<ICreateCompetitionWindow>().InstancePerDependency();
+            builder.RegisterType<RegistrationOfPersonsWindow.RegistrationOfPersonsWindow>().As<IRegistrationOfPersonsWindow>().InstancePerDependency();
             builder.RegisterType<ManagerCompetitionWindow.ManagerCompetitionWindow>().As<IManagerCompetitionWindow>().InstancePerDependency();
             builder.RegisterType<WindowManager>().As<IWindowManager>().SingleInstance();
 
