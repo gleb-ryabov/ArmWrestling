@@ -10,8 +10,21 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
     <StackPanel>
+
+        <StackPanel.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Width" Value="500"/>
+                <Setter Property="FontSize" Value="28" />
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Margin" Value="0,20,0,0"/>
+                <Setter Property="Padding" Value="10, 10, 10, 10"/>
+            </Style>
+        </StackPanel.Resources>
+
+        <Image Source="../Resources/logo.jpg" Height="200"/>
         <Button Content="Новое соревнование"
                 Command="{Binding OpenCreateCompetitionWindowCommand}"/>
-        <Button Content="Законченные соревнования"/>
+        <Button Content="Законченные соревнования"
+                Command="{Binding OpenPastCompetitionsCommand}"/>
     </StackPanel>
 </Window>

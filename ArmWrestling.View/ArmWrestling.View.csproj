@@ -8,12 +8,20 @@
 		<UseWPF>true</UseWPF>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <None Remove="Resources\logo.jpg" />
+	</ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Autofac" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ArmWrestling.ViewModel\ArmWrestling.ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\logo.jpg" />
   </ItemGroup>
 
 </Project>

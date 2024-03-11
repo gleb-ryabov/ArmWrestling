@@ -1,9 +1,11 @@
 ﻿using ArmWrestling.View.CreateCompetitionWindow;
 using ArmWrestling.View.Factories;
 using ArmWrestling.View.MainWindow;
+using ArmWrestling.View.ManagerCompetitionWindow;
 using ArmWrestling.View.RegistrationOfPersonsWindow;
 using ArmWrestling.ViewModel.CreateCompetitionWindow;
 using ArmWrestling.ViewModel.MainWindow;
+using ArmWrestling.ViewModel.ManagerCompetitionWindow;
 using ArmWrestling.ViewModel.RegistrationOfPersonsWindow;
 using ArmWrestling.ViewModel.Windows;
 using Autofac;
@@ -24,7 +26,8 @@ namespace ArmWrestling.Bootstrapper.Factories
         {
         {typeof(IMainWindowViewModel), typeof(IMainWindow) },
         {typeof(ICreateCompetitionWindowViewModel), typeof(ICreateCompetitionWindow) },
-        {typeof(IRegistrationOfPersonsWindowViewModel), typeof(IRegistrationOfPersonsWindow) }
+        {typeof(IRegistrationOfPersonsWindowViewModel), typeof(IRegistrationOfPersonsWindow) },
+        {typeof(IManagerCompetitionWindowViewModel), typeof(IManagerCompetitionWindow) }
         };
 
         public WindowFactory(IComponentContext componentContext) 

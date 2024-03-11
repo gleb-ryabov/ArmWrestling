@@ -5,6 +5,7 @@ using ArmWrestling.Infrastructure.Database.Repositories.CategoryInCompetitionRep
 using ArmWrestling.Infrastructure.Database.Repositories.CategoryRepository;
 using ArmWrestling.Infrastructure.Database.Repositories.CompetitionReposirory;
 using ArmWrestling.ViewModel.Commands;
+using ArmWrestling.ViewModel.ManagerCompetitionWindow;
 using ArmWrestling.ViewModel.Windows;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,8 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
         private readonly ICategoryRepository _categoryRepository;
         private readonly ICategoryInCompetitionRepository _categoryInCompetitionRepository;
 
+        private readonly IManagerCompetitionWindowViewModel _managerCompetitionWindowViewModel;
+
         private readonly Command _registerUserCommand;
         private readonly Command _checkAviableCategoriesCommand;
         private readonly Command _completeRegistrationCommand;
@@ -38,7 +41,8 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
             ICategoryService categoryService,
             ICompetitionRepository competitionRepository,
             ICategoryRepository categoryRepository,
-            ICategoryInCompetitionRepository categoryInCompetitionRepository)
+            ICategoryInCompetitionRepository categoryInCompetitionRepository,
+            IManagerCompetitionWindowViewModel managerCompetitionWindowViewModel)
         {
             _windowManager = windowManager;
             _personService = personService;
@@ -46,6 +50,8 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
             _competitionRepository = competitionRepository;
             _categoryRepository = categoryRepository;
             _categoryInCompetitionRepository = categoryInCompetitionRepository;
+
+            _managerCompetitionWindowViewModel = managerCompetitionWindowViewModel;
 
             _registerUserCommand = new Command(RegisterUser);
             _checkAviableCategoriesCommand = new Command(CheckAviableCategories);
@@ -138,7 +144,8 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
         //Function for complete the registration and go to the window conducting competitions
         public void CompleteRegistration()
         {
-
+            _windowManager.Show(_managerCompetitionWindowViewModel);
+            _windowManager.Close<IRegistrationOfPersonsWindowViewModel>(this);
         }
 
 

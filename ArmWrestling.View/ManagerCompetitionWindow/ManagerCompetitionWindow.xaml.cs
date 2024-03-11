@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArmWrestling.ViewModel.ManagerCompetitionWindow;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,9 +17,11 @@ namespace ArmWrestling.View.ManagerCompetitionWindow
 {
     public partial class ManagerCompetitionWindow : IManagerCompetitionWindow
     {
-        public ManagerCompetitionWindow()
+        public ManagerCompetitionWindow(IManagerCompetitionWindowViewModel viewModel)
         {
             InitializeComponent();
+
+            DataContext = viewModel;
         }
     }
 }

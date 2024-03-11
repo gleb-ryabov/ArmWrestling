@@ -8,44 +8,65 @@
         Title="Новое соревнование" 
         WindowState="Maximized">
     <StackPanel>
+        <StackPanel.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Margin" Value="50 10 50 0"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Margin" Value="10 0 0 0"/>
+                <Setter Property="Width" Value="350"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="10 0 0 0"/>
+                <Setter Property="Width" Value="100"/>
+            </Style>
+            <Style TargetType="ListView">
+                <Setter Property="Margin" Value="50 10 50 10"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Width" Value="200"/>
+                <Setter Property="Margin" Value="10 10 10 10"/>
+                <Setter Property="Padding" Value="10 10 10 10"/>
+                <Setter Property="FontSize" Value="24"/>
+            </Style>
+        </StackPanel.Resources>
         
         <TextBlock Text="Тип судейства">
-            <ListBox
-                Width="200"
+            <ComboBox
                 SelectedValue="{Binding TypeJudging}"
                 SelectedValuePath="Content">
-                <ListBoxItem Content="Выбывание после 2х поражений"/>
-                <!--<ListBoxItem Content="Олимпийский"/>-->
-            </ListBox>
+                <ComboBoxItem Content="Выбывание после 2х поражений"/>
+                <!--<ComboBoxItem Content="Олимпийский"/>-->
+            </ComboBox>
         </TextBlock>
         
         <TextBlock Text="Тип соревнований">
-            <ListBox
-                Width="200"
+            <ComboBox
                 SelectedValue="{Binding TypeCompetition}"
                 SelectedValuePath="Content">
-                <ListBoxItem Content="Личные"/>
-                <!--<ListBoxItem Content="Командные"/>
-                <ListBoxItem Content="Лично-командные"/>-->
-            </ListBox>
+                <ComboBoxItem Content="Личные"/>
+                <!--<ComboBoxItem Content="Командные"/>
+                <ComboBoxItem Content="Лично-командные"/>-->
+            </ComboBox>
         </TextBlock>
 
         <TextBlock Text="Количество столов">
-            <TextBox Width="200" Text="{Binding CountTable}"/>
+            <TextBox Text="{Binding CountTable}"/>
         </TextBlock>
 
         <TextBlock Text="Первая рука">
-            <ListBox
-                Width="200" 
+            <ComboBox
                 SelectedValue="{Binding FirstArm}"
                 SelectedValuePath="Tag">
-                <ListBoxItem Content="Левая" Tag="л"/>
-                <ListBoxItem Content="Правая" Tag="п"/>
-            </ListBox>
+                <ComboBoxItem Content="Левая" Tag="л"/>
+                <ComboBoxItem Content="Правая" Tag="п"/>
+            </ComboBox>
         </TextBlock>
 
         <TextBlock Text="Допуск веса (в граммах)">
-            <TextBox Width="200" Text="{Binding WeightTolerance}"/>
+            <TextBox Text="{Binding WeightTolerance}"/>
         </TextBlock>
 
         <ListView ItemsSource="{Binding Categories}">

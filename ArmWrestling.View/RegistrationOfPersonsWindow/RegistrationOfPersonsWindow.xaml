@@ -8,7 +8,40 @@
         Title="Регистрация участников"
         WindowState="Maximized">
     <StackPanel>
-
+        <StackPanel.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Margin" Value="50 10 50 0"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Margin" Value="10 0 0 0"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="10 0 0 0"/>
+            </Style>
+            <Style TargetType="DatePicker">
+                <Setter Property="Margin" Value="10 0 0 0"/>
+            </Style>
+            <Style TargetType="ListView">
+                <Setter Property="Margin" Value="50 10 50 30"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Width" Value="400"/>
+                <Setter Property="Margin" Value="10 10 10 200"/>
+                <Setter Property="Padding" Value="10 10 10 10"/>
+                <Setter Property="FontSize" Value="24"/>
+            </Style>
+            <Style TargetType="Button" x:Key="CheckCategoryButton" >
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="50 10 50 10"/>
+                <Setter Property="Padding" Value="10 10 10 10"/>
+                <Setter Property="Width" Value="300"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+        </StackPanel.Resources>
+        
+        
         <TextBlock Text="Фамилия">
             <TextBox Width="200" Text="{Binding Surname}"/>
         </TextBlock>
@@ -22,13 +55,13 @@
         </TextBlock>
 
         <TextBlock Text="Пол">
-            <ListBox
+            <ComboBox
                 Width="200" 
                 SelectedValue="{Binding Gender}"
                 SelectedValuePath="Tag">
-                <ListBoxItem Content="Мужской" Tag="1"/>
-                <ListBoxItem Content="Женский" Tag="0"/>
-            </ListBox>
+                <ComboBoxItem Content="Мужской" Tag="1"/>
+                <ComboBoxItem Content="Женский" Tag="0"/>
+            </ComboBox>
         </TextBlock>
 
         <TextBlock Text="Дата рождения">
@@ -39,7 +72,8 @@
             <TextBox  Width="200" Text="{Binding Weight}"/>
         </TextBlock>
 
-        <Button Content="Проверить доступные категории"
+        <Button Style="{StaticResource CheckCategoryButton}"
+                Content="Проверить доступные категории"
                 Command="{Binding CheckAviableCategoriesCommand}"/>
 
         <ListView ItemsSource="{Binding AviableCategories}">
