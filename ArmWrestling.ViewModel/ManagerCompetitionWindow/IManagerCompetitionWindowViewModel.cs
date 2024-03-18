@@ -9,5 +9,7 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
 {
     public interface IManagerCompetitionWindowViewModel: IWindowViewModel
     {
+        void Initialize();
+        void UpdateTable(int tableId);
     }
 }

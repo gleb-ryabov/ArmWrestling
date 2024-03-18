@@ -1,4 +1,5 @@
 ﻿using ArmWrestling.Domain.Database;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,8 +75,25 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.DuelRepository
                 return 0;
         }
 
-        //function for check person for free circle (did he participate in the last round)
-        //return true if Person wasn't in free circle
+        public char GetLastArmInCategory(CategoryInCompetition category)
+        {
+            bool recordsExist = _applicationContext.Duels
+                .Any(d => d.CategoryInCompetition == category);
+
+            if (recordsExist)
+            {
+                return _applicationContext.Duels
+                .Where(d => d.CategoryInCompetition == category)
+                .OrderBy(d => d.Id)
+                .Select(d => d.Arm)
+                .Last();
+            }
+            else
+                return ' ';
+        }
+
+        //Function for check person for free circle (did he participate in the last round)
+        //  return true if Person wasn't in free circle
         public bool CheckPersonForFreeCircle(char arm, CategoryInCompetition category, Person person, int tourNumber)
         {
             return _applicationContext.Duels
@@ -98,8 +116,8 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.DuelRepository
             return countDuel;
         }
 
-        //function for check defeat in last round
-        //return true if Person was Loser in lat round
+        //Function for check defeat in last round
+        //  return true if Person was Loser in last round
         public bool CheckDefeatInLastRound(char arm, int tour, Person person)
         {
             bool wasLoser = _applicationContext.Duels
@@ -111,5 +129,39 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.DuelRepository
 
             return wasLoser;
         }
+
+        //Function for getting CategoryInCompetition in which there have already been duels
+        public IEnumerable<CategoryInCompetition> GetUsedCategories(Competition competition)
+        {
+            return _applicationContext.Duels
+                .Select(d => d.CategoryInCompetition)
+                .Where(d => d.CompetitionId == competition.Id)
+                .Distinct()
+                .ToList();
+        }
+
+        //Function for check existence of duels by CategoryInCompetition and arm
+        public bool CheckExstenceDuels(CategoryInCompetition categoryInCompetition, char arm)
+        {
+            return _applicationContext.Duels
+                .Where(d => d.CategoryInCompetitionId ==  categoryInCompetition.Id)
+                .Where(d => d.Arm == arm)
+                .Any();
+        }
+
+        //Function for set winner and looser
+        public bool SetWinnerAndLooser(Duel duel, Person winner, Person looser)
+        {
+            Duel findingDuel = Get(duel.Id);
+
+            findingDuel.Winner = winner;
+            findingDuel.Looser = looser;
+
+            if (_applicationContext.SaveChanges() > 0)
+                return true;
+
+            return false;
+        }
+
     }
 }

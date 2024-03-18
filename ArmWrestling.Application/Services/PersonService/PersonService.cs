@@ -126,13 +126,13 @@ namespace ArmWrestling.Applications.Services.PersonService
             List<Person> duel = new List<Person>();
             foreach (int number in order)
             {
+                duel.Add(persons[number]);
+
                 if (duel.Count == 2 || number == order[order.Count - 1])
                 {
                     draw.Add(duel);
                     duel = new List<Person>();
                 }
-
-                duel.Add(persons[number]);
             }
 
             return draw;
@@ -194,6 +194,9 @@ namespace ArmWrestling.Applications.Services.PersonService
         private List<Person> SortPersons(CategoryInCompetition category,
                         char arm, int tour, List<Person> persons)
         {
+            //УДаЛИТЬ
+            int firstCount = persons.Count();
+
             List<Person> sortedPersons = new List<Person>();
 
             //insert person in free circle
@@ -246,7 +249,7 @@ namespace ArmWrestling.Applications.Services.PersonService
                 draw.Add(pairPersons);
 
                 persons.Remove(persons[0]);
-                persons.Remove(persons[1]);
+                persons.Remove(persons[0]);
             }
 
             //if there is only one person left in list
@@ -255,10 +258,10 @@ namespace ArmWrestling.Applications.Services.PersonService
                 List<Person> freePerson = new List<Person>();
 
                 freePerson.Add(persons[0]);
+                persons.Remove(persons[0]);
 
                 draw.Add(freePerson);
 
-                persons.Remove(persons[0]);
             }
 
             return draw;
@@ -272,7 +275,7 @@ namespace ArmWrestling.Applications.Services.PersonService
             List<List<Person>> draw = new List<List<Person>>();
 
             int countPerson = persons.Count;
-            if (countPerson != 2)
+            if (countPerson > 2)
             {
                 //get number tour. If this is first tour - just create a random list. Else sort participants.
                 int tour = _duelRepository.GetLastNumberTour(arm, category) + 1;
@@ -297,7 +300,7 @@ namespace ArmWrestling.Applications.Services.PersonService
 
             }
             //if there are only 2 persons, just add them to the queue
-            else
+            else if (countPerson == 2)
                 draw.Add(persons);
 
             return draw;

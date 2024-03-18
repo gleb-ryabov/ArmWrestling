@@ -4,7 +4,9 @@ namespace ArmWrestling.Applications.Services.DuelService
 {
     public interface IDuelService
     {
-        Duel Create(CategoryInCompetition categoryInCompetition, Person winnerPerson,
-            Person looserPerson, char arm, int tourNumber, byte typeDuel, char group);
+        Duel Create(CategoryInCompetition categoryInCompetition, 
+            char arm, int tourNumber, byte typeDuel, char group);
+        public char CalculateGroup(char arm, Person firstPerson, Person secondPerson);
+        char GetLastArmInCategory(CategoryInCompetition category);
     }
 }

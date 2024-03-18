@@ -15,12 +15,12 @@ namespace ArmWrestling.Domain.Database
         public CategoryInCompetition CategoryInCompetition { get; set; }
 
         [ForeignKey(nameof(Person))]
-        public int WinnerId { get; set; }
-        public Person Winner { get; set; }
+        public int? WinnerId { get; set; }
+        public Person? Winner { get; set; }
 
         [ForeignKey(nameof(Person))]
-        public int LooserId { get; set; }
-        public Person Looser { get; set; }
+        public int? LooserId { get; set; }
+        public Person? Looser { get; set; }
 
         public char Arm {  get; set; }
 

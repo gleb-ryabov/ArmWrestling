@@ -6,6 +6,7 @@ using ArmWrestling.Applications.Services.DuelService;
 using ArmWrestling.Applications.Services.PersonService;
 using ArmWrestling.Applications.Services.ResultPersonService;
 using ArmWrestling.Applications.Services.ResultTeamService;
+using ArmWrestling.Applications.Services.TableService;
 using ArmWrestling.Applications.Services.TeamService;
 using ArmWrestling.Infrastructure.Database.Repositories.TeamRepository;
 using Autofac;
@@ -32,6 +33,7 @@ namespace ArmWrestling.Applications
             builder.RegisterType<ResultPersonService>().As<IResultPersonService>().InstancePerDependency();
             builder.RegisterType<ResultTeamService>().As<IResultTeamService>().InstancePerDependency();
             builder.RegisterType<TeamService>().As<ITeamService>().InstancePerDependency();
+            builder.RegisterType<TableService>().As<ITableService>().InstancePerDependency();
         }
     }
 }

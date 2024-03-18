@@ -39,6 +39,5 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.CategoryRepository
             return _applicationContext.Categories.ToList();
         }
 
-
     }
 }

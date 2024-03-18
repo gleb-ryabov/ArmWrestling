@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArmWrestling.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240305125034_Refactoring CategoryInCompetitions")]
-    partial class RefactoringCategoryInCompetitions
+    [Migration("20240311095356_AddTableTables")]
+    partial class AddTableTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -249,6 +249,33 @@ namespace ArmWrestling.Infrastructure.Migrations
                     b.ToTable("ResultTeams");
                 });
 
+            modelBuilder.Entity("ArmWrestling.Domain.Database.Table", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CategoryInCompetitionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CompetitionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("isBusy")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryInCompetitionId");
+
+                    b.HasIndex("CompetitionId");
+
+                    b.ToTable("Tables");
+                });
+
             modelBuilder.Entity("ArmWrestling.Domain.Database.Team", b =>
                 {
                     b.Property<int>("Id")
@@ -382,6 +409,25 @@ namespace ArmWrestling.Infrastructure.Migrations
                     b.Navigation("Competition");
 
                     b.Navigation("Team");
+                });
+
+            modelBuilder.Entity("ArmWrestling.Domain.Database.Table", b =>
+                {
+                    b.HasOne("ArmWrestling.Domain.Database.CategoryInCompetition", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryInCompetitionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ArmWrestling.Domain.Database.Competition", "Competition")
+                        .WithMany()
+                        .HasForeignKey("CompetitionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Competition");
                 });
 
             modelBuilder.Entity("ArmWrestling.Domain.Database.Team", b =>

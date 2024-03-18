@@ -34,6 +34,7 @@ namespace ArmWrestling.Infrastructure.Database
         public DbSet<Person> Persons { get; set; }
         public DbSet<ResultPerson> ResultPersons { get; set; }
         public DbSet<ResultTeam> ResultTeams { get; set; }
+        public DbSet<Table> Tables { get; set; }
         public DbSet<Team> Teams { get; set; }
     }
 }

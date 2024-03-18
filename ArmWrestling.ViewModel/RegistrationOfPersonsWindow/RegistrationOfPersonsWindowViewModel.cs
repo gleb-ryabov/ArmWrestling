@@ -144,6 +144,7 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
         //Function for complete the registration and go to the window conducting competitions
         public void CompleteRegistration()
         {
+            _managerCompetitionWindowViewModel.Initialize();
             _windowManager.Show(_managerCompetitionWindowViewModel);
             _windowManager.Close<IRegistrationOfPersonsWindowViewModel>(this);
         }

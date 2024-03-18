@@ -1,0 +1,39 @@
+﻿<Window x:Class="ArmWrestling.View.SelectTableCategoriesWindow.SelectTableCategoriesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArmWrestling.View.SelectTableCategoriesWindow"
+        mc:Ignorable="d"
+        Title="Выбор категории стола" Height="500" Width="500"
+        WindowStyle="None"
+        WindowStartupLocation="CenterOwner">
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="12*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1" 
+                    Content="х"  
+                    Background="Red" 
+                    Foreground="White" 
+                    FontSize="16"
+                    Command="{Binding CloseWindowCommand}"/>
+        </Grid>
+        
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Стол " />
+            <TextBlock Text="{Binding Table.Number}" />
+        </StackPanel>
+
+        <TextBlock Text="Категория">
+            <ComboBox ItemsSource="{Binding CategoryInCompetitions}"
+                      DisplayMemberPath="Name"
+                      SelectedValue="{Binding CategoryInCompetition}"/>
+        </TextBlock>
+        <Button Content="Сохранить"
+                Command="{Binding SetCategoryinTableCommand}"/>
+    </StackPanel>
+</Window>

@@ -40,13 +40,16 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.CategoryInCompetitio
             return _applicationContext.CategoryInCompetitions.ToList();
         }
 
+
+        //Function for getting CategoryInCompetition by competition
         public IEnumerable<CategoryInCompetition> GetByCompetition(Competition competition)
         {
-            return _applicationContext.CategoryInCompetitions.
-                Where(c=> c.CompetitionId == competition.Id)
+            return _applicationContext.CategoryInCompetitions
+                .Where(c=> c.CompetitionId == competition.Id)
                 .ToList();
         }
 
+        //Function for getting aviable CategoryInCompetition by person parameters 
         public IEnumerable<CategoryInCompetition> GetAviableCategories(byte gender,
             float weight, DateOnly birthDate, Competition competition)
         {

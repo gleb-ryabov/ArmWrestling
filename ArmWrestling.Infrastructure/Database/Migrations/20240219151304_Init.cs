@@ -171,8 +171,8 @@ namespace ArmWrestling.Infrastructure.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     CategoryInCompetitionId = table.Column<int>(type: "INTEGER", nullable: false),
-                    WinnerId = table.Column<int>(type: "INTEGER", nullable: false),
-                    LooserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    WinnerId = table.Column<int>(type: "INTEGER", nullable: true),
+                    LooserId = table.Column<int>(type: "INTEGER", nullable: true),
                     Arm = table.Column<char>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>

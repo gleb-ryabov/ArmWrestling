@@ -55,13 +55,9 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.PersonRepository
         
         public int GetPersonCountByCategory (CategoryInCompetition category)
         {
-            IEnumerable<Person> persons = GetPersonsByCategory(category);
-            int count = 0;
-            foreach (Person person in persons)
-            {
-                ++count;
-            }
-            return count;
+            return _applicationContext.Persons
+                .Where(p => p.CategoryInCompetition == category)
+                .Count();
         }
     }
 }

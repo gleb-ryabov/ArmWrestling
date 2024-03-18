@@ -13,8 +13,12 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.DuelRepository
         int GetCountLossesByPerson(char arm, Person person);
         int GetCountWinByPerson(char arm, Person person);
         int GetLastNumberTour(char arm, CategoryInCompetition category);
+        char GetLastArmInCategory(CategoryInCompetition category);
         bool CheckPersonForFreeCircle(char arm, CategoryInCompetition category, Person person, int tourNumber);
         int GetCountDuelsBetweenPersons(char arm, Person person, Person opponent);
         bool CheckDefeatInLastRound(char arm, int tour, Person person);
+        IEnumerable<CategoryInCompetition> GetUsedCategories(Competition competition);
+        bool CheckExstenceDuels(CategoryInCompetition categoryInCompetition, char arm);
+        bool SetWinnerAndLooser(Duel duel, Person winner, Person looser);
     }
 }
