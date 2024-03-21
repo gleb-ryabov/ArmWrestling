@@ -15,6 +15,18 @@
         </Grid.ColumnDefinitions>
 
         <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+                
+                <Button Grid.Row="0"
+                        Background="#8d0f1f"
+                        Foreground="White"
+                        Content="Просмотреть итоги"
+                        Command="{Binding CompleteCompetitionCommand}"/>
+            </Grid>
             <!-- for notify -->
         </Border>
 
@@ -35,7 +47,6 @@
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
                                     <RowDefinition Height="4*"/>
                                 </Grid.RowDefinitions>
 
@@ -43,17 +54,34 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="3*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Grid.Row="0" Grid.Column="0" TextAlignment="Center" Text="{Binding Number}"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="1" TextAlignment="Center" Text="Финал"/>
-                                    <Button Grid.Row="0" Grid.Column="2" Content="?"/>
+                                    
+                                    <Grid Grid.Row="0" Grid.Column="1">
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        
+                                        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" >
+                                            <TextBlock Text="{Binding NumberTour}"/>
+                                            <TextBlock Text=" тур - "/>
+                                            <TextBlock Text="{Binding Duel.Arm}"/>
+                                            <TextBlock Text=". рука"/>
+                                        </StackPanel>
+
+                                        <TextBlock Grid.Row="1" Text="{Binding CategoryInCompetition.Name}"/>
+
+                                    </Grid>
+                                    
+                                    <TextBlock Grid.Row="0" Grid.Column="2" TextAlignment="Center" Text="Поединок"/>
+                                    <Button Grid.Row="0" Grid.Column="3" Content="?"/>
                                 </Grid>
                                 <Grid Grid.Row="1">
-                                    <TextBlock Text="{Binding CategoryInCompetition.Category.Name}"/>
-                                </Grid>
-                                <Grid Grid.Row="2">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>

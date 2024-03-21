@@ -6,5 +6,6 @@ namespace ArmWrestling.Applications.Services.ResultPersonService
     {
         ResultPerson Create(CategoryInCompetition categoryInCompetition, Person person, 
             int place, int reasonAward);
+        List<ResultPerson> GetResult(CategoryInCompetition categoryInCompetition);
     }
 }

@@ -36,5 +36,22 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.ResultPersonReposito
         {
             return _applicationContext.ResultPersons.ToList();
         }
+
+        //Function for get result for category in competition
+        public List<ResultPerson> GetResultByCategory(CategoryInCompetition categoryInCompetition)
+        {
+            return _applicationContext.ResultPersons
+                .Where(r => r.CategoryInCompetitionId == categoryInCompetition.Id)
+                .OrderBy(r => r.Place)
+                .ToList();
+        }
+
+        //Function for check have you already summed up the results for this category
+        public bool ExistResult(CategoryInCompetition categoryInCompetition)
+        {
+            return _applicationContext.ResultPersons
+                .Where(r => r.CategoryInCompetitionId == categoryInCompetition.Id)
+                .Any();
+        }
     }
 }

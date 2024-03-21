@@ -41,7 +41,8 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.PersonRepository
 
         public bool AddScore(Person person, int score)
         {
-            person.Score += score;
+            Person modifiedPerson = Get(person.Id);
+            modifiedPerson.Score += score;
             return _applicationContext.SaveChanges() > 0;
         }
 
@@ -56,8 +57,29 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.PersonRepository
         public int GetPersonCountByCategory (CategoryInCompetition category)
         {
             return _applicationContext.Persons
-                .Where(p => p.CategoryInCompetition == category)
+                .Where(p => p.CategoryInCompetitionId == category.Id)
                 .Count();
+        }
+
+
+        //Function for getting persons, sortered by score (if score > 0)
+        public IEnumerable<Person> GetPersonsSorteredByScore(CategoryInCompetition category)
+        {
+            return _applicationContext.Persons
+                .Where(p => p.CategoryInCompetitionId == category.Id)
+                .Where(p => p.Score > 0)
+                .OrderByDescending(p => p.Score)
+                .ToList();
+        }
+
+        //Function for getting persons, who have score = 0
+        public IEnumerable<Person> GetPersonsWithScore0(CategoryInCompetition category)
+        {
+            return _applicationContext.Persons
+                .Where(p => p.CategoryInCompetitionId == category.Id)
+                .Where(p => p.Score == 0)
+                .OrderBy(p => p.Score)
+                .ToList();
         }
     }
 }

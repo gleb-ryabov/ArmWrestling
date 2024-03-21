@@ -62,5 +62,27 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.CategoryInCompetitio
                 .Where(c => (float)c.Category.MaxWeight >= (float)weight - (float)competition.WeightTolerance/1000)
                 .ToList();
         }
+
+        //Function for set 0 in status complited
+        public bool SetComplited(int categoryInCompetitionId)
+        {
+            CategoryInCompetition modifiedCategoryInCompetition = Get(categoryInCompetitionId);
+
+            modifiedCategoryInCompetition.Complited = 1;
+
+            if (_applicationContext.SaveChanges() > 0)
+                return true;
+
+            return false;
+        }
+
+        //Function for get CategoryInCompetition where status complited is equal 1
+        public IEnumerable<CategoryInCompetition> GetComplitedCategory(Competition competition)
+        {
+            return _applicationContext.CategoryInCompetitions
+                .Where(c => c.CompetitionId == competition.Id)
+                .Where(c => c.Complited == 1)
+                .ToList();
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.DuelRepository
     {
         int GetCountDuelByPerson(char arm, Person person);
         int GetCountLossesByPerson(char arm, Person person);
+        int GetCountLossesByPersonInTour(char arm, int tour, Person person);
         int GetCountWinByPerson(char arm, Person person);
         int GetLastNumberTour(char arm, CategoryInCompetition category);
         char GetLastArmInCategory(CategoryInCompetition category);
@@ -20,5 +21,7 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.DuelRepository
         IEnumerable<CategoryInCompetition> GetUsedCategories(Competition competition);
         bool CheckExstenceDuels(CategoryInCompetition categoryInCompetition, char arm);
         bool SetWinnerAndLooser(Duel duel, Person winner, Person looser);
+        IEnumerable<Person> GetLoosersInTour(CategoryInCompetition categoryInCompetition, char arm, int tourNumber);
+        int GetWinnerIdInTour(CategoryInCompetition categoryInCompetition, char arm, int tourNumber);
     }
 }

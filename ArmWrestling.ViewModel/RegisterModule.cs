@@ -2,6 +2,7 @@
 using ArmWrestling.ViewModel.MainWindow;
 using ArmWrestling.ViewModel.ManagerCompetitionWindow;
 using ArmWrestling.ViewModel.RegistrationOfPersonsWindow;
+using ArmWrestling.ViewModel.ResultsCompetitionWindow;
 using ArmWrestling.ViewModel.SelectTableCategoriesWindow;
 using Autofac;
 using System;
@@ -23,6 +24,7 @@ namespace ArmWrestling.ViewModel
             builder.RegisterType<RegistrationOfPersonsWindowViewModel>().As<IRegistrationOfPersonsWindowViewModel>().InstancePerDependency();
             builder.RegisterType<ManagerCompetitionWindowViewModel>().As<IManagerCompetitionWindowViewModel>().SingleInstance();
             builder.RegisterType<SelectTableCategoriesWindowViewModel>().As<ISelectTableCategoriesWindowViewModel>().InstancePerDependency();
+            builder.RegisterType<ResultsCompetitionWindowViewModel>().As<IResultsCompetitionWindowViewModel>().InstancePerDependency();
         }
     }
 }

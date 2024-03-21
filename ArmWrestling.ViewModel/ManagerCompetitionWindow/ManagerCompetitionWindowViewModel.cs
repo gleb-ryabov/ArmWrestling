@@ -9,6 +9,7 @@ using ArmWrestling.Infrastructure.Database.Repositories.CompetitionReposirory;
 using ArmWrestling.Infrastructure.Database.Repositories.DuelRepository;
 using ArmWrestling.Infrastructure.Database.Repositories.TableRepository;
 using ArmWrestling.ViewModel.Commands;
+using ArmWrestling.ViewModel.ResultsCompetitionWindow;
 using ArmWrestling.ViewModel.SelectTableCategoriesWindow;
 using ArmWrestling.ViewModel.Windows;
 using Microsoft.Extensions.Logging;
@@ -27,6 +28,7 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
     {
         private readonly IWindowManager _windowManager;
         private readonly ISelectTableCategoriesWindowViewModel _selectTableCategoriesWindowViewModel;
+        private readonly IResultsCompetitionWindowViewModel _resultsCompetitionWindowViewModel;
 
         private readonly ICategoryService _categoryService;
         private readonly IDuelService _duelService;
@@ -48,8 +50,12 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
         private readonly ParameterizedCommand<object> _setSecondAsWinnerCommand;
         public ParameterizedCommand<object> SetSecondAsWinnerCommand => _setSecondAsWinnerCommand;
 
+        private readonly Command _completeCompetitionCommand;
+        public ICommand CompleteCompetitionCommand => _completeCompetitionCommand;
+
         public ManagerCompetitionWindowViewModel(IWindowManager windowManager,
             ISelectTableCategoriesWindowViewModel selectTableCategoriesWindowViewModel,
+            IResultsCompetitionWindowViewModel resultsCompetitionWindowViewModel,
             ICategoryService categoryService,
             IDuelService duelService,
             IPersonService personService,
@@ -62,6 +68,7 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
         {
             _windowManager = windowManager;
             _selectTableCategoriesWindowViewModel = selectTableCategoriesWindowViewModel;
+            _resultsCompetitionWindowViewModel = resultsCompetitionWindowViewModel;
 
             _categoryService = categoryService;
             _duelService = duelService;
@@ -77,6 +84,8 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
             _selectTableCategoriesCommand = new ParameterizedCommand<object>(SelectTableCategories);
             _setFirstAsWinnerCommand = new ParameterizedCommand<object>(SetFirstAsWinner);
             _setSecondAsWinnerCommand = new ParameterizedCommand<object>(SetSecondAsWinner);
+
+            _completeCompetitionCommand = new Command(CompleteCompetition);
         }
 
         //Function for initialize components in window
@@ -96,7 +105,7 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
                 OnPropertyChanged(nameof(Tables));
             }
         }
-        //char Arm { get; set; }
+
 
         //Function for create tables
         private void CreateTables()
@@ -140,6 +149,8 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
                     table.IsBusy = newTable.IsBusy;
                     table.CategoryInCompetitionId = newTable.CategoryInCompetitionId;
                     table.CategoryInCompetition = _categoryInCompetitionRepository.Get((int)table.CategoryInCompetitionId);
+                    table.Competition = _competitionRepository.Get(table.CompetitionId);
+
                     SetNameCategory(table);
 
                     //setting queue for table
@@ -151,18 +162,11 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
         //Function for set the queue and opponents for the table
         private void GetQueue(Table table)
         {
-            //set competition to table
-            if (table.Competition is null)
-                table.Competition = _competitionRepository.Get(table.CompetitionId);
-
             //getting competition parameters
             char firstArm = table.Competition.FirstArm;
             CategoryInCompetition category = table.CategoryInCompetition;
             char arm = _duelService.GetLastArmInCategory(table.CategoryInCompetition);
-            if (arm == ' ')
-            {
 
-            }
             table.NumberTour = _duelRepository.GetLastNumberTour(arm, table.CategoryInCompetition) + 1;
 
             //calculating the opposite arm (second arm)
@@ -208,7 +212,13 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
                     table.NumberTour = 1;
                 }
                 else
+                {
+                    //table = _tableService.ClearTable(table);
+                    _tableService.ClearTable(table);
                     table.IsBusy = 0;
+                    table.CategoryInCompetition.Complited = 1;
+                    table.CategoryInCompetition = null;
+                }
 
                 //setting the queue and calling function for setting opponents if the queue is set
                 if (table.IsBusy == 1)
@@ -278,6 +288,15 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
             _duelRepository.SetWinnerAndLooser(table.Duel, winner, looser);
 
             SetTableOpponents(table, table.Duel.Arm);
+        }
+
+        //Function for complete the competition and get result
+        private void CompleteCompetition()
+        {
+            Competition competition = _competitionRepository.GetLast();
+            _resultsCompetitionWindowViewModel.Initialize(competition);
+
+            _windowManager.Show<IResultsCompetitionWindowViewModel>(_resultsCompetitionWindowViewModel);
         }
 
 

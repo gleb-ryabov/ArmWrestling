@@ -1,0 +1,50 @@
+﻿<Window x:Class="ArmWrestling.View.ResultsCompetitionWindow.ResultsCompetitionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArmWrestling.View.ResultsCompetitionWindow"
+        mc:Ignorable="d"
+        Title="Итоги соревнований" Height="450" Width="800"
+        WindowStyle="None">
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="12*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1" 
+                Content="х"  
+                Background="Red" 
+                Foreground="White" 
+                FontSize="16"
+                Command="{Binding CloseWindowCommand}"/>
+        </Grid>
+
+        <TextBlock Text="Выберите категорию">
+            <ComboBox
+                SelectedValue="{Binding SelectedCategory}"
+                ItemsSource="{Binding Categories}"
+                DisplayMemberPath="Name"/>
+        </TextBlock>
+
+        <ItemsControl ItemsSource="{Binding Results}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Place}"/>
+                        <TextBlock Text=" место - "/>
+                        <TextBlock Text="{Binding Person.Surname}"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding Person.Name}"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding Person.MiddleName}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Button Content="Просмотреть итоги" Command="{Binding GetResultCommand}"/>
+    </StackPanel>
+</Window>

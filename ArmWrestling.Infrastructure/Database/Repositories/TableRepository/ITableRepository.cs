@@ -13,5 +13,6 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.TableRepository
         bool SetCategory(Table table, CategoryInCompetition categoryInCompetition);
         IEnumerable<CategoryInCompetition> GetUsedCategories(Competition competition);
         IEnumerable<Table> GetByCompetition(Competition competition);
+        Table ClearTable(Table table);
     }
 }

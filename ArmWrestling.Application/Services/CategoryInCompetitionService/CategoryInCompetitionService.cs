@@ -36,7 +36,8 @@ namespace ArmWrestling.Applications.Services.CategoryInCompetitionService
             CategoryInCompetition categoryInCompetition = new CategoryInCompetition()
             {
                 CategoryId = category.Id,
-                CompetitionId = competition.Id
+                CompetitionId = competition.Id,
+                Complited = 0
             };
             if (_categoryInCompetitionRepository.Create(categoryInCompetition))
                 return categoryInCompetition;

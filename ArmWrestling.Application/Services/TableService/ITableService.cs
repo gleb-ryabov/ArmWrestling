@@ -10,5 +10,7 @@ namespace ArmWrestling.Applications.Services.TableService
     public interface ITableService
     {
         Table Create(int number, Competition competition);
+        Table ClearTable(Table table);
+
     }
 }

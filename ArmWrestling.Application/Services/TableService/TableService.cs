@@ -1,4 +1,5 @@
 ﻿using ArmWrestling.Domain.Database;
+using ArmWrestling.Infrastructure.Database.Repositories.CategoryInCompetitionRepository;
 using ArmWrestling.Infrastructure.Database.Repositories.TableRepository;
 using ArmWrestling.Infrastructure.Database.Repositories.TeamRepository;
 using System;
@@ -9,12 +10,16 @@ using System.Threading.Tasks;
 
 namespace ArmWrestling.Applications.Services.TableService
 {
-    public class TableService: ITableService
+    public class TableService : ITableService
     {
         private readonly ITableRepository _tableRepository;
-        public TableService(ITableRepository tableRepository)
+        private readonly ICategoryInCompetitionRepository _categoryInCompetitionRepository;
+
+        public TableService(ITableRepository tableRepository,
+            ICategoryInCompetitionRepository categoryInCompetitionRepository)
         {
             _tableRepository = tableRepository;
+            _categoryInCompetitionRepository = categoryInCompetitionRepository;
         }
 
         public Table Create(int number, Competition competition)
@@ -22,7 +27,7 @@ namespace ArmWrestling.Applications.Services.TableService
             int row;
             int column;
 
-            if(number%2 == 0)
+            if (number % 2 == 0)
             {
                 row = number / 2 - 1;
                 column = 1;
@@ -45,6 +50,18 @@ namespace ArmWrestling.Applications.Services.TableService
                 return table;
             else
                 return null;
+        }
+
+        //Function for clear table
+        public Table ClearTable(Table table)
+        {
+            int categoryInCompetitionId = (int) table.CategoryInCompetitionId;
+            _categoryInCompetitionRepository.SetComplited(categoryInCompetitionId);
+
+            //Table modifiedTable = _tableRepository.ClearTable(table);
+
+            //return modifiedTable;
+            return table;
         }
     }
 }

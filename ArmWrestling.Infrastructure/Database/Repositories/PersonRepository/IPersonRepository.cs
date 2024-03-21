@@ -12,5 +12,7 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.PersonRepository
         bool AddScore(Person person, int score);
         IEnumerable<Person> GetPersonsByCategory(CategoryInCompetition category);
         int GetPersonCountByCategory(CategoryInCompetition category);
+        IEnumerable<Person> GetPersonsSorteredByScore(CategoryInCompetition category);
+        IEnumerable<Person> GetPersonsWithScore0(CategoryInCompetition category);
     }
 }

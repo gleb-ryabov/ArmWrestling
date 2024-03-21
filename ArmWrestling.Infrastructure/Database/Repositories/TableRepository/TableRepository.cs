@@ -1,9 +1,11 @@
 ﻿using ArmWrestling.Domain.Database;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Table = ArmWrestling.Domain.Database.Table;
 
 namespace ArmWrestling.Infrastructure.Database.Repositories.TableRepository
 {
@@ -56,8 +58,10 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.TableRepository
         //Function for set category in table
         public bool SetCategory(Table table, CategoryInCompetition categoryInCompetition)
         {
-            table.CategoryInCompetition = categoryInCompetition;
-            table.IsBusy = 1;
+            Table modifiedTable = Get(table.Id);
+
+            modifiedTable.CategoryInCompetition = categoryInCompetition;
+            modifiedTable.IsBusy = 1;
 
             return _applicationContext.SaveChanges() > 0;
         }
@@ -70,6 +74,19 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.TableRepository
                 .Where(t => t.CompetitionId == competition.Id)
                 .Distinct()
                 .ToList();
+        }
+
+        //Function for clear table
+        public Table ClearTable(Table table)
+        {
+            Table modifiedTable = Get(table.Id);
+
+            modifiedTable.IsBusy = 0;
+            modifiedTable.CategoryInCompetition = null;
+
+            _applicationContext.SaveChanges();
+
+            return modifiedTable;
         }
     }
 }

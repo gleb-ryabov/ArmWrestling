@@ -46,6 +46,12 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.DuelRepository
                 .Where(d=> d.Looser == person && d.Arm == arm)
                 .Count();
         }
+        public int GetCountLossesByPersonInTour(char arm, int tour, Person person)
+        {
+            return _applicationContext.Duels
+                .Where(d => d.Looser == person && d.Arm == arm && d.TourNumber <= tour)
+                .Count();
+        }
         public int GetCountWinByPerson(char arm, Person person)
         {
             return _applicationContext.Duels
@@ -163,5 +169,27 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.DuelRepository
             return false;
         }
 
+        //Function for get loosers in tour
+        public IEnumerable<Person> GetLoosersInTour(CategoryInCompetition categoryInCompetition,
+            char arm, int tourNumber)
+        {
+            return _applicationContext.Duels
+                .Where(d => d.CategoryInCompetition.Id == categoryInCompetition.Id)
+                .Where(d => d.Arm == arm)
+                .Where(d => d.TourNumber == tourNumber)
+                .Select(d => d.Looser)
+                .ToList();
+        }
+
+        //Function for getting id person who winner in tour
+        public int GetWinnerIdInTour(CategoryInCompetition categoryInCompetition, char arm, int tourNumber)
+        {
+            return _applicationContext.Duels
+                .Where(d => d.CategoryInCompetition.Id == categoryInCompetition.Id)
+                .Where(d => d.Arm == arm)
+                .Where(d => d.TourNumber == tourNumber)
+                .Select(d => d.WinnerId.GetValueOrDefault())
+                .FirstOrDefault();
+        }
     }
 }

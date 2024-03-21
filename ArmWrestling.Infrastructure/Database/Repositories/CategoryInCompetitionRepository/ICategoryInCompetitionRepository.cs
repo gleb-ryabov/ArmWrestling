@@ -12,5 +12,7 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.CategoryInCompetitio
         IEnumerable<CategoryInCompetition> GetByCompetition(Competition competition);
         IEnumerable<CategoryInCompetition> GetAviableCategories(byte gender,
             float weight, DateOnly birthDate, Competition competition);
+        bool SetComplited(int categoryInCompetitionId);
+        IEnumerable<CategoryInCompetition> GetComplitedCategory(Competition competition);
     }
 }

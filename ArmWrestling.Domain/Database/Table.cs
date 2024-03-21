@@ -19,7 +19,17 @@ namespace ArmWrestling.Domain.Database
         public Competition Competition { get; set; }
 
         public int? CategoryInCompetitionId { get; set; }
-        public CategoryInCompetition? CategoryInCompetition { get; set; }
+        [NotMapped]
+        private CategoryInCompetition _categoryInCompetition;
+        public CategoryInCompetition? CategoryInCompetition
+        {
+            get { return _categoryInCompetition; }
+            set
+            {
+                _categoryInCompetition = value;
+                OnPropertyChanged(nameof(CategoryInCompetition));
+            }
+        }
 
         [NotMapped]
         private int _isBusy;
@@ -68,10 +78,30 @@ namespace ArmWrestling.Domain.Database
         [NotMapped]
         public int? DuelId { get; set; }
         [NotMapped]
-        public Duel Duel { get; set; }
+        private Duel _duel;
+        [NotMapped]
+        public Duel Duel
+        {
+            get { return _duel; }
+            set
+            {
+                _duel = value;
+                OnPropertyChanged(nameof(Duel));
+            }
+        }
 
         [NotMapped]
-        public int NumberTour { get; set; }
+        private int _numberTour;
+        [NotMapped]
+        public int NumberTour
+        {
+            get => _numberTour;
+            set
+            {
+                _numberTour = value;
+                OnPropertyChanged(nameof(NumberTour));
+            }
+        }
 
 
         public event PropertyChangedEventHandler? PropertyChanged;
