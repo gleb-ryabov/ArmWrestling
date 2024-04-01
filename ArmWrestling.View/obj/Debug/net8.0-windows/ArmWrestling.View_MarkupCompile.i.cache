@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 
-62094241879
+7-1026047613
 
-181686947715
+201153404292
 2211694607622
-CreateCompetitionWindow\CreateCompetitionWindow.xaml;MainWindow\MainWindow.xaml;ManagerCompetitionWindow\ManagerCompetitionWindow.xaml;RegistrationOfPersonsWindow\RegistrationOfPersonsWindow.xaml;ResultsCompetitionWindow\ResultsCompetitionWindow.xaml;SelectTableCategoriesWindow\SelectTableCategoriesWindow.xaml;
+CreateCompetitionWindow\CreateCompetitionWindow.xaml;MainWindow\MainWindow.xaml;ManagerCompetitionWindow\ManagerCompetitionWindow.xaml;ParticipantListWindow\ParticipantListWindow.xaml;RegistrationOfPersonsWindow\RegistrationOfPersonsWindow.xaml;ResultsCompetitionWindow\ResultsCompetitionWindow.xaml;SelectTableCategoriesWindow\SelectTableCategoriesWindow.xaml;
 
 False
 

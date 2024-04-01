@@ -9,6 +9,7 @@ using ArmWrestling.Infrastructure.Database.Repositories.CompetitionReposirory;
 using ArmWrestling.Infrastructure.Database.Repositories.DuelRepository;
 using ArmWrestling.Infrastructure.Database.Repositories.TableRepository;
 using ArmWrestling.ViewModel.Commands;
+using ArmWrestling.ViewModel.ParticipantListWindow;
 using ArmWrestling.ViewModel.ResultsCompetitionWindow;
 using ArmWrestling.ViewModel.SelectTableCategoriesWindow;
 using ArmWrestling.ViewModel.Windows;
@@ -29,6 +30,7 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
         private readonly IWindowManager _windowManager;
         private readonly ISelectTableCategoriesWindowViewModel _selectTableCategoriesWindowViewModel;
         private readonly IResultsCompetitionWindowViewModel _resultsCompetitionWindowViewModel;
+        private readonly IParticipantListWindowViewModel _participantListWindowViewModel;
 
         private readonly ICategoryService _categoryService;
         private readonly IDuelService _duelService;
@@ -42,20 +44,22 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
         private readonly ITableRepository _tableRepository;
         
         private readonly ParameterizedCommand<object> _selectTableCategoriesCommand;
-        public ParameterizedCommand<object> SelectTableCategoriesCommand => _selectTableCategoriesCommand;
-
         private readonly ParameterizedCommand<object> _setFirstAsWinnerCommand;
-        public ParameterizedCommand<object> SetFirstAsWinnerCommand => _setFirstAsWinnerCommand;
-
         private readonly ParameterizedCommand<object> _setSecondAsWinnerCommand;
+        public ParameterizedCommand<object> SelectTableCategoriesCommand => _selectTableCategoriesCommand;
+        public ParameterizedCommand<object> SetFirstAsWinnerCommand => _setFirstAsWinnerCommand;
         public ParameterizedCommand<object> SetSecondAsWinnerCommand => _setSecondAsWinnerCommand;
 
         private readonly Command _completeCompetitionCommand;
+        private readonly Command _browseParticipantsCommand;
+
         public ICommand CompleteCompetitionCommand => _completeCompetitionCommand;
+        public ICommand BrowseParticipantsCommand => _browseParticipantsCommand;
 
         public ManagerCompetitionWindowViewModel(IWindowManager windowManager,
             ISelectTableCategoriesWindowViewModel selectTableCategoriesWindowViewModel,
             IResultsCompetitionWindowViewModel resultsCompetitionWindowViewModel,
+            IParticipantListWindowViewModel participantListWindowViewModel,
             ICategoryService categoryService,
             IDuelService duelService,
             IPersonService personService,
@@ -69,6 +73,7 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
             _windowManager = windowManager;
             _selectTableCategoriesWindowViewModel = selectTableCategoriesWindowViewModel;
             _resultsCompetitionWindowViewModel = resultsCompetitionWindowViewModel;
+            _participantListWindowViewModel = participantListWindowViewModel;
 
             _categoryService = categoryService;
             _duelService = duelService;
@@ -86,6 +91,7 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
             _setSecondAsWinnerCommand = new ParameterizedCommand<object>(SetSecondAsWinner);
 
             _completeCompetitionCommand = new Command(CompleteCompetition);
+            _browseParticipantsCommand = new Command(BrowseParticipants);
         }
 
         //Function for initialize components in window
@@ -297,6 +303,12 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
             _resultsCompetitionWindowViewModel.Initialize(competition);
 
             _windowManager.Show<IResultsCompetitionWindowViewModel>(_resultsCompetitionWindowViewModel);
+        }
+
+        //Function for open the participant list
+        private void BrowseParticipants()
+        {
+            _windowManager.Show<IParticipantListWindowViewModel>(_participantListWindowViewModel);
         }
 
 

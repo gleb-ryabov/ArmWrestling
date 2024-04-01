@@ -2,12 +2,14 @@
 using ArmWrestling.View.Factories;
 using ArmWrestling.View.MainWindow;
 using ArmWrestling.View.ManagerCompetitionWindow;
+using ArmWrestling.View.ParticipantListWindow;
 using ArmWrestling.View.RegistrationOfPersonsWindow;
 using ArmWrestling.View.ResultsCompetitionWindow;
 using ArmWrestling.View.SelectTableCategoriesWindow;
 using ArmWrestling.ViewModel.CreateCompetitionWindow;
 using ArmWrestling.ViewModel.MainWindow;
 using ArmWrestling.ViewModel.ManagerCompetitionWindow;
+using ArmWrestling.ViewModel.ParticipantListWindow;
 using ArmWrestling.ViewModel.RegistrationOfPersonsWindow;
 using ArmWrestling.ViewModel.ResultsCompetitionWindow;
 using ArmWrestling.ViewModel.SelectTableCategoriesWindow;
@@ -33,6 +35,7 @@ namespace ArmWrestling.Bootstrapper.Factories
         {typeof(IRegistrationOfPersonsWindowViewModel), typeof(IRegistrationOfPersonsWindow) },
         {typeof(IManagerCompetitionWindowViewModel), typeof(IManagerCompetitionWindow) },
         {typeof(ISelectTableCategoriesWindowViewModel), typeof(ISelectTableCategoriesWindow) },
+        {typeof(IParticipantListWindowViewModel), typeof(IParticipantListWindow) },
         {typeof(IResultsCompetitionWindowViewModel), typeof(IResultsCompetitionWindow) }
         };
 

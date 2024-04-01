@@ -9,6 +9,9 @@
         WindowState="Maximized">
 
     <Grid>
+        
+        
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -18,10 +21,22 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="10*"/>
                 </Grid.RowDefinitions>
-                
-                <Button Grid.Row="0"
+
+                <Menu Grid.Row ="0" Height="25" VerticalAlignment="Top">
+                    <MenuItem Header="Участники">
+                        <MenuItem Header="Добавить участника" />
+                        <MenuItem Header="Список участников" Command="{Binding BrowseParticipantsCommand}"/>
+                    </MenuItem>
+                    <MenuItem Header="Соревнование" >
+                        <MenuItem Header="Редактировать"/>
+                    </MenuItem>
+                </Menu>
+
+
+                <Button Grid.Row="1"
                         Background="#8d0f1f"
                         Foreground="White"
                         Content="Просмотреть итоги"

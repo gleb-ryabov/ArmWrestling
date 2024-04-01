@@ -14,5 +14,6 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.PersonRepository
         int GetPersonCountByCategory(CategoryInCompetition category);
         IEnumerable<Person> GetPersonsSorteredByScore(CategoryInCompetition category);
         IEnumerable<Person> GetPersonsWithScore0(CategoryInCompetition category);
+        Person CheckPersonIdByScore0(int personId);
     }
 }

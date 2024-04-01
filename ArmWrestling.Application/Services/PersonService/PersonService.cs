@@ -98,7 +98,7 @@ namespace ArmWrestling.Applications.Services.PersonService
         {
             foreach (Person person in persons)
             {
-                if (!_duelRepository.CheckPersonForFreeCircle(arm, category, person, tour - 1))
+                if (_duelRepository.CheckPersonForFreeCircle(arm, category, person, tour - 1))
                     return person;
             }
 
@@ -194,8 +194,6 @@ namespace ArmWrestling.Applications.Services.PersonService
         private List<Person> SortPersons(CategoryInCompetition category,
                         char arm, int tour, List<Person> persons)
         {
-            //УДаЛИТЬ
-            int firstCount = persons.Count();
 
             List<Person> sortedPersons = new List<Person>();
 
@@ -208,7 +206,9 @@ namespace ArmWrestling.Applications.Services.PersonService
             }
 
             //check group(A or B). If Person have a loss, this is group B, else - A.
-            int countLoss = _duelRepository.GetCountLossesByPerson(arm, persons[0]);
+            int countLoss = 0;
+            if (persons.Count() > 0)
+                countLoss = _duelRepository.GetCountLossesByPerson(arm, persons[0]);
 
             //for group B
             if(countLoss != 0)
@@ -220,11 +220,10 @@ namespace ArmWrestling.Applications.Services.PersonService
                     bool eliminatedFromA = _duelRepository.CheckDefeatInLastRound(arm, tour, person);
 
                     if (eliminatedFromA)
-                    {
                         personsFromAInLastTour.Add(person);
-                        persons.Remove(person);
-                    }
                 }
+                foreach(Person person in personsFromAInLastTour)
+                    persons.Remove(person);
 
                 //find the best opponents and insert persons, who were eliminated from Group A in the last round
                 sortedPersons = CreateListWithBestOpponents(arm, sortedPersons, personsFromAInLastTour);

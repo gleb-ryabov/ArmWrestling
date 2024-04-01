@@ -77,18 +77,15 @@ namespace ArmWrestling.Applications.Services.ResultPersonService
                 AddScore(sortedPersonInRightArm);
 
                 //calculation of places
-                List<Person> finalPersonList = _personRepository.GetPersonsSorteredByScore(categoryInCompetition).ToList();
-                finalPersonList = SortPersonByWeight(finalPersonList);
+                List<Person> personWithScore = _personRepository.GetPersonsSorteredByScore(categoryInCompetition).ToList();
+                personWithScore = SortPersonByWeight(personWithScore);
+                List<Person> personsWithoutScore = SortPersonsWithScore0(sortedPersonInLeftArm, sortedPersonInRightArm);
+                //List<Person> finalPersonList = personWithScore;
+                List<Person> finalPersonList = personWithScore.Concat(personsWithoutScore).ToList();
 
                 //set place
                 SetPlace(finalPersonList);
-                //List<Person> personWithScore0 = _personRepository.GetPersonsWithScore0(categoryInCompetition).ToList();
-                //foreach(Person person in personWithScore0)
-                //{
-                //    int placeInLeftArm = sortedPersonInLeftArm.IndexOf(person) + 1;
-                //    int placeInRightArm = sortedPersonInLeftArm.IndexOf(person) + 1;
 
-                //}
             }
 
             //function for getting a list of person sorted by the places occupied in the hand
@@ -109,17 +106,24 @@ namespace ArmWrestling.Applications.Services.ResultPersonService
                     List<Person> loosersWithTwoDefeats = new List<Person>();
                     foreach(Person person in loosersInTour)
                     {
-                        int countLosses = _duelRepository.GetCountLossesByPersonInTour(arm,tourNumber, person);
-                        if (countLosses == 2)
-                            loosersWithTwoDefeats.Add(person);
+                        if(person is not null)
+                        {
+                            int countLosses = _duelRepository.GetCountLossesByPersonInTour(arm, tourNumber, person);
+                            if (countLosses == 2)
+                                loosersWithTwoDefeats.Add(person);
+                        }
                     }
 
                     //sorting person descending order by weight
-                    List<Person> sotredPersonInTour = 
-                        loosersWithTwoDefeats.OrderByDescending(p => p.Weight).ToList();
+                    if (loosersWithTwoDefeats is not null && loosersWithTwoDefeats.Count > 0)
+                    {
+                        List<Person> sotredPersonInTour = new List<Person>();
+                        sotredPersonInTour = loosersWithTwoDefeats.OrderByDescending(p => p.Weight).ToList();
 
-                    foreach(Person person in sotredPersonInTour)
-                        sortedPerson.Add(person);
+                        foreach (Person person in sotredPersonInTour)
+                            sortedPerson.Add(person);
+                    }
+   
                 }
 
                 //add winner in list
@@ -131,6 +135,50 @@ namespace ArmWrestling.Applications.Services.ResultPersonService
                 sortedPerson.Reverse();
 
                 return sortedPerson;
+            }
+
+            //function for sort person who have score equal 0 by place
+            List<Person> SortPersonsWithScore0(List<Person> personsInLeftArm, List<Person> personsInRightArm)
+            {
+                //get lists with persons who have score equal 0
+                List<Person> personsInLeftArmWithScore0 = SelectPersonsWithScore0(personsInLeftArm);
+                List<Person> personsInRightArmWithScore0 = SelectPersonsWithScore0(personsInRightArm);
+
+                //dictionary for persons score
+                Dictionary<Person, int> personsWithScore = new Dictionary<Person, int>();
+
+                //add scores in dictionary for each person
+                foreach(Person person in personsInLeftArmWithScore0)
+                {
+                    int indexInLeftArm = personsInLeftArmWithScore0.IndexOf(person);
+                    int indexInRightArm = personsInRightArmWithScore0.IndexOf(person);
+                    int sumIndex = indexInLeftArm + indexInRightArm;
+
+                    personsWithScore.Add(person, sumIndex);
+                }
+
+                //sorting persons descending by score
+                List<Person> sortedPersons = personsWithScore.OrderByDescending(p => p.Value)
+                                                                .Select(p => p.Key)
+                                                                .ToList();
+                //sorting persons by weiht if their weight is equal
+                sortedPersons = SortPersonByWeight(sortedPersons);
+
+                //function for select persons with score equal 0 by list with result person in one arm
+                List<Person> SelectPersonsWithScore0(List<Person> persons)
+                {
+                    List<Person> selectedPersons = new List<Person>();
+                    foreach (Person person in persons)
+                    {
+                        //checking person by score. If score equal 0, add in list.
+                        Person personWithScore0 = _personRepository.CheckPersonIdByScore0(person.Id);
+                        if (personWithScore0 != null)
+                            selectedPersons.Add(personWithScore0);
+                    }
+                    return selectedPersons;
+                }
+
+                return sortedPersons;
             }
 
             //function for add score by list

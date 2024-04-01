@@ -81,5 +81,14 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.PersonRepository
                 .OrderBy(p => p.Score)
                 .ToList();
         }
+
+        //Function for check person score for 0 by id
+        public Person CheckPersonIdByScore0(int personId)
+        {
+            return _applicationContext.Persons
+                .Where(p => p.Id == personId)
+                .Where(p => p.Score == 0)
+                .FirstOrDefault();
+        }
     }
 }

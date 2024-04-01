@@ -99,24 +99,25 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.DuelRepository
         }
 
         //Function for check person for free circle (did he participate in the last round)
-        //  return true if Person wasn't in free circle
+        //  return true if Person was in free circle
         public bool CheckPersonForFreeCircle(char arm, CategoryInCompetition category, Person person, int tourNumber)
         {
             return _applicationContext.Duels
                 .Where(d => d.Arm == arm)
                 .Where(d => d.CategoryInCompetition == category)
                 .Where(d => d.TourNumber == tourNumber)
-                .Where(d => d.Winner == person || d.Looser == person)
+                //.Where(d => d.Winner == person || d.Looser == person)
+                .Where(d => d.WinnerId == person.Id && d.Looser == null)
                 .Any();
         }
 
         public int GetCountDuelsBetweenPersons(char arm, Person person, Person opponent)
         {
             int countDuel = _applicationContext.Duels
-                .Where(d => d.CategoryInCompetition == person.CategoryInCompetition)
+                .Where(d => d.CategoryInCompetitionId == person.CategoryInCompetitionId)
                 .Where(d => d.Arm == arm)
-                .Where(d => d.Winner == person && d.Looser == opponent ||
-                            d.Winner == opponent && d.Looser == person)
+                .Where(d => d.WinnerId == person.Id && d.LooserId == opponent.Id ||
+                            d.WinnerId == opponent.Id && d.LooserId == person.Id)
                 .Count();
 
             return countDuel;
@@ -127,10 +128,10 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.DuelRepository
         public bool CheckDefeatInLastRound(char arm, int tour, Person person)
         {
             bool wasLoser = _applicationContext.Duels
-                .Where(d => d.CategoryInCompetition == person.CategoryInCompetition)
+                .Where(d => d.CategoryInCompetitionId == person.CategoryInCompetitionId)
                 .Where(d => d.Arm == arm)
                 .Where(d => d.TourNumber == tour-1)
-                .Where(d => d.Looser == person)
+                .Where(d => d.LooserId == person.Id)
                 .Any();
 
             return wasLoser;
