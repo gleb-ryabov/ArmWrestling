@@ -39,6 +39,27 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.PersonRepository
             return _applicationContext.Persons.ToList();
         }
 
+        public bool UpdatePerson(Person newPerson)
+        {
+            Person oldPerson = _applicationContext.Persons
+                .Where(p => p.Id == newPerson.Id)
+                .FirstOrDefault();
+
+            if (oldPerson == null)
+            {
+                oldPerson.Surname = newPerson.Surname;
+                oldPerson.Name = newPerson.Name;
+                oldPerson.MiddleName = newPerson.MiddleName;
+                oldPerson.BirthDate = newPerson.BirthDate;
+                oldPerson.Gender = newPerson.Gender;
+                oldPerson.CategoryInCompetitionId = newPerson.CategoryInCompetitionId;
+                oldPerson.Weight = newPerson.Weight;
+
+                return _applicationContext.SaveChanges() > 0;
+            }
+            return false;
+        }
+
         public bool AddScore(Person person, int score)
         {
             Person modifiedPerson = Get(person.Id);

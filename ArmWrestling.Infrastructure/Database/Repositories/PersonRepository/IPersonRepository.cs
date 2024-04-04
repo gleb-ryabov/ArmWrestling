@@ -9,6 +9,7 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.PersonRepository
 {
     public interface IPersonRepository : IBaseRepository<Person>
     {
+        bool UpdatePerson(Person newPerson);
         bool AddScore(Person person, int score);
         IEnumerable<Person> GetPersonsByCategory(CategoryInCompetition category);
         int GetPersonCountByCategory(CategoryInCompetition category);

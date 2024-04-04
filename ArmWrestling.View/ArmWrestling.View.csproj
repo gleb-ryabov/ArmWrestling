@@ -24,4 +24,10 @@
     <Resource Include="Resources\logo.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="EditPersonsWindow\EditPersonsWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
