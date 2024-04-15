@@ -704,6 +704,18 @@
         }
       },
       "System.Threading.Channels/6.0.0": {},
+      "System.Windows.Interactivity.WPF/2.0.20525": {
+        "runtime": {
+          "lib/net40/Microsoft.Expression.Interactions.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "2.0.20525.0"
+          },
+          "lib/net40/System.Windows.Interactivity.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "2.0.20525.0"
+          }
+        }
+      },
       "ArmWrestling.Applications/1.0.0": {
         "dependencies": {
           "ArmWrestling.Domain": "1.0.0",
@@ -750,7 +762,8 @@
       "ArmWrestling.View/1.0.0": {
         "dependencies": {
           "ArmWrestling.ViewModel": "1.0.0",
-          "Autofac": "8.0.0"
+          "Autofac": "8.0.0",
+          "System.Windows.Interactivity.WPF": "2.0.20525"
         },
         "runtime": {
           "ArmWrestling.View.dll": {}
@@ -1117,6 +1130,13 @@
       "sha512": "sha512-TY8/9+tI0mNaUMgntOxxaq2ndTkdXqLSxvPmas7XEqOlv9lQtB7wLjYGd756lOaO7Dvb5r/WXhluM+0Xe87v5Q==",
       "path": "system.threading.channels/6.0.0",
       "hashPath": "system.threading.channels.6.0.0.nupkg.sha512"
+    },
+    "System.Windows.Interactivity.WPF/2.0.20525": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0r+Le4E7hCm4zToUvBzjSUyTcuU3rFeoPa7JyTdWIzR/F7wH6+O/pWkjHIG40hIA0z1wvRdZayvoizA4wcK1dg==",
+      "path": "system.windows.interactivity.wpf/2.0.20525",
+      "hashPath": "system.windows.interactivity.wpf.2.0.20525.nupkg.sha512"
     },
     "ArmWrestling.Applications/1.0.0": {
       "type": "project",

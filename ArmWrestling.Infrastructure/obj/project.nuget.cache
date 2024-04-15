@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "grmc0kv3zrIu2Sgd8UUdzb2Xvl71UurVrQ7IFYMt3JYsL4Ttv0GJRKILequUfpmjsOGYSXz3kB3aojO167m/LQ==",
+  "dgSpecHash": "iM8Fh2nrZEegwHt2L33LhoOiWBR4cFxMohrHLgaDE/Zav3Y95X4Sqho/1MrFQMNtKcE/fXrQ+0uknIyDubpVXg==",
   "success": true,
   "projectFilePath": "D:\\проекты c#\\ArmWrestling\\ArmWrestling.Infrastructure\\ArmWrestling.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -52,7 +52,8 @@
     "C:\\Users\\ГЛЕБ\\.nuget\\packages\\system.text.encoding.codepages\\6.0.0\\system.text.encoding.codepages.6.0.0.nupkg.sha512",
     "C:\\Users\\ГЛЕБ\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
     "C:\\Users\\ГЛЕБ\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512",
-    "C:\\Users\\ГЛЕБ\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512"
+    "C:\\Users\\ГЛЕБ\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512",
+    "C:\\Users\\ГЛЕБ\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.4\\microsoft.aspnetcore.app.ref.8.0.4.nupkg.sha512"
   ],
   "logs": []
 }

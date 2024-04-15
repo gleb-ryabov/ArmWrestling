@@ -110,7 +110,7 @@ namespace ArmWrestling.ViewModel.ResultsCompetitionWindow
         //Function for close window
         private void CloseWindow()
         {
-            _windowManager.Close<ISelectTableCategoriesWindowViewModel>(this);
+            _windowManager.Close<IResultsCompetitionWindowViewModel>(this);
         }
 
 

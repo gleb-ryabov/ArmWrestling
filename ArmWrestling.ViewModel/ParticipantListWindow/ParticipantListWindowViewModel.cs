@@ -27,6 +27,9 @@ namespace ArmWrestling.ViewModel.ParticipantListWindow
         private readonly ParameterizedCommand<object> _editPersonCommand;
         public ParameterizedCommand<object> EditPersonCommand => _editPersonCommand;
 
+        private readonly Command _closeWindowCommand;
+        public Command CloseWindowCommand => _closeWindowCommand;
+
         private readonly IWindowManager _windowManager;
         private readonly IEditPersonsWindowViewModel _editPersonsWindowViewModel;
 
@@ -68,10 +71,12 @@ namespace ArmWrestling.ViewModel.ParticipantListWindow
             _categoryRepository = categoryRepository;
             _categoryService = categoryService;
 
-            _editPersonCommand = new ParameterizedCommand<object>(EditPerson);
-
             _windowManager = windowManager;
             _editPersonsWindowViewModel = editPersonsWindowViewModel;
+
+            _editPersonCommand = new ParameterizedCommand<object>(EditPerson);
+
+            _closeWindowCommand = new Command(CloseWindow);
 
             GetParticipantList();
         }
@@ -117,6 +122,12 @@ namespace ArmWrestling.ViewModel.ParticipantListWindow
                 _editPersonsWindowViewModel.Initialize(person);
                 _windowManager.Show(_editPersonsWindowViewModel);
             }
+        }
+
+        //Funciton for close window
+        private void CloseWindow()
+        {
+            _windowManager.Close<IParticipantListWindowViewModel>(this);
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

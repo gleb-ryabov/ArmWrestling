@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "L6pCHOifqWuJIpksv5ivyaTdbMDOb/zP5aWRWCKPMcG2VgCZ52cVQ93oh+iXdRqKS4nA6eqpNLOsoMRtifXb0g==",
+  "dgSpecHash": "JLKnWJK+uiuYBbvIMCHtvVNJTO27wd0sTO1AorJuocrxgxAiow7PbVCPR4BfE5hr+WWSafbHNW5gSl+ahQxFXA==",
   "success": true,
   "projectFilePath": "D:\\проекты c#\\ArmWrestling\\ArmWrestling.ViewModel\\ArmWrestling.ViewModel.csproj",
   "expectedPackageFiles": [
@@ -29,7 +29,8 @@
     "C:\\Users\\ГЛЕБ\\.nuget\\packages\\system.diagnostics.diagnosticsource\\7.0.2\\system.diagnostics.diagnosticsource.7.0.2.nupkg.sha512",
     "C:\\Users\\ГЛЕБ\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\ГЛЕБ\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
-    "C:\\Users\\ГЛЕБ\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512"
+    "C:\\Users\\ГЛЕБ\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512",
+    "C:\\Users\\ГЛЕБ\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.4\\microsoft.aspnetcore.app.ref.8.0.4.nupkg.sha512"
   ],
   "logs": []
 }

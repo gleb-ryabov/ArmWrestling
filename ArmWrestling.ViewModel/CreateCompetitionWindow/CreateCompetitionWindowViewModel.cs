@@ -4,6 +4,7 @@ using ArmWrestling.Applications.Services.CompetitionService;
 using ArmWrestling.Domain.Database;
 using ArmWrestling.Infrastructure.Database.Repositories.CategoryRepository;
 using ArmWrestling.ViewModel.Commands;
+using ArmWrestling.ViewModel.EditPersonsWindow;
 using ArmWrestling.ViewModel.MainWindow;
 using ArmWrestling.ViewModel.RegistrationOfPersonsWindow;
 using ArmWrestling.ViewModel.Windows;
@@ -29,8 +30,12 @@ namespace ArmWrestling.ViewModel.CreateCompetitionWindow
         private readonly ICompetitionService _competitionService;
         private readonly ICategoryInCompetitionService _categoryInCompetitionService;
         private readonly ICategoryService _categoryService;
+
         private readonly List<Category> _categories;
         public List<Category> Categories => _categories;
+
+        private readonly Command _closeWindowCommand;
+        public ICommand CloseWindowCommand => _closeWindowCommand;
 
         public CreateCompetitionWindowViewModel(IWindowManager windowManager,
             IRegistrationOfPersonsWindowViewModel registrationOfPersonsWindowViewModel,
@@ -45,12 +50,16 @@ namespace ArmWrestling.ViewModel.CreateCompetitionWindow
             _competitionService = competitionService;
             _categoryInCompetitionService = categoryInCompetitionService;
             _categoryService = categoryService;
+
             _categories = new List<Category>(categoryRepository.GetAll());
+
             SetNameCategories();
+
+            _closeWindowCommand = new Command(CloseWindow);
         }
-        
+
         //properties for binding values
-            //for creating a Competition
+        //for creating a Competition
         public string TypeJudging { get; set; }
         public string TypeCompetition { get; set; }
         public byte CountTable { get; set; }
@@ -90,6 +99,11 @@ namespace ArmWrestling.ViewModel.CreateCompetitionWindow
             }
         }
 
+        //Funciton for close window
+        private void CloseWindow()
+        {
+            _windowManager.Close<ICreateCompetitionWindowViewModel>(this);
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private void INotifyPropertyChanged(string propertyName)

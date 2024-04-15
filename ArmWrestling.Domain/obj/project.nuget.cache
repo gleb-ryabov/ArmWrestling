@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "CclQb7GK/0h/IHJmk/lE0f2hx8tZ5WmFZWIT/+0LMU2jPZhDyve/Uf4dJi3ZTO+Qvqn0AaX/mvWMMkGsqttw1A==",
+  "dgSpecHash": "7knaaMq1b9MLT0glFa3MMKBWgOeEi5IGC/+iFjOkRchkyp0U71Wx4Li2A8DmnoTzrVmaDXAJaFcxVnt3z64lUQ==",
   "success": true,
   "projectFilePath": "D:\\проекты c#\\ArmWrestling\\ArmWrestling.Domain\\ArmWrestling.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ГЛЕБ\\.nuget\\packages\\autofac\\8.0.0\\autofac.8.0.0.nupkg.sha512",
-    "C:\\Users\\ГЛЕБ\\.nuget\\packages\\system.diagnostics.diagnosticsource\\7.0.2\\system.diagnostics.diagnosticsource.7.0.2.nupkg.sha512"
+    "C:\\Users\\ГЛЕБ\\.nuget\\packages\\system.diagnostics.diagnosticsource\\7.0.2\\system.diagnostics.diagnosticsource.7.0.2.nupkg.sha512",
+    "C:\\Users\\ГЛЕБ\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.4\\microsoft.aspnetcore.app.ref.8.0.4.nupkg.sha512"
   ],
   "logs": []
 }

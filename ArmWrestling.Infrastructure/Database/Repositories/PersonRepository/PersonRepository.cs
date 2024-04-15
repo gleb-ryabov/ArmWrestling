@@ -45,7 +45,7 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.PersonRepository
                 .Where(p => p.Id == newPerson.Id)
                 .FirstOrDefault();
 
-            if (oldPerson == null)
+            if (oldPerson != null)
             {
                 oldPerson.Surname = newPerson.Surname;
                 oldPerson.Name = newPerson.Name;

@@ -9,6 +9,7 @@ using ArmWrestling.Infrastructure.Database.Repositories.CompetitionReposirory;
 using ArmWrestling.Infrastructure.Database.Repositories.DuelRepository;
 using ArmWrestling.Infrastructure.Database.Repositories.TableRepository;
 using ArmWrestling.ViewModel.Commands;
+using ArmWrestling.ViewModel.EditPersonsWindow;
 using ArmWrestling.ViewModel.ParticipantListWindow;
 using ArmWrestling.ViewModel.ResultsCompetitionWindow;
 using ArmWrestling.ViewModel.SelectTableCategoriesWindow;
@@ -52,9 +53,11 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
 
         private readonly Command _completeCompetitionCommand;
         private readonly Command _browseParticipantsCommand;
+        private readonly Command _closeWindowCommand;
 
         public ICommand CompleteCompetitionCommand => _completeCompetitionCommand;
         public ICommand BrowseParticipantsCommand => _browseParticipantsCommand;
+        public ICommand CloseWindowCommand => _closeWindowCommand;
 
         public ManagerCompetitionWindowViewModel(IWindowManager windowManager,
             ISelectTableCategoriesWindowViewModel selectTableCategoriesWindowViewModel,
@@ -92,6 +95,7 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
 
             _completeCompetitionCommand = new Command(CompleteCompetition);
             _browseParticipantsCommand = new Command(BrowseParticipants);
+            _closeWindowCommand = new Command(CloseWindow);
         }
 
         //Function for initialize components in window
@@ -311,6 +315,11 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
             _windowManager.Show<IParticipantListWindowViewModel>(_participantListWindowViewModel);
         }
 
+        //Funciton for close window
+        private void CloseWindow()
+        {
+            _windowManager.Close<IManagerCompetitionWindowViewModel>(this);
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

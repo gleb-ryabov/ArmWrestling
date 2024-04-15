@@ -33,10 +33,12 @@ namespace ArmWrestling.ViewModel.EditPersonsWindow
 
         private readonly Command _editUserCommand;
         private readonly Command _checkAviableCategoriesCommand;
+        private readonly Command _closeWindowCommand;
         private readonly Command _completeRegistrationCommand;
 
         public ICommand EditUserCommand => _editUserCommand;
         public ICommand CheckAviableCategoriesCommand => _checkAviableCategoriesCommand;
+        public ICommand CloseWindowCommand => _closeWindowCommand;
         public ICommand CompleteRegistrationCommand => _completeRegistrationCommand;
         public EditPersonsWindowViewModel(
             IWindowManager windowManager,
@@ -59,7 +61,7 @@ namespace ArmWrestling.ViewModel.EditPersonsWindow
 
             _editUserCommand = new Command(EditUser);
             _checkAviableCategoriesCommand = new Command(CheckAviableCategories);
-            //_completeRegistrationCommand = new Command(CompleteRegistration);
+            _closeWindowCommand = new Command(CloseWindow);
         }
 
 
@@ -159,6 +161,12 @@ namespace ArmWrestling.ViewModel.EditPersonsWindow
         private void EditUser()
         {
             _personRepository.UpdatePerson(Person);
+            _windowManager.Close<IEditPersonsWindowViewModel>(this);
+        }
+
+        //Funciton for close window
+        private void CloseWindow()
+        {
             _windowManager.Close<IEditPersonsWindowViewModel>(this);
         }
 

@@ -3,10 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:ArmWrestling.View.EditPersonsWindow"
         mc:Ignorable="d"
         Title="Регистрация участников"
-        WindowState="Maximized">
+        WindowState="Maximized" >
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closed">
+            <i:InvokeCommandAction Command="{Binding CloseWindowCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
     <StackPanel>
         <StackPanel.Resources>
             <Style TargetType="TextBlock">
@@ -40,8 +48,25 @@
                 <Setter Property="FontSize" Value="18"/>
             </Style>
         </StackPanel.Resources>
-        
-        
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20px"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20px"/>
+            </Grid.RowDefinitions>
+            
+            <Button Grid.Column="1" Grid.Row="0" 
+            Content="х"  
+            Background="Red" 
+            Foreground="White" 
+            FontSize="16"
+            Command="{Binding CloseWindowCommand}"/>
+            
+        </Grid>
+
         <TextBlock Text="Фамилия">
             <TextBox Width="200" Text="{Binding Person.Surname,
                                         UpdateSourceTrigger=PropertyChanged,

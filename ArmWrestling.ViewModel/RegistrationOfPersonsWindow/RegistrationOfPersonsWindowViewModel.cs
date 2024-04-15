@@ -5,6 +5,7 @@ using ArmWrestling.Infrastructure.Database.Repositories.CategoryInCompetitionRep
 using ArmWrestling.Infrastructure.Database.Repositories.CategoryRepository;
 using ArmWrestling.Infrastructure.Database.Repositories.CompetitionReposirory;
 using ArmWrestling.ViewModel.Commands;
+using ArmWrestling.ViewModel.EditPersonsWindow;
 using ArmWrestling.ViewModel.ManagerCompetitionWindow;
 using ArmWrestling.ViewModel.Windows;
 using System;
@@ -31,10 +32,12 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
         private readonly Command _registerUserCommand;
         private readonly Command _checkAviableCategoriesCommand;
         private readonly Command _completeRegistrationCommand;
+        private readonly Command _closeWindowCommand;
 
         public ICommand RegisterUserCommand => _registerUserCommand;
         public ICommand CheckAviableCategoriesCommand => _checkAviableCategoriesCommand;
         public ICommand CompleteRegistrationCommand => _completeRegistrationCommand;
+        public ICommand CloseWindowCommand => _closeWindowCommand;
 
         public RegistrationOfPersonsWindowViewModel(IWindowManager windowManager,
             IPersonService personService,
@@ -56,10 +59,11 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
             _registerUserCommand = new Command(RegisterUser);
             _checkAviableCategoriesCommand = new Command(CheckAviableCategories);
             _completeRegistrationCommand = new Command(CompleteRegistration);
+            _closeWindowCommand = new Command(CloseWindow);
         }
 
         //Properties for binding values
-            //for creating person
+        //for creating person
         public string Surname { get; set; }
         public string Name { get; set; }
         public string MiddleName { get; set; }
@@ -146,6 +150,12 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
         {
             _managerCompetitionWindowViewModel.Initialize();
             _windowManager.Show(_managerCompetitionWindowViewModel);
+            _windowManager.Close<IRegistrationOfPersonsWindowViewModel>(this);
+        }
+
+        //Funciton for close window
+        private void CloseWindow()
+        {
             _windowManager.Close<IRegistrationOfPersonsWindowViewModel>(this);
         }
 
