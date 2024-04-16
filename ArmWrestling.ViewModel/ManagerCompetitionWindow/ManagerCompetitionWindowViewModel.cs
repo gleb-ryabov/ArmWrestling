@@ -259,9 +259,12 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
 
                 //creating the duel
                 char groupDuel = _duelService.CalculateGroup(arm, table.FirstOpponent, table.SecondOpponent);
+                byte typeDuel = _personService.GetTypeDuel(table.CategoryInCompetition, arm);
+                if (table.SecondOpponent == null)
+                    typeDuel = 4;
 
                 Duel duel = _duelService.Create
-                    (table.CategoryInCompetition, arm, table.NumberTour, 1, groupDuel);
+                    (table.CategoryInCompetition, arm, table.NumberTour, typeDuel, groupDuel);
                 table.Duel = duel;
             }
             else

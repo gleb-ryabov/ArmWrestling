@@ -192,5 +192,17 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.DuelRepository
                 .Select(d => d.WinnerId.GetValueOrDefault())
                 .FirstOrDefault();
         }
+
+        //Function for check to did the opponents meet in the last round
+        public bool CheckOpponentsInLastRound(CategoryInCompetition categoryInCompetition, char arm,
+            Person opponent1, Person opponent2)
+        {
+            return _applicationContext.Duels
+                .Where(d => d.CategoryInCompetitionId == categoryInCompetition.Id)
+                .Where(d => d.Arm == arm)
+                .Where(d => (d.Winner == opponent1 && d.Looser == opponent2) || 
+                            (d.Winner == opponent2 && d.Looser == opponent1))
+                .Any();
+        }
     }
 }

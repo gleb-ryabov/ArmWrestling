@@ -46,12 +46,25 @@ namespace ArmWrestling.Domain.Database
          * 1 - The Superfinal
          * 2 - The Final
          * 3 - The Semi–final
-         * 4 - The fight to reach the semifinals
-         * 5 - The fight to reach the final
-         * 6 - The fight for the 5th place
+         * 4 - The Free Circle
+         * 5 - The fight to reach the semifinals
+         * 6 - The fight to reach the final
+         * 7 - The fight for the 5th place
         */
         public byte? TypeDuel { get; set; }
 
+        [NotMapped]
+        private string _descriptionType;
+        [NotMapped]
+        public string DescriptionType
+        {
+            get { return _descriptionType; }
+            set
+            {
+                _descriptionType = value;
+                OnPropertyChanged(nameof(DescriptionType));
+            }
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

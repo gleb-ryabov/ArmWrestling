@@ -26,13 +26,37 @@ namespace ArmWrestling.Applications.Services.DuelService
         public Duel Create(CategoryInCompetition categoryInCompetition,
             char arm, int tourNumber, byte typeDuel = 0, char group = ' ')
         {
+
+            //тип поединка
+            string typeTour = "";
+            switch (typeDuel)
+            {
+                case 0:
+                    typeTour = "";
+                    break;
+                case 1:
+                    typeTour = "Суперфинал";
+                    break;
+                case 2:
+                    typeTour = "Финал";
+                    break;
+                case 3:
+                    typeTour = "Полуфинал";
+                    break;
+                case 4:
+                    typeTour = "Свободный круг";
+                    break;
+            }
+
+
             Duel duel = new Duel()
             {
                 CategoryInCompetitionId = categoryInCompetition.Id,
                 Arm = arm,
                 TourNumber = tourNumber,
                 TypeDuel = typeDuel,
-                Group = group
+                Group = group,
+                DescriptionType = typeTour,
             };
             if (_duelRepository.Create(duel))
                 return duel;

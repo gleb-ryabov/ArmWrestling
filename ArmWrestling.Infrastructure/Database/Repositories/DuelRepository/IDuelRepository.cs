@@ -23,5 +23,7 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.DuelRepository
         bool SetWinnerAndLooser(Duel duel, Person winner, Person looser);
         IEnumerable<Person> GetLoosersInTour(CategoryInCompetition categoryInCompetition, char arm, int tourNumber);
         int GetWinnerIdInTour(CategoryInCompetition categoryInCompetition, char arm, int tourNumber);
+        bool CheckOpponentsInLastRound(CategoryInCompetition categoryInCompetition, char arm,
+            Person opponent1, Person opponent2);
     }
 }

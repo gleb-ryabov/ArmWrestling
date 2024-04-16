@@ -1,6 +1,7 @@
 ﻿using ArmWrestling.Domain.Database;
 using ArmWrestling.Infrastructure.Database.Repositories.DuelRepository;
 using ArmWrestling.Infrastructure.Database.Repositories.PersonRepository;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SQLitePCL;
 using System;
 using System.Collections.Generic;
@@ -305,6 +306,42 @@ namespace ArmWrestling.Applications.Services.PersonService
             return draw;
         }
 
+        //Function for get type duel
+         /* 
+         * 0 - The ordinary duel
+         * 1 - The Superfinal
+         * 2 - The Final
+         * 3 - The Semi–final
+         * 4 - The Free Circle
+         */
+        public byte GetTypeDuel(CategoryInCompetition category, char arm)
+        {
+            List<Person> nonDroppedPersons = GetNonDroppedOutPersons(category, arm);
+            int countNonDroppedPersons = nonDroppedPersons.Count;
+            byte typeDuel = 0;
 
+            switch (countNonDroppedPersons)
+            {
+                case 1:
+                    typeDuel = 4;
+                    break;
+                case 2:
+                    int peronsInACount = GetPersonsInGroupA (category, arm).Count;
+                    bool checkOpponentsInLast = 
+                        _duelRepository.CheckOpponentsInLastRound(category, arm, nonDroppedPersons[0], nonDroppedPersons[1]);
+                    if ( (peronsInACount != 0) && (checkOpponentsInLast) )
+                        typeDuel = 2;
+                    else
+                        typeDuel = 1;
+                    break;
+                case 3:
+                    typeDuel = 3;
+                    break;
+            }
+
+            return typeDuel;
+        }
+
+        
     }
 }

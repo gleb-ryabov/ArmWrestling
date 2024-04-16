@@ -10,5 +10,6 @@ namespace ArmWrestling.Applications.Services.PersonService
         List<Person> GetPersonsInGroupB(CategoryInCompetition category, char arm);
         List<Person> GetNonDroppedOutPersons(CategoryInCompetition category, char arm);
         List<List<Person>> CreateDraw(CategoryInCompetition category, char arm);
+        byte GetTypeDuel(CategoryInCompetition category, char arm);
     }
 }
