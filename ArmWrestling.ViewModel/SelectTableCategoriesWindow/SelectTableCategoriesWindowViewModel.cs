@@ -81,6 +81,8 @@ namespace ArmWrestling.ViewModel.SelectTableCategoriesWindow
 
             Table = _tableRepository.Get(tableId);
 
+            CategoryInCompetition = null;
+
             CategoryInCompetitions = _categoryInCompetitionService.GetNotUsedCategories(competition);
             SetNameCategories();
 
@@ -93,7 +95,11 @@ namespace ArmWrestling.ViewModel.SelectTableCategoriesWindow
         {
             _tableRepository.SetCategory(Table, CategoryInCompetition);
 
-            _managerCompetitionWindowViewModel.UpdateTable(Table.Id);
+            Table.CategoryInCompetition = CategoryInCompetition;
+            Table.CategoryInCompetitionId = CategoryInCompetition.Id;
+
+            _managerCompetitionWindowViewModel.UpdateTable(Table);
+
 
             _windowManager.Close<ISelectTableCategoriesWindowViewModel>(this);
         }

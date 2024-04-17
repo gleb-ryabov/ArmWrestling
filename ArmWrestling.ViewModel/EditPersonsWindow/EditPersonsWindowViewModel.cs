@@ -16,6 +16,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace ArmWrestling.ViewModel.EditPersonsWindow
 {
@@ -160,7 +161,15 @@ namespace ArmWrestling.ViewModel.EditPersonsWindow
         //Function for edit person
         private void EditUser()
         {
-            _personRepository.UpdatePerson(Person);
+            foreach (var category in AviableCategories)
+            {
+                if (category.IsSelected == true)
+                {
+                    Person.CategoryInCompetitionId = category.Id;
+                    _personRepository.UpdatePerson(Person);
+                }
+            }
+            //_personRepository.UpdatePerson(Person);
             _windowManager.Close<IEditPersonsWindowViewModel>(this);
         }
 

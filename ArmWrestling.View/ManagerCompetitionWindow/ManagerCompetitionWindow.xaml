@@ -16,9 +16,7 @@
     </i:Interaction.Triggers>
 
     <Grid>
-        
-        
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />

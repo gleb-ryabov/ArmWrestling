@@ -1,4 +1,5 @@
-﻿using ArmWrestling.ViewModel.Windows;
+﻿using ArmWrestling.Domain.Database;
+using ArmWrestling.ViewModel.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
     public interface IManagerCompetitionWindowViewModel: IWindowViewModel
     {
         void Initialize();
-        void UpdateTable(int tableId);
+        void UpdateTable(Table newTable);
     }
 }

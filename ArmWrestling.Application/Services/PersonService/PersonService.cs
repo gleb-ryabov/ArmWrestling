@@ -329,7 +329,7 @@ namespace ArmWrestling.Applications.Services.PersonService
                     int peronsInACount = GetPersonsInGroupA (category, arm).Count;
                     bool checkOpponentsInLast = 
                         _duelRepository.CheckOpponentsInLastRound(category, arm, nonDroppedPersons[0], nonDroppedPersons[1]);
-                    if ( (peronsInACount != 0) && (checkOpponentsInLast) )
+                    if ( (peronsInACount != 0) && (!checkOpponentsInLast) )
                         typeDuel = 2;
                     else
                         typeDuel = 1;

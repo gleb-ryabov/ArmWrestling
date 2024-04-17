@@ -146,17 +146,16 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
         }
 
         //Function for update the table (called when the table category is changed)
-        public void UpdateTable(int tableId)
+        public void UpdateTable(Table newTable)
         {
             //finding the modified table
             foreach (var table in Tables)
             {
-                if (table.Id == tableId)
+                if (table.Id == newTable.Id)
                 {
-                    Table newTable = _tableRepository.Get(tableId);
 
                     //setting modified parameters for table
-                    table.IsBusy = newTable.IsBusy;
+                    table.IsBusy = 1; //newTable.IsBusy;
                     table.CategoryInCompetitionId = newTable.CategoryInCompetitionId;
                     table.CategoryInCompetition = _categoryInCompetitionRepository.Get((int)table.CategoryInCompetitionId);
                     table.Competition = _competitionRepository.Get(table.CompetitionId);
@@ -165,6 +164,16 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
 
                     //setting queue for table
                     GetQueue(table);
+
+                    int a;
+                    if(table.IsBusy == 1)
+                    {
+                        a = 1 + 1;
+                    }
+                    if(table.CategoryInCompetitionId == 11)
+                    {
+                        a = 10 + 1;
+                    }
                 }
             }
         }
