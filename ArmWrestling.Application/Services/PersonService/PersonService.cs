@@ -27,17 +27,37 @@ namespace ArmWrestling.Applications.Services.PersonService
         public Person Create(string surname, string name, string middleName, byte gender, DateOnly birthDate,
             float weight, CategoryInCompetition category, Team team = null)
         {
-            Person person = new Person()
+            Person person;
+
+            if (team != null)
             {
-                Surname = surname,
-                Name = name,
-                MiddleName = middleName,
-                Gender = gender,
-                BirthDate = birthDate,
-                Weight = weight,
-                CategoryInCompetitionId = category.Id,
-                Team = team
-            };
+                person = new Person()
+                {
+                    Surname = surname,
+                    Name = name,
+                    MiddleName = middleName,
+                    Gender = gender,
+                    BirthDate = birthDate,
+                    Weight = weight,
+                    CategoryInCompetitionId = category.Id,
+                    TeamId = team.Id
+                };
+            }
+            else
+            {
+                person = new Person()
+                {
+                    Surname = surname,
+                    Name = name,
+                    MiddleName = middleName,
+                    Gender = gender,
+                    BirthDate = birthDate,
+                    Weight = weight,
+                    CategoryInCompetitionId = category.Id,
+                    Team = team
+                };
+            }
+            
             if (_personRepository.Create(person))
                 return person;
             else

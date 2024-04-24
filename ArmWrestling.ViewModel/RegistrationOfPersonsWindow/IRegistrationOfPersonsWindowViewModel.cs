@@ -11,6 +11,7 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
 {
     public interface IRegistrationOfPersonsWindowViewModel : IWindowViewModel
     {
+        public void Initialize();
         void RegisterUser();
         void CompleteRegistration();
     }

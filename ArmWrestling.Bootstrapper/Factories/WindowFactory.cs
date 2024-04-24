@@ -3,6 +3,7 @@ using ArmWrestling.View.EditPersonsWindow;
 using ArmWrestling.View.Factories;
 using ArmWrestling.View.MainWindow;
 using ArmWrestling.View.ManagerCompetitionWindow;
+using ArmWrestling.View.ManagerTeamsWindow;
 using ArmWrestling.View.ParticipantListWindow;
 using ArmWrestling.View.RegistrationOfPersonsWindow;
 using ArmWrestling.View.ResultsCompetitionWindow;
@@ -11,6 +12,7 @@ using ArmWrestling.ViewModel.CreateCompetitionWindow;
 using ArmWrestling.ViewModel.EditPersonsWindow;
 using ArmWrestling.ViewModel.MainWindow;
 using ArmWrestling.ViewModel.ManagerCompetitionWindow;
+using ArmWrestling.ViewModel.ManagerTeamsWindow;
 using ArmWrestling.ViewModel.ParticipantListWindow;
 using ArmWrestling.ViewModel.RegistrationOfPersonsWindow;
 using ArmWrestling.ViewModel.ResultsCompetitionWindow;
@@ -39,7 +41,8 @@ namespace ArmWrestling.Bootstrapper.Factories
         {typeof(ISelectTableCategoriesWindowViewModel), typeof(ISelectTableCategoriesWindow) },
         {typeof(IParticipantListWindowViewModel), typeof(IParticipantListWindow) },
         {typeof(IEditPersonsWindowViewModel), typeof(IEditPersonsWindow) },
-        {typeof(IResultsCompetitionWindowViewModel), typeof(IResultsCompetitionWindow) }
+        {typeof(IResultsCompetitionWindowViewModel), typeof(IResultsCompetitionWindow) },
+        {typeof(IManagerTeamsWindowViewModel), typeof(IManagerTeamsWindow) }
         };
 
         public WindowFactory(IComponentContext componentContext) 

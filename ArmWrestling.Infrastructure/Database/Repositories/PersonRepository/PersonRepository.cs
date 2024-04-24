@@ -55,6 +55,11 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.PersonRepository
                 oldPerson.CategoryInCompetitionId = newPerson.CategoryInCompetitionId;
                 oldPerson.Weight = newPerson.Weight;
 
+                if(newPerson.Team != null)
+                {
+                    oldPerson.TeamId = newPerson.TeamId;
+                }
+
                 return _applicationContext.SaveChanges() > 0;
             }
             return false;

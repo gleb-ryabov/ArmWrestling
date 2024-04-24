@@ -73,7 +73,7 @@ namespace ArmWrestling.ViewModel.SelectTableCategoriesWindow
             }
         }
 
-
+        
         //Function for initializing components in window
         public void Initialize(ManagerCompetitionWindowViewModel viewModel, int tableId)
         {

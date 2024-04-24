@@ -19,6 +19,7 @@ namespace ArmWrestling.ViewModel.MainWindow
         private readonly IWindowManager _windowManager;
         private readonly ICreateCompetitionWindowViewModel _createCompetitionWindowViewModel;
         private readonly IManagerCompetitionWindowViewModel _managerCompetitionWindowViewModel;
+
         private readonly Command _openCreateCompetitionWindowCommand;
         private readonly Command _openPastCompetitionsCommand;
 

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ArmWrestling.View.ParticipantListWindow"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="ParticipantListWindow" Height="450" Width="800">
+        Title="Список участников" Height="450" Width="800">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closed">

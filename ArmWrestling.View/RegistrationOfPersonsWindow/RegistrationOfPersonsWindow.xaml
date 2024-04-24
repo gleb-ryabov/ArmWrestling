@@ -80,6 +80,19 @@
             <TextBox  Width="200" Text="{Binding Weight}"/>
         </TextBlock>
 
+        <TextBlock Text="Команда">
+            <ComboBox
+                Width="200" 
+                ItemsSource="{Binding Teams}"
+                SelectedValue="{Binding Team}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </TextBlock>
+
         <Button Style="{StaticResource CheckCategoryButton}"
                 Content="Проверить доступные категории"
                 Command="{Binding CheckAviableCategoriesCommand}"/>

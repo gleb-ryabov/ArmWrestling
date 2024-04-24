@@ -9,5 +9,6 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.TeamRepository
 {
     public interface ITeamRepository : IBaseRepository<Team>
     {
+        IEnumerable<Team> GetByCompetition(int competitionId);
     }
 }

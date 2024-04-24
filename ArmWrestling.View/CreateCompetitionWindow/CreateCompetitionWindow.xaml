@@ -55,8 +55,8 @@
                 SelectedValue="{Binding TypeCompetition}"
                 SelectedValuePath="Content">
                 <ComboBoxItem Content="Личные"/>
-                <!--<ComboBoxItem Content="Командные"/>
-                <ComboBoxItem Content="Лично-командные"/>-->
+                <ComboBoxItem Content="Командные"/>
+                <ComboBoxItem Content="Лично-командные"/>
             </ComboBox>
         </TextBlock>
 

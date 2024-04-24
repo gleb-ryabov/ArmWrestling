@@ -1,5 +1,6 @@
 ﻿using ArmWrestling.Applications.Services.CategoryService;
 using ArmWrestling.Applications.Services.PersonService;
+using ArmWrestling.Applications.Services.TeamService;
 using ArmWrestling.Domain.Database;
 using ArmWrestling.Infrastructure.Database.Repositories.CategoryInCompetitionRepository;
 using ArmWrestling.Infrastructure.Database.Repositories.CategoryRepository;
@@ -23,6 +24,7 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
         private readonly IWindowManager _windowManager;
         private readonly IPersonService _personService;
         private readonly ICategoryService _categoryService;
+        private readonly ITeamService _teamService;
         private readonly ICompetitionRepository _competitionRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly ICategoryInCompetitionRepository _categoryInCompetitionRepository;
@@ -42,6 +44,7 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
         public RegistrationOfPersonsWindowViewModel(IWindowManager windowManager,
             IPersonService personService,
             ICategoryService categoryService,
+            ITeamService teamService,
             ICompetitionRepository competitionRepository,
             ICategoryRepository categoryRepository,
             ICategoryInCompetitionRepository categoryInCompetitionRepository,
@@ -50,6 +53,7 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
             _windowManager = windowManager;
             _personService = personService;
             _categoryService = categoryService;
+            _teamService = teamService;
             _competitionRepository = competitionRepository;
             _categoryRepository = categoryRepository;
             _categoryInCompetitionRepository = categoryInCompetitionRepository;
@@ -62,6 +66,11 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
             _closeWindowCommand = new Command(CloseWindow);
         }
 
+        public void Initialize()
+        {
+            GetTeams();
+        }
+
         //Properties for binding values
         //for creating person
         public string Surname { get; set; }
@@ -71,8 +80,7 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
         public DateTime BirthDate { get; set; }
         public DateOnly FormattedBirthDate { get; set; }
         public float Weight { get; set; }
-        //public CategoryInCompetition CategoryInCompetition { get; set; }
-        //public Team? Team { get; set; }
+        public Team? Team { get; set; } = null;
             //for choice of categories
         private List<CategoryInCompetition> _aviableCategories {  get; set; }
         public List<CategoryInCompetition> AviableCategories
@@ -87,6 +95,16 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
                 }
             }
         }
+        private List<Team> _teams { get; set; }
+        public List<Team> Teams
+        {
+            get { return _teams; }
+            set
+            {
+                _teams = value;
+                OnPropertyChanged(nameof(Teams));
+            }
+        }
 
         //Function for registration user
         public void RegisterUser()
@@ -96,7 +114,7 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
             {
                 if (category.IsSelected == true)
                 {
-                    _personService.Create(Surname, Name, MiddleName, Gender, FormattedBirthDate, Weight, category, null);
+                    _personService.Create(Surname, Name, MiddleName, Gender, FormattedBirthDate, Weight, category, Team);
                 }
             }
 
@@ -107,6 +125,7 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
             Gender = 1;
             BirthDate = DateTime.Today;
             Weight = 0;
+            Team = null;
             AviableCategories = new List<CategoryInCompetition> { };
 
             //notify about changes in variables
@@ -132,6 +151,12 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
             (_categoryInCompetitionRepository.GetAviableCategories(Gender, Weight, FormattedBirthDate, competition));
 
             SetNameCategories();
+        }
+
+        //Function for get teams in competiton
+        private void GetTeams()
+        {
+            Teams = _teamService.GetByLastCompetiton();
         }
 
         //Function for set the categories name for the text in checkboxes
@@ -161,13 +186,6 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
 
 
         public event PropertyChangedEventHandler? PropertyChanged;
-        private void INotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

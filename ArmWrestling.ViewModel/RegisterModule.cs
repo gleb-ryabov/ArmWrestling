@@ -2,6 +2,7 @@
 using ArmWrestling.ViewModel.EditPersonsWindow;
 using ArmWrestling.ViewModel.MainWindow;
 using ArmWrestling.ViewModel.ManagerCompetitionWindow;
+using ArmWrestling.ViewModel.ManagerTeamsWindow;
 using ArmWrestling.ViewModel.ParticipantListWindow;
 using ArmWrestling.ViewModel.RegistrationOfPersonsWindow;
 using ArmWrestling.ViewModel.ResultsCompetitionWindow;
@@ -23,6 +24,7 @@ namespace ArmWrestling.ViewModel
 
             builder.RegisterType<MainWindowViewModel>().As<IMainWindowViewModel>().InstancePerDependency();
             builder.RegisterType<CreateCompetitionWindowViewModel>().As<ICreateCompetitionWindowViewModel>().InstancePerDependency();
+            builder.RegisterType<ManagerTeamsWindowViewModel>().As<IManagerTeamsWindowViewModel>().InstancePerDependency();
             builder.RegisterType<RegistrationOfPersonsWindowViewModel>().As<IRegistrationOfPersonsWindowViewModel>().InstancePerDependency();
             builder.RegisterType<ManagerCompetitionWindowViewModel>().As<IManagerCompetitionWindowViewModel>().SingleInstance();
             builder.RegisterType<SelectTableCategoriesWindowViewModel>().As<ISelectTableCategoriesWindowViewModel>().InstancePerDependency();

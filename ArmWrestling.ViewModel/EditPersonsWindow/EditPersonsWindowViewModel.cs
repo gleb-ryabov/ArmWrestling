@@ -1,10 +1,12 @@
 ﻿using ArmWrestling.Applications.Services.CategoryService;
 using ArmWrestling.Applications.Services.PersonService;
+using ArmWrestling.Applications.Services.TeamService;
 using ArmWrestling.Domain.Database;
 using ArmWrestling.Infrastructure.Database.Repositories.CategoryInCompetitionRepository;
 using ArmWrestling.Infrastructure.Database.Repositories.CategoryRepository;
 using ArmWrestling.Infrastructure.Database.Repositories.CompetitionReposirory;
 using ArmWrestling.Infrastructure.Database.Repositories.PersonRepository;
+using ArmWrestling.Infrastructure.Database.Repositories.TeamRepository;
 using ArmWrestling.ViewModel.Commands;
 using ArmWrestling.ViewModel.ManagerCompetitionWindow;
 using ArmWrestling.ViewModel.Windows;
@@ -25,10 +27,13 @@ namespace ArmWrestling.ViewModel.EditPersonsWindow
         private readonly IWindowManager _windowManager;
         private readonly IPersonService _personService;
         private readonly ICategoryService _categoryService;
+        private readonly ITeamService _teamService;
+
         private readonly ICompetitionRepository _competitionRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly ICategoryInCompetitionRepository _categoryInCompetitionRepository;
         private readonly IPersonRepository _personRepository;
+        private readonly ITeamRepository _teamRepository;
 
         private readonly IManagerCompetitionWindowViewModel _managerCompetitionWindowViewModel;
 
@@ -45,19 +50,25 @@ namespace ArmWrestling.ViewModel.EditPersonsWindow
             IWindowManager windowManager,
             IPersonService personService,
             ICategoryService categoryService,
+            ITeamService teamService,
             ICompetitionRepository competitionRepository,
             ICategoryRepository categoryRepository,
             ICategoryInCompetitionRepository categoryInCompetitionRepository,
-            IPersonRepository personRepository
+            IPersonRepository personRepository,
+            ITeamRepository teamRepository
             )
         {
             _windowManager = windowManager;
             _personService = personService;
             _categoryService = categoryService;
+            _teamService = teamService;
+
             _competitionRepository = competitionRepository;
             _categoryRepository = categoryRepository;
             _categoryInCompetitionRepository = categoryInCompetitionRepository;
             _personRepository = personRepository;
+            _teamRepository = teamRepository;
+
 
 
             _editUserCommand = new Command(EditUser);
@@ -75,6 +86,27 @@ namespace ArmWrestling.ViewModel.EditPersonsWindow
             {
                 _person = value;
                 OnPropertyChanged(nameof(Person));
+            }
+        }
+
+        private List<Team> _teams { get; set; }
+        public List<Team> Teams
+        {
+            get { return _teams; }
+            set
+            {
+                _teams = value;
+                OnPropertyChanged(nameof(Teams));
+            }
+        }
+        private Team? _team = null;
+        public Team? Team
+        {
+            get { return _team; }
+            set
+            {
+                _team = value;
+                OnPropertyChanged(nameof(Team));
             }
         }
 
@@ -113,6 +145,8 @@ namespace ArmWrestling.ViewModel.EditPersonsWindow
         //Function for initialization peron before open window
         public void Initialize(Person person)
         {
+            GetTeams();
+
             Person = person;
 
             CheckAviableCategories();
@@ -121,6 +155,9 @@ namespace ArmWrestling.ViewModel.EditPersonsWindow
                 if (AviableCategories[i].Id == person.CategoryInCompetitionId)
                     AviableCategories[i].IsSelected = true;
             }
+
+            int teamId = (int) person.TeamId;
+            Team = _teamRepository.Get(teamId);
         }
 
         //Function for check aviable categories for person
@@ -171,6 +208,12 @@ namespace ArmWrestling.ViewModel.EditPersonsWindow
             }
             //_personRepository.UpdatePerson(Person);
             _windowManager.Close<IEditPersonsWindowViewModel>(this);
+        }
+
+        //Function for get teams in competiton
+        private void GetTeams()
+        {
+            Teams = _teamService.GetByLastCompetiton();
         }
 
         //Funciton for close window

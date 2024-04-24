@@ -6,6 +6,7 @@ using ArmWrestling.Infrastructure.Database.Repositories.CategoryRepository;
 using ArmWrestling.ViewModel.Commands;
 using ArmWrestling.ViewModel.EditPersonsWindow;
 using ArmWrestling.ViewModel.MainWindow;
+using ArmWrestling.ViewModel.ManagerTeamsWindow;
 using ArmWrestling.ViewModel.RegistrationOfPersonsWindow;
 using ArmWrestling.ViewModel.Windows;
 using System;
@@ -27,6 +28,8 @@ namespace ArmWrestling.ViewModel.CreateCompetitionWindow
 
         private readonly IWindowManager _windowManager;
         private readonly IRegistrationOfPersonsWindowViewModel _registrationOfPersonsWindowViewModel;
+        private readonly IManagerTeamsWindowViewModel _managerTeamsWindowViewModel;
+        
         private readonly ICompetitionService _competitionService;
         private readonly ICategoryInCompetitionService _categoryInCompetitionService;
         private readonly ICategoryService _categoryService;
@@ -39,14 +42,16 @@ namespace ArmWrestling.ViewModel.CreateCompetitionWindow
 
         public CreateCompetitionWindowViewModel(IWindowManager windowManager,
             IRegistrationOfPersonsWindowViewModel registrationOfPersonsWindowViewModel,
+            IManagerTeamsWindowViewModel managerTeamsWindowViewModel,
             ICompetitionService competitionService, 
             ICategoryInCompetitionService categoryInCompetitionService, 
             ICategoryService categoryService,
             ICategoryRepository categoryRepository)
         {
-            _createCompetitionCommand = new Command(CreateCompetition);
             _windowManager = windowManager;
             _registrationOfPersonsWindowViewModel = registrationOfPersonsWindowViewModel;
+            _managerTeamsWindowViewModel = managerTeamsWindowViewModel;
+
             _competitionService = competitionService;
             _categoryInCompetitionService = categoryInCompetitionService;
             _categoryService = categoryService;
@@ -56,6 +61,7 @@ namespace ArmWrestling.ViewModel.CreateCompetitionWindow
             SetNameCategories();
 
             _closeWindowCommand = new Command(CloseWindow);
+            _createCompetitionCommand = new Command(CreateCompetition);
         }
 
         //properties for binding values
@@ -82,9 +88,20 @@ namespace ArmWrestling.ViewModel.CreateCompetitionWindow
                 }
             }
 
-            //open the window for registration of persons
-            _windowManager.Show(_registrationOfPersonsWindowViewModel);
-            _windowManager.Close<IMainWindowViewModel>(this);
+            //open the window for create teams if it is necessary
+            if (TypeCompetition == "Командные" || TypeCompetition == "Лично-командные")
+            {
+                _managerTeamsWindowViewModel.Initialize();
+                _windowManager.Show(_managerTeamsWindowViewModel);
+                _windowManager.Close<IMainWindowViewModel>(this);
+            }
+            else
+            {
+                //open the window for registration of persons
+                _windowManager.Show(_registrationOfPersonsWindowViewModel);
+                _windowManager.Close<IMainWindowViewModel>(this);
+            }
+            
         }
 
         //Function for set the categories name for the text in checkboxes

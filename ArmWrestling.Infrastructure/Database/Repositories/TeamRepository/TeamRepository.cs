@@ -38,5 +38,13 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.TeamRepository
         {
             return _applicationContext.Teams.ToList();
         }
+
+        public IEnumerable<Team> GetByCompetition(int competitionId)
+        {
+            return _applicationContext.Teams
+                .Where(t => t.CompetitionId == competitionId)
+                .OrderBy(t => t.Name)
+                .ToList();
+        }
     }
 }
