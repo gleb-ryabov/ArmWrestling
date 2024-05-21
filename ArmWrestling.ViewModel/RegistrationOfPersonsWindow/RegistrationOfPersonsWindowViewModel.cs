@@ -115,6 +115,7 @@ namespace ArmWrestling.ViewModel.RegistrationOfPersonsWindow
                 if (category.IsSelected == true)
                 {
                     _personService.Create(Surname, Name, MiddleName, Gender, FormattedBirthDate, Weight, category, Team);
+                    category.IsSelected = false;
                 }
             }
 

@@ -9,6 +9,6 @@ namespace ArmWrestling.ViewModel.ParticipantListWindow
 {
     public interface IParticipantListWindowViewModel: IWindowViewModel
     {
-
+        void Initialize();
     }
 }

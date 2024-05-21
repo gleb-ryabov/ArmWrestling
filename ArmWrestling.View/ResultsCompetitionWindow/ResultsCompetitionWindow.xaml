@@ -16,7 +16,7 @@
 
     <StackPanel>
 
-        <TextBlock Text="Выберите категорию">
+        <TextBlock Text="Выберите категорию (если необходимо)">
             <ComboBox
                 SelectedValue="{Binding SelectedCategory}"
                 ItemsSource="{Binding Categories}"
@@ -34,6 +34,37 @@
                         <TextBlock Text="{Binding Person.Name}"/>
                         <TextBlock Text=" "/>
                         <TextBlock Text="{Binding Person.MiddleName}"/>
+                        <TextBlock Text=" ("/>
+                        <TextBlock Text="{Binding Person.Score}"/>
+                        <TextBlock Text=" оч.)"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <ItemsControl ItemsSource="{Binding ResultsTeams}">
+            <ItemsControl.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Margin" Value="5"/>
+                </Style>
+            </ItemsControl.Resources>
+            <ItemsControl.Template>
+                <ControlTemplate TargetType="ItemsControl">
+                    <StackPanel>
+                        <TextBlock Text="Командные результаты (по соревнованию): " FontWeight="Bold"/>
+                        <ItemsPresenter/>
+                    </StackPanel>
+                </ControlTemplate>
+            </ItemsControl.Template>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Place}"/>
+                        <TextBlock Text=" место - "/>
+                        <TextBlock Text="{Binding Team.Name}"/>
+                        <TextBlock Text=" ("/>
+                        <TextBlock Text="{Binding Team.Score}"/>
+                        <TextBlock Text=" оч.)"/>
                     </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

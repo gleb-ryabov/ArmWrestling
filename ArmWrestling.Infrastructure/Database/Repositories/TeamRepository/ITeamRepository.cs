@@ -10,5 +10,7 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.TeamRepository
     public interface ITeamRepository : IBaseRepository<Team>
     {
         IEnumerable<Team> GetByCompetition(int competitionId);
+        bool AddScore(Team team, int score);
+        IEnumerable<Team> GetOrderByScore(int competitionId);
     }
 }

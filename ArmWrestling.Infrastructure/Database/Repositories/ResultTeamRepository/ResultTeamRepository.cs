@@ -38,5 +38,23 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.ResultTeamRepository
         {
             return _applicationContext.ResultTeams.ToList();
         }
+
+
+        //Function for check have you already summed up the results for this category
+        public bool ExistResult(int competitionId)
+        {
+            return _applicationContext.ResultTeams
+                .Where(r => r.CompetitionId == competitionId)
+                .Any();
+        }
+
+        //Function for get result teams
+        public IEnumerable<ResultTeam> GetResulByCompetition(int competitionId)
+        {
+            return _applicationContext.ResultTeams
+                .Where(r => r.CompetitionId == competitionId)
+                .OrderBy(r => r.Place)
+                .ToList();
+        }
     }
 }

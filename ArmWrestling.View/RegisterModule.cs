@@ -1,4 +1,5 @@
-﻿using ArmWrestling.View.CreateCompetitionWindow;
+﻿using ArmWrestling.View.ComplitedCompetitionsWindow;
+using ArmWrestling.View.CreateCompetitionWindow;
 using ArmWrestling.View.EditPersonsWindow;
 using ArmWrestling.View.MainWindow;
 using ArmWrestling.View.ManagerCompetitionWindow;
@@ -8,6 +9,7 @@ using ArmWrestling.View.RegistrationOfPersonsWindow;
 using ArmWrestling.View.ResultsCompetitionWindow;
 using ArmWrestling.View.SelectTableCategoriesWindow;
 using ArmWrestling.View.Windows;
+using ArmWrestling.ViewModel.ComplitedCompetitionsWindow;
 using ArmWrestling.ViewModel.MainWindow;
 using ArmWrestling.ViewModel.Windows;
 using Autofac;
@@ -26,6 +28,7 @@ namespace ArmWrestling.View
             base.Load(builder);
 
             builder.RegisterType<MainWindow.MainWindow>().As<IMainWindow>().InstancePerDependency();
+            builder.RegisterType<ComplitedCompetitionsWindow.ComplitedCompetitionsWindow>().As<IComplitedCompetitionsWindow>().InstancePerDependency();
             builder.RegisterType<CreateCompetitionWindow.CreateCompetitionWindow>().As<ICreateCompetitionWindow>().InstancePerDependency();
             builder.RegisterType<ManagerTeamsWindow.ManagerTeamsWindow>().As<IManagerTeamsWindow>().InstancePerDependency();
             builder.RegisterType<RegistrationOfPersonsWindow.RegistrationOfPersonsWindow>().As<IRegistrationOfPersonsWindow>().InstancePerDependency();

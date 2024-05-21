@@ -77,7 +77,11 @@ namespace ArmWrestling.ViewModel.ParticipantListWindow
             _editPersonCommand = new ParameterizedCommand<object>(EditPerson);
 
             _closeWindowCommand = new Command(CloseWindow);
+ 
+        }
 
+        public void Initialize()
+        {
             GetParticipantList();
         }
 
@@ -127,6 +131,8 @@ namespace ArmWrestling.ViewModel.ParticipantListWindow
         //Funciton for close window
         private void CloseWindow()
         {
+            CountParticipants = 0;
+            ParticipantList = new Dictionary<CategoryInCompetition, List<Person>>();
             _windowManager.Close<IParticipantListWindowViewModel>(this);
         }
 

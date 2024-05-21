@@ -324,6 +324,7 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
         //Function for open the participant list
         private void BrowseParticipants()
         {
+            _participantListWindowViewModel.Initialize();
             _windowManager.Show<IParticipantListWindowViewModel>(_participantListWindowViewModel);
         }
 

@@ -46,5 +46,22 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.TeamRepository
                 .OrderBy(t => t.Name)
                 .ToList();
         }
+
+        //Function for add score to team
+        public bool AddScore(Team team, int score)
+        {
+            Team modifiedTeam = Get(team.Id);
+            modifiedTeam.Score += score;
+            return _applicationContext.SaveChanges() > 0;
+        }
+
+        //Get teams (order by score)
+        public IEnumerable<Team> GetOrderByScore(int competitionId)
+        {
+            return _applicationContext.Teams
+                .Where(t => t.CompetitionId == competitionId)
+                .OrderByDescending(t => t.Score)
+                .ToList();
+        }
     }
 }
