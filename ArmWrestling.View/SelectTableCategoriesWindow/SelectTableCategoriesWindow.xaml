@@ -6,8 +6,8 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:ArmWrestling.View.SelectTableCategoriesWindow"
         mc:Ignorable="d"
-        Title="Выбор категории стола" Height="500" Width="500"
-        WindowStartupLocation="CenterOwner">
+        Title="Выбор категории стола" Height="200" Width="500"
+        WindowStartupLocation="CenterScreen">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closed">
@@ -17,17 +17,31 @@
 
     <StackPanel>
 
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Стол " />
-            <TextBlock Text="{Binding Table.Number}" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+            <TextBlock Text="Стол " FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+            <TextBlock Text="{Binding Table.Number}" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
         </StackPanel>
 
-        <TextBlock Text="Категория">
+        <Grid HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Категория" FontSize="18" Margin="0 10 15 0" Grid.Column="0"/>
             <ComboBox ItemsSource="{Binding CategoryInCompetitions}"
-                      DisplayMemberPath="Name"
-                      SelectedValue="{Binding CategoryInCompetition}"/>
-        </TextBlock>
+              DisplayMemberPath="Name"
+              SelectedValue="{Binding CategoryInCompetition}"
+              FontSize="18"
+              Width="300"
+              Margin="0 10 0 0"
+              Grid.Column="1"/>
+
+        </Grid>
+        
         <Button Content="Сохранить"
-                Command="{Binding SetCategoryinTableCommand}"/>
+                Command="{Binding SetCategoryinTableCommand}"
+                FontSize="18"
+                Margin="20 20 20 20"/>
     </StackPanel>
 </Window>

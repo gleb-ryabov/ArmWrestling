@@ -14,21 +14,28 @@
             <i:InvokeCommandAction Command="{Binding CloseWindowCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
     <StackPanel>
         <StackPanel.Resources>
+            <Style TargetType="Grid">
+                <Setter Property="Margin" Value="0 20 0 0"/>
+            </Style>
             <Style TargetType="TextBlock">
-                <Setter Property="Margin" Value="50 10 50 0"/>
+                <Setter Property="Margin" Value="50 10 10 0"/>
                 <Setter Property="FontSize" Value="18"/>
             </Style>
             <Style TargetType="ComboBox">
-                <Setter Property="Margin" Value="10 0 0 0"/>
+                <Setter Property="Margin" Value="10 10 0 0"/>
+                <Setter Property="FontSize" Value="18"/>
             </Style>
             <Style TargetType="TextBox">
-                <Setter Property="Margin" Value="10 0 0 0"/>
+                <Setter Property="Margin" Value="10 10 0 0"/>
+                <Setter Property="Padding" Value="3 3 3 3"/>
+                <Setter Property="FontSize" Value="18"/>
             </Style>
             <Style TargetType="DatePicker">
-                <Setter Property="Margin" Value="10 0 0 0"/>
+                <Setter Property="Margin" Value="10 10 0 0"/>
+                <Setter Property="FontSize" Value="18"/>
             </Style>
             <Style TargetType="ListView">
                 <Setter Property="Margin" Value="50 10 50 30"/>
@@ -36,7 +43,7 @@
             </Style>
             <Style TargetType="Button">
                 <Setter Property="Width" Value="400"/>
-                <Setter Property="Margin" Value="10 10 10 200"/>
+                <Setter Property="Margin" Value="10 10 10 10"/>
                 <Setter Property="Padding" Value="10 10 10 10"/>
                 <Setter Property="FontSize" Value="24"/>
             </Style>
@@ -51,78 +58,83 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="20px"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="20px"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
-            <Button Grid.Column="1" Grid.Row="0" 
-            Content="х"  
-            Background="Red" 
-            Foreground="White" 
-            FontSize="16"
-            Command="{Binding CloseWindowCommand}"/>
-            
-        </Grid>
 
-        <TextBlock Text="Фамилия">
+            <TextBlock Text="Фамилия" Grid.Row="0" Grid.Column="0"/>
             <TextBox Width="200" Text="{Binding Person.Surname,
                                         UpdateSourceTrigger=PropertyChanged,
-                                        Mode=TwoWay}"/>
-        </TextBlock>
-        
-        <TextBlock Text="Имя">
+                                        Mode=TwoWay}"
+                     Grid.Row="0" Grid.Column="1"/>
+
+
+            <TextBlock Text="Имя" Grid.Row="0" Grid.Column="2"/>
             <TextBox Width="200" Text="{Binding Person.Name,
                                         UpdateSourceTrigger=PropertyChanged,
-                                        Mode=TwoWay}"/>
-        </TextBlock>
+                                        Mode=TwoWay}"
+                     Grid.Row="0" Grid.Column="3"/>
 
-        <TextBlock Text="Отчество">
+
+            <TextBlock Text="Отчество" Grid.Row="0" Grid.Column="4"/>
             <TextBox Width="200" Text="{Binding Person.MiddleName,
                                         UpdateSourceTrigger=PropertyChanged,
-                                        Mode=TwoWay}"/>
-        </TextBlock>
+                                        Mode=TwoWay}"
+                     Grid.Row="0" Grid.Column="5"/>
 
-        <TextBlock Text="Пол">
+
+            <TextBlock Text="Пол" Grid.Row="1" Grid.Column="0"/>
             <ComboBox
                 Width="200" 
                 SelectedValue="{Binding Person.Gender,
                                         UpdateSourceTrigger=PropertyChanged,
                                         Mode=TwoWay}"
-                SelectedValuePath="Tag">
+                SelectedValuePath="Tag"
+                Grid.Row="1" Grid.Column="1">
                 <ComboBoxItem Content="Мужской" Tag="1"/>
                 <ComboBoxItem Content="Женский" Tag="0"/>
             </ComboBox>
-        </TextBlock>
 
-        <TextBlock Text="Дата рождения">
+
+            <TextBlock Text="Дата рождения" Grid.Row="1" Grid.Column="2"/>
             <DatePicker Width="200" Height="30" SelectedDate="{Binding BirthDate,
                                         UpdateSourceTrigger=PropertyChanged,
-                                        Mode=TwoWay}" />
-        </TextBlock>
+                                        Mode=TwoWay}" 
+                        Grid.Row="1" Grid.Column="3"/>
 
-        <TextBlock Text="Вес (в кг)">
+
+            <TextBlock Text="Вес (в кг)" Grid.Row="1" Grid.Column="4"/>
             <TextBox  Width="200" Text="{Binding Person.Weight,
                                         UpdateSourceTrigger=PropertyChanged,
-                                        Mode=TwoWay}"/>
-        </TextBlock>
+                                        Mode=TwoWay}"
+                      Grid.Row="1" Grid.Column="5"/>
 
-        <TextBlock Text="Команда">
+
+            <TextBlock Text="Команда"
+                       Grid.Row="2" Grid.Column="0"/>
             <ComboBox
                 Width="200" 
                 ItemsSource="{Binding Teams}"
                 SelectedValue="{Binding Team,
                 UpdateSourceTrigger=PropertyChanged,
-                Mode=TwoWay}">
+                Mode=TwoWay}"
+                Grid.Row="2" Grid.Column="1">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-        </TextBlock>
+        </Grid>
 
         <Button Style="{StaticResource CheckCategoryButton}"
                 Content="Проверить доступные категории"

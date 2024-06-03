@@ -6,48 +6,59 @@
         xmlns:local="clr-namespace:ArmWrestling.View.ParticipantListWindow"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="Список участников" Height="450" Width="800">
+        Title="Список участников" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Closed">
+                <i:InvokeCommandAction Command="{Binding CloseWindowCommand}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
 
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Closed">
-            <i:InvokeCommandAction Command="{Binding CloseWindowCommand}" />
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
+        <StackPanel Margin="15 15 15 15">
 
-    <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 5">
+                <TextBlock Text="Всего участников: " FontSize="18" FontStyle="Italic"/>
+                <TextBlock Text="{Binding CountParticipants}" FontSize="20" FontStyle="Italic"/>
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Всего участников: "/>
-            <TextBlock Text="{Binding CountParticipants}"/>
-        </StackPanel>        
+            <ItemsControl ItemsSource="{Binding ParticipantList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Key.Name}" FontWeight="Bold" FontSize="18" Margin="5 15 0 8"/>
+                            <ItemsControl ItemsSource="{Binding Value}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="10 3 5 0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+                                            </Grid.ColumnDefinitions>
 
-        <ItemsControl ItemsSource="{Binding ParticipantList}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Key.Name}" FontWeight="Bold"/>
-                        <ItemsControl ItemsSource="{Binding Value}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Surname}"/>
-                                        <TextBlock Text=" "/>
-                                        <TextBlock Text="{Binding Name}"/>
-                                        <TextBlock Text=" "/>
-                                        <TextBlock Text="{Binding MiddleName}"/>
-                                        <Button Content="Редактировать"
-                                            Command="{Binding DataContext.EditPersonCommand, 
-                                                    RelativeSource={RelativeSource Mode=FindAncestor, 
-                                                    AncestorType={x:Type local:ParticipantListWindow}}}"
-                                            CommandParameter="{Binding Id}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                                            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                                <TextBlock Text="{Binding Surname}" FontSize="18"/>
+                                                <TextBlock Text=" " FontSize="18"/>
+                                                <TextBlock Text="{Binding Name}" FontSize="18"/>
+                                                <TextBlock Text=" " FontSize="18"/>
+                                                <TextBlock Text="{Binding MiddleName}" FontSize="18"/>
+                                            </StackPanel>
+                                            <Button Content="Редактировать" FontSize="18"
+                                                Command="{Binding DataContext.EditPersonCommand, 
+                                                        RelativeSource={RelativeSource Mode=FindAncestor, 
+                                                        AncestorType={x:Type local:ParticipantListWindow}}}"
+                                                CommandParameter="{Binding Id}" 
+                                                Grid.Column="1"/>
+                                        </Grid>
 
-    </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </StackPanel>
+    </ScrollViewer>
 </Window>

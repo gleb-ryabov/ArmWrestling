@@ -30,7 +30,7 @@
                     <RowDefinition Height="10*"/>
                 </Grid.RowDefinitions>
 
-                <Menu Grid.Row ="0" Height="25" VerticalAlignment="Top">
+                <Menu Grid.Row ="0" Height="25" VerticalAlignment="Top" FontSize="14">
                     <MenuItem Header="Участники">
                         <MenuItem Header="Добавить участника" />
                         <MenuItem Header="Список участников" Command="{Binding BrowseParticipantsCommand}"/>
@@ -45,6 +45,7 @@
                         Background="#8d0f1f"
                         Foreground="White"
                         Content="Просмотреть итоги"
+                        FontSize="18"
                         Command="{Binding CompleteCompetitionCommand}"/>
             </Grid>
             <!-- for notify -->
@@ -78,7 +79,10 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Grid.Row="0" Grid.Column="0" TextAlignment="Center" Text="{Binding Number}"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" 
+                                               TextAlignment="Center" 
+                                               Text="{Binding Number}" 
+                                               FontSize="18"/>
                                     
                                     <Grid Grid.Row="0" Grid.Column="1">
 
@@ -88,18 +92,19 @@
                                         </Grid.RowDefinitions>
                                         
                                         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" >
-                                            <TextBlock Text="{Binding NumberTour}"/>
-                                            <TextBlock Text=" тур - "/>
-                                            <TextBlock Text="{Binding Duel.Arm}"/>
-                                            <TextBlock Text=". рука"/>
+                                            <TextBlock Text="{Binding NumberTour}" FontSize="14" FontStyle="Italic"/>
+                                            <TextBlock Text=" тур - " FontSize="14" FontStyle="Italic"/>
+                                            <TextBlock Text="{Binding Duel.Arm}" FontSize="14" FontStyle="Italic"/>
+                                            <TextBlock Text=". рука" FontSize="14" FontStyle="Italic"/>
                                         </StackPanel>
 
-                                        <TextBlock Grid.Row="1" Text="{Binding CategoryInCompetition.Name}"/>
+                                        <TextBlock Grid.Row="1" Text="{Binding CategoryInCompetition.Name}" FontSize="12" FontStyle="Italic"/>
 
                                     </Grid>
 
-                                    <TextBlock Grid.Row="0" Grid.Column="2" TextAlignment="Center" Text="{Binding Duel.DescriptionType}"/>
-                                    <Button Grid.Row="0" Grid.Column="3" Content="?"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="2" TextAlignment="Center" Text="{Binding Duel.DescriptionType}"
+                                               FontSize="14" FontStyle="Italic"/>
+                                    <Button Grid.Row="0" Grid.Column="3" Content="?" FontSize="18"/>
                                 </Grid>
                                 <Grid Grid.Row="1">
                                     <Grid.ColumnDefinitions>
@@ -108,13 +113,17 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Border Grid.Column="0">
-                                        <Button Content="{Binding FirstOpponent.Surname}"
+                                        <Button FontSize="18"
+                                                Content="{Binding FirstOpponent.Surname}"
                                                 Command="{Binding DataContext.SetFirstAsWinnerCommand, 
                                                     RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                                CommandParameter="{Binding}"/>
+                                                CommandParameter="{Binding}"
+                                                />
                                     </Border>
                                     <Border Grid.Column="1">
-                                        <Button Content="{Binding SecondOpponent.Surname}"
+                                        <Button 
+                                                FontSize="18"
+                                                Content="{Binding SecondOpponent.Surname}"
                                                 Command="{Binding DataContext.SetSecondAsWinnerCommand, 
                                                     RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
                                                 CommandParameter="{Binding}"/>
@@ -162,11 +171,14 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="4*"/>
                                     </Grid.RowDefinitions>
+                                    
                                     <TextBlock Grid.Row="0" Text="{Binding Number}" 
                                                TextAlignment="Center" 
-                                               Background="White"/>
+                                               Background="White"
+                                               FontSize="18"/>
                                     <Button Grid.Row="1" 
                                             Content="Выбрать категорию" 
+                                            FontSize="18"
                                             Command="{Binding DataContext.SelectTableCategoriesCommand, 
                                                 RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
                                             CommandParameter="{Binding Id}"/>

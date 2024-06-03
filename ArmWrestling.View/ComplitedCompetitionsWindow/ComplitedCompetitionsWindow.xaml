@@ -6,7 +6,8 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:ArmWrestling.View.ComplitedCompetitionsWindow"
         mc:Ignorable="d"
-        Title="Законенные соревнования" Height="450" Width="800">
+        Title="Законенные соревнования" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closed">
@@ -14,7 +15,46 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <Grid>
-        
-    </Grid>
+    <StackPanel Margin="20 20 20 20">
+        <TextBlock Text="Законченные соревнования" FontSize="24" FontStyle="Italic" 
+                   FontWeight="Bold" Margin="0 0 0 20" HorizontalAlignment="Center"/>
+
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
+            <TextBlock Text="Cоревнование от " FontSize="20"/>
+            <TextBlock Text="{Binding lastCompetition.Created, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}" FontSize="20"/>
+            <Button Content="Продолжить" Command="{Binding OpenManagerCompetitionComand}" 
+                    FontSize="20" FontStyle="Italic" Padding="3 3 3 3" Margin="40 0 0 0"/>
+        </StackPanel>
+
+
+        <ItemsControl ItemsSource="{Binding lastCompetitions}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                        <StackPanel Orientation="Horizontal" Grid.Column="0">
+                            <TextBlock Text="Соревнование от " FontSize="18"/>
+                            <TextBlock Text="{Binding Created, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}" FontSize="18"/>
+                        </StackPanel>
+                        <Button Content="Просмотр" 
+                                Command="{Binding DataContext.ViewCompetitionCommand, 
+                                    RelativeSource={RelativeSource Mode=FindAncestor, 
+                                    AncestorType={x:Type local:ComplitedCompetitionsWindow}}}"
+                                CommandParameter="{Binding Id}" 
+                                Grid.Column="1"
+                                FontSize="18"
+                                FontStyle="Italic"
+                                Padding="3 3 3 3"
+                                HorizontalAlignment="Right"
+                                Margin="70 0 0 0"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
 </Window>

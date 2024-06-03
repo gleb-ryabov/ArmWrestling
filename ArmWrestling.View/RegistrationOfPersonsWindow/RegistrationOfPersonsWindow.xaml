@@ -17,18 +17,25 @@
 
     <StackPanel>
         <StackPanel.Resources>
+            <Style TargetType="Grid">
+                <Setter Property="Margin" Value="0 20 0 0"/>
+            </Style>
             <Style TargetType="TextBlock">
-                <Setter Property="Margin" Value="50 10 50 0"/>
+                <Setter Property="Margin" Value="50 10 10 0"/>
                 <Setter Property="FontSize" Value="18"/>
             </Style>
             <Style TargetType="ComboBox">
-                <Setter Property="Margin" Value="10 0 0 0"/>
+                <Setter Property="Margin" Value="10 10 0 0"/>
+                <Setter Property="FontSize" Value="18"/>
             </Style>
             <Style TargetType="TextBox">
-                <Setter Property="Margin" Value="10 0 0 0"/>
+                <Setter Property="Margin" Value="10 10 0 0"/>
+                <Setter Property="Padding" Value="3 3 3 3"/>
+                <Setter Property="FontSize" Value="18"/>
             </Style>
             <Style TargetType="DatePicker">
-                <Setter Property="Margin" Value="10 0 0 0"/>
+                <Setter Property="Margin" Value="10 10 0 0"/>
+                <Setter Property="FontSize" Value="18"/>
             </Style>
             <Style TargetType="ListView">
                 <Setter Property="Margin" Value="50 10 50 30"/>
@@ -36,7 +43,7 @@
             </Style>
             <Style TargetType="Button">
                 <Setter Property="Width" Value="400"/>
-                <Setter Property="Margin" Value="10 10 10 200"/>
+                <Setter Property="Margin" Value="10 10 10 10"/>
                 <Setter Property="Padding" Value="10 10 10 10"/>
                 <Setter Property="FontSize" Value="24"/>
             </Style>
@@ -48,50 +55,67 @@
                 <Setter Property="FontSize" Value="18"/>
             </Style>
         </StackPanel.Resources>
-        
-        
-        <TextBlock Text="Фамилия">
-            <TextBox Width="200" Text="{Binding Surname}"/>
-        </TextBlock>
-        
-        <TextBlock Text="Имя">
-            <TextBox Width="200" Text="{Binding Name}"/>
-        </TextBlock>
 
-        <TextBlock Text="Отчество">
-            <TextBox Width="200" Text="{Binding MiddleName}"/>
-        </TextBlock>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+        
+        <TextBlock Text="Фамилия" Grid.Row="0" Grid.Column="0"/>
+            <TextBox Width="200" Text="{Binding Surname}" Grid.Row="0" Grid.Column="1"/>
 
-        <TextBlock Text="Пол">
-            <ComboBox
+
+        <TextBlock Text="Имя" Grid.Row="0" Grid.Column="2"/>
+            <TextBox Width="200" Text="{Binding Name}" Grid.Row="0" Grid.Column="3"/>
+
+
+        <TextBlock Text="Отчество" Grid.Row="0" Grid.Column="4"/>
+            <TextBox Width="200" Text="{Binding MiddleName}" Grid.Row="0" Grid.Column="5"/>
+
+
+        <TextBlock Text="Пол" Grid.Row="1" Grid.Column="0"/>
+        <ComboBox
                 Width="200" 
                 SelectedValue="{Binding Gender}"
-                SelectedValuePath="Tag">
-                <ComboBoxItem Content="Мужской" Tag="1"/>
-                <ComboBoxItem Content="Женский" Tag="0"/>
-            </ComboBox>
-        </TextBlock>
+                SelectedValuePath="Tag"
+                Grid.Row="1" Grid.Column="1">
+            <ComboBoxItem Content="Мужской" Tag="1"/>
+            <ComboBoxItem Content="Женский" Tag="0"/>
+        </ComboBox>
 
-        <TextBlock Text="Дата рождения">
-            <DatePicker Width="200" Height="30" SelectedDate="{Binding BirthDate}" />
-        </TextBlock>
 
-        <TextBlock Text="Вес (в кг)">
-            <TextBox  Width="200" Text="{Binding Weight}"/>
-        </TextBlock>
+        <TextBlock Text="Дата рождения" Grid.Row="1" Grid.Column="2"/>
+            <DatePicker Width="200" Height="30" DisplayDate="01.01.2000" SelectedDateFormat="Short" SelectedDate="{Binding BirthDate}" Grid.Row="1" Grid.Column="3"/>
 
-        <TextBlock Text="Команда">
-            <ComboBox
+
+        <TextBlock Text="Вес (в кг)" Grid.Row="1" Grid.Column="4"/>
+            <TextBox  Width="200" Text="{Binding Weight}" Grid.Row="1" Grid.Column="5"/>
+
+
+        <TextBlock Text="Команда" Grid.Row="2" Grid.Column="0"/>
+        <ComboBox
                 Width="200" 
                 ItemsSource="{Binding Teams}"
-                SelectedValue="{Binding Team}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </TextBlock>
+                SelectedValue="{Binding Team}"
+                Grid.Row="2" Grid.Column="1">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        </Grid>
+
 
         <Button Style="{StaticResource CheckCategoryButton}"
                 Content="Проверить доступные категории"

@@ -36,7 +36,9 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.CompetitionReposiror
 
         public IEnumerable<Competition> GetAll()
         {
-            return _applicationContext.Competitions.ToList();
+            return _applicationContext.Competitions
+                .OrderByDescending(c => c.Created)
+                .ToList();
         }
 
         public Competition GetLast()

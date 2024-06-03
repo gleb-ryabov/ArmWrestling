@@ -6,70 +6,85 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:ArmWrestling.View.ResultsCompetitionWindow"
         mc:Ignorable="d"
-        Title="Итоги соревнований" Height="450" Width="800">
+        Title="Итоги соревнований" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
     
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closed">
             <i:InvokeCommandAction Command="{Binding CloseWindowCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+        <StackPanel Margin="25 15 25 15">
 
-    <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Выберите категорию (если необходимо)">
-            <ComboBox
+                <TextBlock Text="Выберите категорию (если необходимо)" FontSize="20" FontWeight="Bold"
+                       Grid.Column="0"/>
+                <ComboBox
                 SelectedValue="{Binding SelectedCategory}"
                 ItemsSource="{Binding Categories}"
-                DisplayMemberPath="Name"/>
-        </TextBlock>
+                DisplayMemberPath="Name"
+                FontSize="18"
+                Width="250"
+                Grid.Column="1"
+                Margin="10 0 0 0"/>
+            </Grid>
 
-        <ItemsControl ItemsSource="{Binding Results}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Place}"/>
-                        <TextBlock Text=" место - "/>
-                        <TextBlock Text="{Binding Person.Surname}"/>
-                        <TextBlock Text=" "/>
-                        <TextBlock Text="{Binding Person.Name}"/>
-                        <TextBlock Text=" "/>
-                        <TextBlock Text="{Binding Person.MiddleName}"/>
-                        <TextBlock Text=" ("/>
-                        <TextBlock Text="{Binding Person.Score}"/>
-                        <TextBlock Text=" оч.)"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
 
-        <ItemsControl ItemsSource="{Binding ResultsTeams}">
-            <ItemsControl.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="Margin" Value="5"/>
-                </Style>
-            </ItemsControl.Resources>
-            <ItemsControl.Template>
-                <ControlTemplate TargetType="ItemsControl">
-                    <StackPanel>
-                        <TextBlock Text="Командные результаты (по соревнованию): " FontWeight="Bold"/>
-                        <ItemsPresenter/>
-                    </StackPanel>
-                </ControlTemplate>
-            </ItemsControl.Template>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Place}"/>
-                        <TextBlock Text=" место - "/>
-                        <TextBlock Text="{Binding Team.Name}"/>
-                        <TextBlock Text=" ("/>
-                        <TextBlock Text="{Binding Team.Score}"/>
-                        <TextBlock Text=" оч.)"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
 
-        <Button Content="Просмотреть итоги" Command="{Binding GetResultCommand}"/>
-    </StackPanel>
+            <ItemsControl ItemsSource="{Binding Results}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Place}" FontSize="18"/>
+                            <TextBlock Text=" место - " FontSize="18"/>
+                            <TextBlock Text="{Binding Person.Surname}" FontSize="18"/>
+                            <TextBlock Text=" " FontSize="18"/>
+                            <TextBlock Text="{Binding Person.Name}" FontSize="18"/>
+                            <TextBlock Text=" " FontSize="18"/>
+                            <TextBlock Text="{Binding Person.MiddleName}" FontSize="18"/>
+                            <TextBlock Text=" (" FontSize="18"/>
+                            <TextBlock Text="{Binding Person.Score}" FontSize="18"/>
+                            <TextBlock Text=" оч.)" FontSize="18"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <ItemsControl ItemsSource="{Binding ResultsTeams}">
+                <ItemsControl.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Margin" Value="5"/>
+                    </Style>
+                </ItemsControl.Resources>
+                <ItemsControl.Template>
+                    <ControlTemplate TargetType="ItemsControl">
+                        <StackPanel>
+                            <TextBlock Text="Командные результаты (по соревнованию): " FontWeight="Bold" FontStyle="Italic" FontSize="18" Margin="0 20 0 0"/>
+                            <ItemsPresenter/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </ItemsControl.Template>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Place}" FontSize="18"/>
+                            <TextBlock Text=" место - " FontSize="18"/>
+                            <TextBlock Text="{Binding Team.Name}" FontSize="18"/>
+                            <TextBlock Text=" (" FontSize="18"/>
+                            <TextBlock Text="{Binding Team.Score}" FontSize="18"/>
+                            <TextBlock Text=" оч.)" FontSize="18"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Button Content="Просмотреть итоги" Command="{Binding GetResultCommand}" FontSize="18" Padding="10 10 10 10" Margin="0 20 0 0"/>
+        </StackPanel>
+    </ScrollViewer>
 </Window>

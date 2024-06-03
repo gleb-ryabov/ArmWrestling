@@ -65,7 +65,8 @@ namespace ArmWrestling.ViewModel.ResultsCompetitionWindow
             Categories = _categoryInCompetitionRepository.GetComplitedCategory(competition).ToList();
             SetNameCategories();
 
-            currentCompetition = _competitionRepository.GetLast();
+            //currentCompetition = _competitionRepository.GetLast();
+            currentCompetition = competition;
         }
 
         //Properties for binding values

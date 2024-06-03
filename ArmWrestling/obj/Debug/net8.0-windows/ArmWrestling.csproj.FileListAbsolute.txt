@@ -136,3 +136,4 @@ D:\проекты c#\ArmWrestling\ArmWrestling\bin\Debug\net8.0-windows\ArmWrest
 D:\проекты c#\ArmWrestling\ArmWrestling\bin\Debug\net8.0-windows\ArmWrestling.Applications.pdb
 D:\проекты c#\ArmWrestling\ArmWrestling\bin\Debug\net8.0-windows\Microsoft.Expression.Interactions.dll
 D:\проекты c#\ArmWrestling\ArmWrestling\bin\Debug\net8.0-windows\System.Windows.Interactivity.dll
+D:\проекты c#\ArmWrestling\ArmWrestling\obj\Debug\net8.0-windows\ArmWrestling_Content.g.cs

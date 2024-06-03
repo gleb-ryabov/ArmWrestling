@@ -55,17 +55,16 @@ namespace ArmWrestling.Applications.Services.ResultTeamService
                 //if result is not exist - create it
                 SetResult(competition);
             }
-
             List <ResultTeam> resultTeams = 
                 _resultTeamRepository.GetResulByCompetition(competition.Id).ToList();
-
+            
             //set team on result
             foreach (ResultTeam result in resultTeams)
             {
                 if (result.Team == null)
                     result.Team = _teamRepository.Get(result.TeamId);
             }
-
+            
             return resultTeams;
         }
 
@@ -75,12 +74,13 @@ namespace ArmWrestling.Applications.Services.ResultTeamService
             List<CategoryInCompetition> categories = 
                 _categoryInCompetitionRepository.GetByCompetition(competition).ToList();
 
-            foreach(CategoryInCompetition category in categories)
+            List<Team> teams = _teamRepository.GetByCompetition(competition.Id).ToList();
+
+            foreach (CategoryInCompetition category in categories)
             {
                 //get results persons and teams in this category
                 List<ResultPerson> resultsPerson = _resultPersonService.GetResult(category).ToList();
-                List<Team> teams = _teamRepository.GetByCompetition(competition.Id).ToList();
-
+                
                 //add score person to teams
                 foreach (ResultPerson result in resultsPerson)
                 {
@@ -89,7 +89,7 @@ namespace ArmWrestling.Applications.Services.ResultTeamService
                     {
                         if (team.Id == person.TeamId)
                         {
-                            team.Score += person.Score;
+                            //team.Score += person.Score;
                             //save score in database
                             _teamRepository.AddScore(team, person.Score);
                         }

@@ -51,7 +51,7 @@ namespace ArmWrestling.ViewModel.MainWindow
         }
         private void OpenPastCompetitions()
         {
-            _managerCompetitionWindowViewModel.Initialize();
+            //_managerCompetitionWindowViewModel.Initialize();
             _windowManager.Show(_complitedCompetitionsWindowViewModel);
             //_windowManager.Close<IMainWindowViewModel>(this);
         }
