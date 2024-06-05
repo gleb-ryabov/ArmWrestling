@@ -68,6 +68,7 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.DuelRepository
 
         public int GetLastNumberTour(char arm, CategoryInCompetition category)
         {
+            /*
             bool recordsExist = _applicationContext.Duels
                 .Any(d => d.CategoryInCompetition == category && d.Arm == arm);
 
@@ -75,6 +76,18 @@ namespace ArmWrestling.Infrastructure.Database.Repositories.DuelRepository
             {
                 return _applicationContext.Duels
                     .Where(d => d.CategoryInCompetition == category && d.Arm == arm)
+                    .Max(d => d.TourNumber);
+            }
+            else
+                return 0;
+            */
+            bool recordsExist = _applicationContext.Duels
+                .Any(d => d.CategoryInCompetitionId == category.Id && d.Arm == arm);
+
+            if (recordsExist)
+            {
+                return _applicationContext.Duels
+                    .Where(d => d.CategoryInCompetitionId == category.Id && d.Arm == arm)
                     .Max(d => d.TourNumber);
             }
             else

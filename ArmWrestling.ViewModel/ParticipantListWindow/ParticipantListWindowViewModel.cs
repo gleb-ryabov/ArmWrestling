@@ -87,6 +87,8 @@ namespace ArmWrestling.ViewModel.ParticipantListWindow
 
         public void GetParticipantList()
         {
+            ParticipantList = new Dictionary<CategoryInCompetition, List<Person>>();
+
             Competition competition = _competitionRepository.GetLast();
             List<CategoryInCompetition> categories =
                 _categoryInCompetitionRepository.GetByCompetition(competition).ToList();

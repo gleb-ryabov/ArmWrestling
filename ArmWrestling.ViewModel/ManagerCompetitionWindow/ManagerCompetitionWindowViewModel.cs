@@ -7,6 +7,7 @@ using ArmWrestling.Infrastructure.Database.Repositories.CategoryInCompetitionRep
 using ArmWrestling.Infrastructure.Database.Repositories.CategoryRepository;
 using ArmWrestling.Infrastructure.Database.Repositories.CompetitionReposirory;
 using ArmWrestling.Infrastructure.Database.Repositories.DuelRepository;
+using ArmWrestling.Infrastructure.Database.Repositories.PersonRepository;
 using ArmWrestling.Infrastructure.Database.Repositories.TableRepository;
 using ArmWrestling.ViewModel.Commands;
 using ArmWrestling.ViewModel.EditPersonsWindow;
@@ -23,6 +24,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
 {
@@ -43,6 +45,7 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
         private readonly ICategoryInCompetitionRepository _categoryInCompetitionRepository;
         private readonly IDuelRepository _duelRepository;
         private readonly ITableRepository _tableRepository;
+        private readonly IPersonRepository _personRepository;
         
         private readonly ParameterizedCommand<object> _selectTableCategoriesCommand;
         private readonly ParameterizedCommand<object> _setFirstAsWinnerCommand;
@@ -54,10 +57,14 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
         private readonly Command _completeCompetitionCommand;
         private readonly Command _browseParticipantsCommand;
         private readonly Command _closeWindowCommand;
+        private readonly Command _closeInfo1Command;
+        private readonly Command _closeInfo2Command;
 
         public ICommand CompleteCompetitionCommand => _completeCompetitionCommand;
         public ICommand BrowseParticipantsCommand => _browseParticipantsCommand;
         public ICommand CloseWindowCommand => _closeWindowCommand;
+        public ICommand CloseInfo1Command => _closeInfo1Command;
+        public ICommand CloseInfo2Command => _closeInfo2Command;
 
         public ManagerCompetitionWindowViewModel(IWindowManager windowManager,
             ISelectTableCategoriesWindowViewModel selectTableCategoriesWindowViewModel,
@@ -71,7 +78,8 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
             ICompetitionRepository competitionRepository,
             ICategoryInCompetitionRepository categoryInCompetitionRepository,
             IDuelRepository duelRepository,
-            ITableRepository tableRepository)
+            ITableRepository tableRepository,
+            IPersonRepository personRepository)
         {
             _windowManager = windowManager;
             _selectTableCategoriesWindowViewModel = selectTableCategoriesWindowViewModel;
@@ -88,7 +96,8 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
             _categoryInCompetitionRepository = categoryInCompetitionRepository;
             _duelRepository = duelRepository;
             _tableRepository = tableRepository;
-            
+            _personRepository = personRepository;
+
             _selectTableCategoriesCommand = new ParameterizedCommand<object>(SelectTableCategories);
             _setFirstAsWinnerCommand = new ParameterizedCommand<object>(SetFirstAsWinner);
             _setSecondAsWinnerCommand = new ParameterizedCommand<object>(SetSecondAsWinner);
@@ -96,6 +105,8 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
             _completeCompetitionCommand = new Command(CompleteCompetition);
             _browseParticipantsCommand = new Command(BrowseParticipants);
             _closeWindowCommand = new Command(CloseWindow);
+            _closeInfo1Command = new Command(CloseInfo1);
+            _closeInfo2Command = new Command(CloseInfo2);
         }
 
         //Function for initialize components in window
@@ -115,11 +126,56 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
                 OnPropertyChanged(nameof(Tables));
             }
         }
+        //notify window 1
+        public string _stringInfo1;
+        public string StringInfo1
+        {
+            get { return _stringInfo1; }
+            set
+            {
+                _stringInfo1 = value;
+                OnPropertyChanged(nameof(StringInfo1));
+            }
+        }
+        public List<string> _infoPersons1 = new List<string>();
+        public List<string> InfoPersons1
+        {
+            get { return _infoPersons1; }
+            set
+            {
+                _infoPersons1 = value;
+                OnPropertyChanged(nameof(InfoPersons1));
+            }
+        }
+        //notify window 2
+        public string _stringInfo2;
+        public string StringInfo2
+        {
+            get { return _stringInfo2; }
+            set
+            {
+                _stringInfo2 = value;
+                OnPropertyChanged(nameof(StringInfo2));
+            }
+        }
+        public List<string> _infoPersons2 = new List<string>();
+        public List<string> InfoPersons2
+        {
+            get { return _infoPersons2; }
+            set
+            {
+                _infoPersons2 = value;
+                OnPropertyChanged(nameof(InfoPersons2));
+            }
+        }
+        //for queue notify
+        int lastNotify = 2;
 
 
         //Function for create tables
         private void CreateTables()
         {
+            
             //getting competition
             Competition competition = _competitionRepository.GetLast();
             int countTable = competition.CountTable;
@@ -143,6 +199,7 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
                 _selectTableCategoriesWindowViewModel.Initialize(this, tableId);
                 _windowManager.Show(_selectTableCategoriesWindowViewModel);
             }
+
         }
 
         //Function for update the table (called when the table category is changed)
@@ -164,6 +221,31 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
 
                     //setting queue for table
                     GetQueue(table);
+
+
+                    //Notify for invite participants
+                    List<Person> personsInCategory = _personRepository.GetPersonsByCategory(table.CategoryInCompetition).ToList();
+                    List<string> fioPersons = new List<string>();
+                    foreach (var person in personsInCategory)
+                    {
+                        fioPersons.Add(person.Surname + " " + person.Name + " " + person.MiddleName);
+                    }
+                    string infoTable = "За столом номер " + table.Number + " начинается категория «" + 
+                        table.CategoryInCompetition.Name + "». Участники: ";
+
+                    if (lastNotify == 2)
+                    {
+                        StringInfo1 = infoTable;
+                        InfoPersons1 = fioPersons;
+                        lastNotify = 1;
+                    }
+                    else 
+                    {
+                        StringInfo2 = infoTable;
+                        InfoPersons2 = fioPersons;
+                        lastNotify = 2;
+                    }
+
 
                     int a;
                     if(table.IsBusy == 1)
@@ -206,7 +288,7 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
             bool queueIsCreated = false;
             if (duelsInFirstArm || duelsInSecondArm)
             {
-                //здесь испольуем прошлое значение
+
                 List<List<Person>> queue = _personService.CreateDraw(category, arm);
 
                 //Сhecking the need to conduct more duels in this arm
@@ -332,6 +414,18 @@ namespace ArmWrestling.ViewModel.ManagerCompetitionWindow
         private void CloseWindow()
         {
             _windowManager.Close<IManagerCompetitionWindowViewModel>(this);
+        }
+
+        //Funcitons for close notify Windows
+        private void CloseInfo1()
+        {
+            StringInfo1 = "";
+            InfoPersons1 = new List<string>();
+        }
+        private void CloseInfo2()
+        {
+            StringInfo2 = "";
+            InfoPersons2 = new List<string>();
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

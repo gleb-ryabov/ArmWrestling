@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArmWrestling.ViewModel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4621e107adb4c0bae678b153ee838b2a1446e7c4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0b1c113187e77fc17dadbc7aede9e06426f681f4")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArmWrestling.ViewModel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArmWrestling.ViewModel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

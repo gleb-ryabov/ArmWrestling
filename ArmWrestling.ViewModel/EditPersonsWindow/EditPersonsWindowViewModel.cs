@@ -156,8 +156,12 @@ namespace ArmWrestling.ViewModel.EditPersonsWindow
                     AviableCategories[i].IsSelected = true;
             }
 
-            int teamId = (int) person.TeamId;
-            Team = _teamRepository.Get(teamId);
+            if (person.TeamId != null)
+            {
+                int teamId = (int)person.TeamId;
+                Team = _teamRepository.Get(teamId);
+            }
+            
         }
 
         //Function for check aviable categories for person
